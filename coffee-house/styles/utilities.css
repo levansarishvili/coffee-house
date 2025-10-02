@@ -1,0 +1,228 @@
+/* Typography */
+.heading-1-font-mob {
+  font-size: 4.2rem;
+  line-height: 115%;
+}
+
+.heading-2-font-mob {
+  font-size: 3.2rem;
+}
+
+.heading-1-font {
+  font-size: 7.2rem;
+  line-height: 105%;
+}
+
+.heading-2-font {
+  font-size: 6rem;
+  line-height: 125%;
+}
+
+.heading-3-font {
+  font-size: 2.4rem;
+  line-height: 125%;
+}
+
+.medium-font {
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+.caption-font {
+  font-size: 1rem;
+  line-height: 140%;
+}
+
+.link-font {
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+.btn-font {
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+.accent {
+  font-style: italic;
+  color: #b0907a;
+}
+
+.weight-600 {
+  font-weight: 600;
+}
+
+.weight-400 {
+  font-weight: 400;
+}
+
+/* Colors */
+.dark-txt {
+  color: #403f3d;
+}
+
+.light-txt {
+  color: #e1d4c9;
+}
+
+.light-background {
+  background-color: #e1d4c9;
+}
+
+.medium-background {
+  background-color: #665f55;
+}
+
+.dark-background {
+  background-color: rgba(64, 63, 61, 0.8);
+}
+
+.light-border {
+  background-color: #c1b6ad;
+}
+
+.dark-border {
+  background-color: #665f55;
+}
+
+/* Display Positions */
+.flex-row {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-100 {
+  gap: 10rem;
+}
+
+.gap-40 {
+  gap: 4rem;
+}
+
+.gap-20 {
+  gap: 2rem;
+}
+
+.gap-16 {
+  gap: 1.6rem;
+}
+
+.gap-12 {
+  gap: 1.2rem;
+}
+
+.gap-8 {
+  gap: 0.8rem;
+}
+
+.gap-6 {
+  gap: 0.6rem;
+}
+
+.txt-align-left {
+  text-align: left;
+}
+
+.txt-align-center {
+  text-align: center;
+}
+
+.pd-100 {
+  padding: 10rem;
+}
+
+.pd-20 {
+  padding: 2rem;
+}
+
+.ml-100 {
+  margin-left: 10rem;
+}
+
+.mt-60 {
+  margin-top: 6rem;
+}
+
+.mt-100 {
+  margin-top: 10rem;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.mb-12 {
+  margin-bottom: 1.2rem;
+}
+
+.mb-20 {
+  margin-bottom: 2rem;
+}
+
+.mb-100 {
+  margin-bottom: 10rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.visibility-visible {
+  visibility: visible;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
