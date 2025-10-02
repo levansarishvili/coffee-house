@@ -44,7 +44,7 @@
   }
 }
 
-/* ======================== Start Slider Section ========================*/
+/* ======================== Slider Section ========================*/
 .slider-area {
   max-width: 115.2rem;
   flex-shrink: 1;
@@ -124,4 +124,70 @@
 
 .paused {
   animation-play-state: paused;
+}
+
+/* ======================== About Section ======================== */
+
+.about-images {
+  display: grid;
+  grid-template-columns: 66rem 66rem;
+  gap: 4rem;
+}
+
+.img-item {
+  border-radius: 20px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+
+@media (hover: hover) {
+  .img-item:hover {
+    transform: scale(1);
+  }
+}
+
+.img-box-home {
+  border-radius: 20px;
+}
+
+.img-1,
+.img-4 {
+  height: 590px;
+}
+
+.img-2,
+.img-3 {
+  height: 430px;
+}
+
+/* ======================== Mobile App Section ======================== */
+
+.download-btn {
+  width: 200px;
+  padding: 12px 20px;
+  border-radius: 100px;
+  border: 1px solid #665f55;
+
+  transition: 0.8s;
+}
+
+.download-btn svg > path {
+  transition: 0.8s;
+}
+
+@media (hover: hover) {
+  .download-btn:hover {
+    background: #665f55;
+    color: #e1d4c9;
+  }
+
+  .download-btn:hover svg > path {
+    fill: #e1d4c9;
+  }
+}
+
+.phone-img {
+  width: 63rem;
 }
