@@ -43,3 +43,85 @@
     transform: scale(1);
   }
 }
+
+/* ======================== Start Slider Section ========================*/
+.slider-area {
+  max-width: 115.2rem;
+  flex-shrink: 1;
+  overflow: hidden;
+  min-height: 64rem;
+  position: relative;
+}
+
+.slider-content {
+  height: 100%;
+  position: absolute;
+}
+
+.arrow-btn-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  border: 1px solid #665f55;
+  transition: 0.8s;
+  flex-shrink: 0;
+}
+
+@media (hover: hover) {
+  .arrow-btn-box:hover svg > path {
+    stroke: #e1d4c9;
+  }
+
+  .arrow-btn-box:hover {
+    background: #665f55;
+  }
+}
+
+.slider-content {
+  max-width: 48rem;
+}
+
+.slider-img {
+  width: 100%;
+}
+
+.control-line {
+  width: 40px;
+  height: 4px;
+  border-radius: 100px;
+  background-color: #c1b6ad;
+}
+
+.control-line-1 {
+  position: relative;
+}
+
+.control-line-fill,
+.control-line-fill,
+.control-line-fill {
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  border-radius: 100px;
+}
+
+.active-control-line {
+  animation-name: fillProgressBar;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fillProgressBar {
+  0% {
+    width: 0;
+    background-color: #665f55;
+  }
+  100% {
+    width: 40px;
+    background-color: #665f55;
+  }
+}
+
+.paused {
+  animation-play-state: paused;
+}
