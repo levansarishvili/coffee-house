@@ -1,35 +1,37 @@
+@import "variables.css";
+
 /* Typography */
 .heading-1-font-mob {
-  font-size: 4.2rem;
+  font-size: var(--h1-size-mobile);
   line-height: 115%;
 }
 
 .heading-2-font-mob {
-  font-size: 3.2rem;
+  font-size: var(--h2-size-mobile);
 }
 
 .heading-1-font {
-  font-size: 7.2rem;
+  font-size: var(--h1-size);
   line-height: 105%;
 }
 
 .heading-2-font {
-  font-size: 6rem;
+  font-size: var(--h2-size);
   line-height: 125%;
 }
 
 .heading-3-font {
-  font-size: 2.4rem;
+  font-size: var(--h3-size);
   line-height: 125%;
 }
 
 .medium-font {
-  font-size: 1.6rem;
+  font-size: var(--text-body-md);
   line-height: 150%;
 }
 
 .caption-font {
-  font-size: 1rem;
+  font-size: var(--text-body-sm);
   line-height: 140%;
 }
 
@@ -45,7 +47,7 @@
 
 .accent {
   font-style: italic;
-  color: #b0907a;
+  color: var(--text-accent);
 }
 
 .weight-600 {
@@ -58,31 +60,31 @@
 
 /* Colors */
 .dark-txt {
-  color: #403f3d;
+  color: var(--text-dark);
 }
 
 .light-txt {
-  color: #e1d4c9;
+  color: var(--text-light);
 }
 
 .light-background {
-  background-color: #e1d4c9;
+  background-color: var(--background-body);
 }
 
 .medium-background {
-  background-color: #665f55;
+  background-color: var(--background-container);
 }
 
 .dark-background {
-  background-color: rgba(64, 63, 61, 0.8);
+  background-color: var(--background-backdrop);
 }
 
 .light-border {
-  background-color: #c1b6ad;
+  background-color: var(--background-body);
 }
 
 .dark-border {
-  background-color: #665f55;
+  background-color: var(--background-container);
 }
 
 /* Display Positions */

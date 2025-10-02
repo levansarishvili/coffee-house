@@ -62,18 +62,18 @@
   width: 60px;
   height: 60px;
   border-radius: 100px;
-  border: 1px solid #665f55;
+  border: 1px solid var(--border-dark);
   transition: 0.8s;
   flex-shrink: 0;
 }
 
 @media (hover: hover) {
   .arrow-btn-box:hover svg > path {
-    stroke: #e1d4c9;
+    stroke: var(--text-light);
   }
 
   .arrow-btn-box:hover {
-    background: #665f55;
+    background: var(--background-container);
   }
 }
 
@@ -89,7 +89,7 @@
   width: 40px;
   height: 4px;
   border-radius: 100px;
-  background-color: #c1b6ad;
+  background-color: var(--background-body);
 }
 
 .control-line-1 {
@@ -114,11 +114,11 @@
 @keyframes fillProgressBar {
   0% {
     width: 0;
-    background-color: #665f55;
+    background-color: var(--background-container);
   }
   100% {
     width: 40px;
-    background-color: #665f55;
+    background-color: var(--background-container);
   }
 }
 
@@ -127,7 +127,6 @@
 }
 
 /* ======================== About Section ======================== */
-
 .about-images {
   display: grid;
   grid-template-columns: 66rem 66rem;
@@ -163,12 +162,11 @@
 }
 
 /* ======================== Mobile App Section ======================== */
-
 .download-btn {
   width: 200px;
   padding: 12px 20px;
   border-radius: 100px;
-  border: 1px solid #665f55;
+  border: 1px solid var(--border-dark);
 
   transition: 0.8s;
 }
@@ -179,12 +177,12 @@
 
 @media (hover: hover) {
   .download-btn:hover {
-    background: #665f55;
-    color: #e1d4c9;
+    background: var(--background-container);
+    color: var(--text-dark);
   }
 
   .download-btn:hover svg > path {
-    fill: #e1d4c9;
+    fill: var(--text-dark);
   }
 }
 
