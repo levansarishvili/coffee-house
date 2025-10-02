@@ -1,0 +1,45 @@
+@import "variables.css";
+
+/* ======================== Hero Section ========================*/
+.hero {
+  border-radius: 40px;
+  position: relative;
+}
+
+.enjoy-video {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  object-fit: cover;
+  border-radius: 4rem;
+}
+
+.offer {
+  width: 53rem;
+}
+
+.main-btn {
+  width: 200px;
+  padding: 2rem 7.8rem;
+  border-radius: 100px;
+}
+
+.main-btn-img {
+  transform: scale(0);
+  width: 0;
+  height: 20px;
+  transition: all 0.5s ease-in;
+}
+
+@media (hover: hover) {
+  .main-btn:hover .main-btn-img {
+    width: 20px;
+    height: 20px;
+    transform: scale(1);
+  }
+}
