@@ -179,11 +179,11 @@
 @media (hover: hover) {
   .download-btn:hover {
     background: var(--background-container);
-    color: var(--text-dark);
+    color: var(--text-light);
   }
 
   .download-btn:hover svg > path {
-    fill: var(--text-dark);
+    fill: var(--text-light);
   }
 }
 
