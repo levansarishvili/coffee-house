@@ -141,9 +141,10 @@
           </h1>
 
           <!-- ============ Tabs for switching products============ -->
-          <div class="tabs flex-row gap-16">
+          <div class="tabs-wrapper flex-row gap-16">
             <div
               class="tab-item tab-1 active-tab flex-row justify-start align-center gap-8 medium-font weight-600 cursor-pointer"
+              data-category="coffee"
             >
               <div
                 class="icon-box icon-box-1 flex-row justify-center align-center"
@@ -156,8 +157,10 @@
               </div>
               <p>Coffee</p>
             </div>
+
             <div
               class="tab-item tab-2 flex-row justify-start align-center gap-8 medium-font weight-600 cursor-pointer"
+              data-category="tea"
             >
               <div
                 class="icon-box icon-box-2 flex-row justify-center align-center"
@@ -170,8 +173,10 @@
               </div>
               <p>Tea</p>
             </div>
+
             <div
               class="tab-item tab-3 flex-row justify-start align-center gap-8 medium-font weight-600 cursor-pointer"
+              data-category="dessert"
             >
               <div
                 class="icon-box icon-box-3 flex-row justify-center align-center"
@@ -359,7 +364,7 @@
         </div>
         <!-- Tea Products -->
         <div
-          class="products tea-products flex-row gap-40 justify-center flex-wrap w-full"
+          class="products tea-products flex-row gap-40 justify-center flex-wrap w-full display-none"
         >
           <div
             class="product-item tea-product-item flex-col cursor-pointer"
@@ -448,7 +453,7 @@
         </div>
         <!-- Dessert Products -->
         <div
-          class="products dessert-products flex-row gap-40 justify-center flex-wrap w-full"
+          class="products dessert-products flex-row gap-40 justify-center flex-wrap w-full display-none"
         >
           <div
             class="product-item dessert-product-item flex-col cursor-pointer"
@@ -624,6 +629,7 @@
             </div>
           </div>
         </div>
+
         <!-- Modal window -->
         <div
           class="modal-container flex-row justify-center gap-20 w-full display-none"
@@ -763,7 +769,7 @@
         </div>
         <div class="overlay"></div>
 
-        <!-- ======================== Products Part ======================== -->
+        <!-- ======================== Load more button ======================== -->
         <div class="load-btn align-center justify-center cursor-pointer">
           <svg
             width="24"

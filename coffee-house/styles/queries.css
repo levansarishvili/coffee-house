@@ -114,7 +114,7 @@
   }
 
   .load-btn {
-    display: flex;
+    /* display: flex; */
   }
 
   .coffee-products {
@@ -255,7 +255,7 @@
   }
 
   /* Menu Page */
-  .tabs {
+  .tabs-wrapper {
     gap: 0.8rem;
   }
 
@@ -295,7 +295,7 @@
   }
 
   /* Menu Page */
-  .tabs {
+  .tabs-wrapper {
     flex-direction: column;
   }
 }
