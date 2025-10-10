@@ -1,3 +1,7 @@
+"use strict";
+
+import { products } from "../data/products.js";
+
 // ================ Product Category Tabs ================
 const tabsWrapper = document.querySelector(".tabs-wrapper");
 const tabItems = document.querySelectorAll(".tab-item");
@@ -49,7 +53,7 @@ tabsWrapper.addEventListener("click", (event) => {
   showLoadButton();
 });
 
-// ================ Load More Products ================
+// Load More Products
 function loadProducts() {
   curProducts.forEach((product) => {
     product.classList.remove("hidden-product");
@@ -79,4 +83,28 @@ document.addEventListener("DOMContentLoaded", () => {
   showProducts();
   setActiveTab(curCategory);
   showLoadButton();
+});
+
+// ================ Product Size and Additives Selection ================
+const modalContainer = document.querySelector(".modal-container");
+const modalOverlay = document.querySelector(".overlay");
+const additiveButtons = document.querySelectorAll(".additive-btn");
+const sizeButtons = document.querySelectorAll(".size-btn");
+const firstSizeButton = document.querySelector(".first-size-btn");
+const selectedProductName = document.querySelector(".modal-product-name");
+const selectedProductDesc = document.querySelector(".modal-product-desc-txt");
+
+let curProduct;
+let totalPrice = 0;
+let initialPrice = 0;
+
+productWrappers[curCategory].addEventListener("click", (event) => {
+  const selectedProductItem = event.target.closest(".product-item");
+  const selectedProductName = selectedProductItem?.dataset?.productName;
+  console.log(selectedProductName);
+
+  curProduct = products.filter(
+    (product) => product.name === selectedProductName
+  );
+  console.log(curProduct);
 });

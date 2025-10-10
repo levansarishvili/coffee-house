@@ -1,3 +1,5 @@
+"use strict";
+
 // ================= Slider =================
 const sliderWrapper = document.querySelector(".slider-area");
 const slides = document.querySelectorAll(".slider-content");

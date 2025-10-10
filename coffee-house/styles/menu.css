@@ -117,7 +117,6 @@
 }
 
 /* Modal styles */
-
 .overlay {
   position: fixed;
   z-index: 0;
@@ -171,13 +170,12 @@
   border: 1px solid var(--border-light);
   flex-shrink: 0;
   cursor: pointer;
-
   transition: all 0.5s;
 }
 
 .size-letter-box {
   border-radius: 10rem;
-  background: var(--background-body);
+  background: var(--border-light);
   transition: all 0.5s;
 }
 
@@ -231,7 +229,6 @@
   border: 1px solid var(--border-light);
   flex-shrink: 0;
   cursor: pointer;
-
   transition: all 0.5s;
 }
 
@@ -242,7 +239,7 @@
 
 .additive-number-box {
   border-radius: 10rem;
-  background: var(--background-body);
+  background: var(--border-light);
   transition: all 0.5s;
 }
 
@@ -252,7 +249,7 @@
   }
 
   .additive-btn:hover p {
-    color: var(--text-dark);
+    color: var(--text-light);
   }
 
   .additive-btn:hover .additive-number-box {
