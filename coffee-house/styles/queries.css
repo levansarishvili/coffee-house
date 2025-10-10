@@ -201,12 +201,6 @@
   .burger-menu--open .bottom-line {
     transform: translateY(-5px) rotate(-45deg);
   }
-
-  /* Active Burger Menu Styles - for disable vertical scroll */
-  .disable-scroll {
-    overflow: hidden;
-    height: 100vh;
-  }
 }
 
 /* <=736px screen size */

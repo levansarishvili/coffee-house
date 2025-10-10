@@ -126,7 +126,6 @@
   bottom: 0;
   background-color: var(--background-container);
   opacity: 0.9;
-  display: none;
 }
 
 .modal-container {

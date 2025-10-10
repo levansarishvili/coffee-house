@@ -232,3 +232,7 @@
 .disabled-link {
   pointer-events: none;
 }
+
+.disable-scroll {
+  overflow: hidden;
+}
