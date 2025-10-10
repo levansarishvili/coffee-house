@@ -13,22 +13,59 @@ const productWrappers = {
   dessert: document.querySelector(".dessert-products"),
 };
 
-const allProducts = {
-  coffee: document.querySelectorAll(".coffee-product-item"),
-  tea: document.querySelectorAll(".tea-product-item"),
-  dessert: document.querySelectorAll(".dessert-product-item"),
-};
-
 let curCategory = "coffee";
-let curProducts = allProducts[curCategory];
+let curProducts;
+
+// Render products by category
+function renderProducts(category) {
+  const curWrapper = productWrappers[category];
+  curWrapper.innerHTML = "";
+
+  curProducts = products.filter((product) => product.category === category);
+
+  curProducts.forEach((product, index) => {
+    const productHTML = `
+      <div class="product-item coffee-product-item flex-col cursor-pointer ${
+        index > 3 ? "hidden-product" : ""
+      }" 
+        data-product-name="${product.name}">
+        <div class="img-box">
+          <img class="product-img w-full" src="./assets/${
+            product.name
+          }.png" alt="${product.name} image" />
+        </div>
+        <div class="product-desc flex-col justify-between dark-txt pd-20">
+          <p class="coffee-name heading-3-font weight-600 mb-12">${
+            product.name
+          }</p>
+          <p class="product-desc-txt medium-font weight-400 mb-auto">
+            ${product.description}
+          </p>
+          <p class="product-price heading-3-font weight-600">$${Number(
+            product.price
+          ).toFixed(2)}</p>
+        </div>
+      </div>
+    `;
+
+    curWrapper.insertAdjacentHTML("beforeend", productHTML);
+  });
+}
 
 // Show products based on category
 function showProducts(category = "coffee") {
-  Object.keys(productWrappers).forEach((cat) => {
-    productWrappers[cat].classList.toggle("display-none", cat !== category);
+  // Hide all wrappers
+  Object.values(productWrappers).forEach((wrapper) => {
+    wrapper.style.display = "none";
   });
-  curProducts = allProducts[category];
+
+  // Show selected wrapper
+  const selectedWrapper = productWrappers[category];
+  selectedWrapper.style.display = "flex";
+
   curCategory = category;
+  renderProducts(category);
+  showLoadButton();
 }
 
 // Set active tab
@@ -47,24 +84,25 @@ tabsWrapper.addEventListener("click", (event) => {
   const clickedTab = event.target.closest(".tab-item");
   const category = clickedTab?.dataset?.category;
   if (!clickedTab || !category || category === curCategory) return;
+
   showProducts(category);
   setActiveTab(category);
-  curCategory = category;
   showLoadButton();
+  curCategory = category;
 });
 
 // Load More Products
 function loadProducts() {
-  curProducts.forEach((product) => {
-    product.classList.remove("hidden-product");
-  });
+  const hiddenItems =
+    productWrappers[curCategory].querySelectorAll(".hidden-product");
+  hiddenItems.forEach((item) => item.classList.remove("hidden-product"));
 }
 
 function showLoadButton() {
   const isMobile = window.innerWidth <= 768;
-  const hasHiddenProducts = Array.from(curProducts).some((product) =>
-    product.classList.contains("hidden-product")
-  );
+  const hiddenProducts =
+    productWrappers[curCategory].querySelectorAll(".hidden-product");
+  const hasHiddenProducts = hiddenProducts.length > 0;
 
   loadBtn.style.display = isMobile && hasHiddenProducts ? "flex" : "none";
 }
