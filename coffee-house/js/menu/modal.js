@@ -54,7 +54,9 @@ Object.values(productWrappers).forEach((wrapper) =>
     initialPrice = Number(curProduct[0].price);
     totalPrice = initialPrice;
     totalPriceEl.textContent = `$${Number(initialPrice).toFixed(2)}`;
-    selectedProductImage.src = `./assets/${curProduct[0].name}.png`;
+    selectedProductImage.src = `./assets/${curProduct[0].name
+      .split(" ")
+      .join("-")}.png`;
     selectedProductImage.alt = `${curProduct[0].name} image`;
 
     showModal();

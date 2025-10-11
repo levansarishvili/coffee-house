@@ -30,9 +30,9 @@ function renderProducts(category) {
     }" 
         data-product-name="${product.name}">
         <div class="img-box">
-          <img class="product-img w-full" src="./assets/${
-            product.name
-          }.png" alt="${product.name} image" />
+          <img class="product-img w-full" src="./assets/${product.name
+            .split(" ")
+            .join("-")}.png" alt="${product.name} image" />
         </div>
         <div class="product-desc flex-col justify-between dark-txt pd-20">
           <p class="coffee-name heading-3-font weight-600 mb-12">${
