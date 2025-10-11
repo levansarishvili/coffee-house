@@ -6,8 +6,10 @@ const navBar = document.querySelector(".nav-bar");
 const burgerMenu = document.querySelector(".burger-menu");
 const burgerLines = document.querySelector(".burger-lines");
 
+let screenWidth = window.innerWidth;
+
 window.addEventListener("resize", () => {
-  const screenWidth = window.innerWidth;
+  screenWidth = window.innerWidth;
   const burgerMenuIsOpen = navBar.classList.contains("burger-menu--open");
 
   if (screenWidth > 768 && burgerMenuIsOpen) {
@@ -16,6 +18,7 @@ window.addEventListener("resize", () => {
 });
 
 function toggleBurgerMenu() {
+  if (screenWidth > 768) return;
   navBar.classList.toggle("burger-menu--open");
   burgerLines.classList.toggle("burger-menu--open");
   body.classList.toggle("disable-scroll");
