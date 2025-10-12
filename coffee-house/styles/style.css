@@ -1,0 +1,192 @@
+@import "variables.css";
+
+/* ======================== Hero Section ========================*/
+.hero {
+  border-radius: 40px;
+  position: relative;
+}
+
+.enjoy-video {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  object-fit: cover;
+  border-radius: 4rem;
+}
+
+.offer {
+  width: 53rem;
+}
+
+.main-btn {
+  width: 200px;
+  padding: 2rem 7.8rem;
+  border-radius: 100px;
+}
+
+.main-btn-img {
+  transform: scale(0);
+  width: 0;
+  height: 20px;
+  transition: all 0.5s ease-in;
+}
+
+@media (hover: hover) {
+  .main-btn:hover .main-btn-img {
+    width: 20px;
+    height: 20px;
+    transform: scale(1);
+  }
+}
+
+/* ======================== Slider Section ========================*/
+.slider-area {
+  position: relative;
+  max-width: 115.2rem;
+  flex-shrink: 1;
+  overflow: hidden;
+  min-height: 64rem;
+}
+
+.slider-content {
+  position: absolute;
+  height: 100%;
+  transition: transform 1s ease;
+}
+
+.arrow-btn-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  border: 1px solid var(--border-dark);
+  transition: 0.8s;
+  flex-shrink: 0;
+}
+
+@media (hover: hover) {
+  .arrow-btn-box:hover svg > path {
+    stroke: var(--text-light);
+  }
+
+  .arrow-btn-box:hover {
+    background: var(--background-container);
+  }
+}
+
+.slider-content {
+  max-width: 48rem;
+}
+
+.slider-img {
+  width: 100%;
+}
+
+.control-line {
+  width: 40px;
+  height: 4px;
+  border-radius: 100px;
+  background-color: var(--border-light);
+}
+
+.control-line-1 {
+  position: relative;
+}
+
+.control-line-fill,
+.control-line-fill,
+.control-line-fill {
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  border-radius: 100px;
+}
+
+.active-control-line {
+  animation-name: fillProgressBar;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fillProgressBar {
+  0% {
+    width: 0;
+    background-color: var(--background-container);
+  }
+  100% {
+    width: 40px;
+    background-color: var(--background-container);
+  }
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+/* ======================== About Section ======================== */
+.about-images {
+  display: grid;
+  grid-template-columns: 66rem 66rem;
+  gap: 4rem;
+}
+
+.img-item {
+  border-radius: 20px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+
+@media (hover: hover) {
+  .img-item:hover {
+    transform: scale(1);
+  }
+}
+
+.img-box-home {
+  border-radius: 20px;
+}
+
+.img-1,
+.img-4 {
+  height: 590px;
+}
+
+.img-2,
+.img-3 {
+  height: 430px;
+}
+
+/* ======================== Mobile App Section ======================== */
+.download-btn {
+  width: 200px;
+  padding: 12px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--border-dark);
+
+  transition: 0.8s;
+}
+
+.download-btn svg > path {
+  transition: 0.8s;
+}
+
+@media (hover: hover) {
+  .download-btn:hover {
+    background: var(--background-container);
+    color: var(--text-light);
+  }
+
+  .download-btn:hover svg > path {
+    fill: var(--text-light);
+  }
+}
+
+.phone-img {
+  width: 63rem;
+}
