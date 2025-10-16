@@ -116,11 +116,13 @@ sliderWrapper.addEventListener("mouseleave", () => {
 // ================= Touch Swipe =================
 let touchStartX = 0;
 let touchEndX = 0;
+let isSwiping = false;
 
 // Add touchstart event listener
 sliderWrapper.addEventListener("touchstart", (e) => {
   touchStartX = e.touches[0].clientX;
-
+  touchEndX = touchStartX;
+  isSwiping = true;
   isPaused = true;
   clearAllIntervals();
 
@@ -130,22 +132,23 @@ sliderWrapper.addEventListener("touchstart", (e) => {
   controlLinesFill[curSlide].classList.add("paused");
 });
 
-// Add touchmove event listener
+// Add touchmove event listener - FIXED
 sliderWrapper.addEventListener("touchmove", (e) => {
-  // touchEndX = e.touches[0].clientX;
+  if (!isSwiping) return;
+  e.preventDefault();
+  touchEndX = e.touches[0].clientX;
 });
 
 // Add touchend event listener
 sliderWrapper.addEventListener("touchend", (e) => {
-  isPaused = false;
-  touchEndX = e.changedTouches[0].clientX;
+  if (!isSwiping) return;
 
-  // Remove pause style
+  isSwiping = false;
+  isPaused = false;
   controlLinesFill[curSlide].classList.remove("paused");
 
   handleSwipe();
 
-  // Resume slider with remaining time
   clearAllIntervals();
   timeoutId = setTimeout(() => {
     nextSlide();
@@ -156,16 +159,17 @@ sliderWrapper.addEventListener("touchend", (e) => {
 // Function to handle swipe based on touch start and end positions
 function handleSwipe() {
   const swipeThreshold = 50;
-
-  // Calculate the difference between start and end positions
   const deltaX = touchEndX - touchStartX;
+  const absDeltaX = Math.abs(deltaX);
 
-  if (deltaX > swipeThreshold) {
-    // Swipe right
+  if (absDeltaX < swipeThreshold) return;
+
+  if (deltaX > 0) {
     prevSlide();
-  } else if (deltaX < -swipeThreshold) {
-    // Swipe left
+    resetSlider();
+  } else {
     nextSlide();
+    resetSlider();
   }
 }
 
