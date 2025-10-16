@@ -114,27 +114,43 @@ sliderWrapper.addEventListener("mouseleave", () => {
 });
 
 // ================= Touch Swipe =================
-// Variables to store touch start and end positions
 let touchStartX = 0;
 let touchEndX = 0;
 
 // Add touchstart event listener
 sliderWrapper.addEventListener("touchstart", (e) => {
   touchStartX = e.touches[0].clientX;
+
   isPaused = true;
   clearAllIntervals();
+
+  // Pause progress bar
+  const elapsed = Date.now() - startTime;
+  remainingTime = slideInterval - elapsed;
+  controlLinesFill[curSlide].classList.add("paused");
 });
 
 // Add touchmove event listener
 sliderWrapper.addEventListener("touchmove", (e) => {
-  touchEndX = e.touches[0].clientX;
+  // touchEndX = e.touches[0].clientX;
 });
 
 // Add touchend event listener
-sliderWrapper.addEventListener("touchend", () => {
+sliderWrapper.addEventListener("touchend", (e) => {
   isPaused = false;
+  touchEndX = e.changedTouches[0].clientX;
+
+  // Remove pause style
+  controlLinesFill[curSlide].classList.remove("paused");
+
   handleSwipe();
-  resetSlider();
+
+  // Resume slider with remaining time
+  clearAllIntervals();
+  timeoutId = setTimeout(() => {
+    nextSlide();
+    startSlider();
+  }, remainingTime);
 });
 
 // Function to handle swipe based on touch start and end positions
