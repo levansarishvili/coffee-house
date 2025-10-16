@@ -115,13 +115,17 @@ sliderWrapper.addEventListener("mouseleave", () => {
 
 // ================= Touch Swipe =================
 let touchStartX = 0;
+let touchStartY = 0;
 let touchEndX = 0;
+let touchEndY = 0;
 let isSwiping = false;
 
 // Add touchstart event listener
 sliderWrapper.addEventListener("touchstart", (e) => {
   touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
   touchEndX = touchStartX;
+  touchEndY = touchStartY;
   isSwiping = true;
   isPaused = true;
   clearAllIntervals();
@@ -132,11 +136,20 @@ sliderWrapper.addEventListener("touchstart", (e) => {
   controlLinesFill[curSlide].classList.add("paused");
 });
 
-// Add touchmove event listener - FIXED
+// Add touchmove event listener
 sliderWrapper.addEventListener("touchmove", (e) => {
   if (!isSwiping) return;
-  e.preventDefault();
+
   touchEndX = e.touches[0].clientX;
+  touchEndY = e.touches[0].clientY;
+
+  // Calculate the distance moved in both directions
+  const deltaX = Math.abs(touchEndX - touchStartX);
+  const deltaY = Math.abs(touchEndY - touchStartY);
+
+  if (deltaX > deltaY) {
+    e.preventDefault();
+  }
 });
 
 // Add touchend event listener
@@ -160,9 +173,11 @@ sliderWrapper.addEventListener("touchend", (e) => {
 function handleSwipe() {
   const swipeThreshold = 50;
   const deltaX = touchEndX - touchStartX;
+  const deltaY = touchEndY - touchStartY;
   const absDeltaX = Math.abs(deltaX);
+  const absDeltaY = Math.abs(deltaY);
 
-  if (absDeltaX < swipeThreshold) return;
+  if (absDeltaX < swipeThreshold || absDeltaX <= absDeltaY) return;
 
   if (deltaX > 0) {
     prevSlide();
