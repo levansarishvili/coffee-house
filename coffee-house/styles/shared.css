@@ -130,12 +130,13 @@ li a:active {
 }
 
 /* Navigation */
-.top-line {
-  width: 1.6rem;
-}
-
+.top-line,
 .bottom-line {
+  display: block;
   width: 1.6rem;
+  height: 2px;
+  background-color: var(--text-dark);
+  border-radius: 1rem;
 }
 
 /* Footer Animation */
