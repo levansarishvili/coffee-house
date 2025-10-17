@@ -1,4 +1,4 @@
-import { slider } from "../components/slider.js";
+import { slider } from '../components/slider.js';
 
 export const home = () => {
   // Initialize Slider

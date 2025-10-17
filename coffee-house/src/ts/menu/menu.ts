@@ -1,5 +1,5 @@
-import { modal } from "../components/modal.js";
-import { switchCategory } from "../components/switchCategory.js";
+import { modal } from '../components/modal.js';
+import { switchCategory } from '../components/switchCategory.js';
 
 export const menu = () => {
   // Initialize Switch Category Tabs

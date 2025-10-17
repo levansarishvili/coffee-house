@@ -1,13 +1,13 @@
-"use strict";
+'use strict';
 
 export const slider = () => {
   // ================= Slider =================
-  const sliderWrapper = document.querySelector<HTMLElement>(".slider-area");
-  const slides = document.querySelectorAll<HTMLElement>(".slider-content");
-  const prevButton = document.querySelector<HTMLElement>(".left-arrow-btn");
-  const nextButton = document.querySelector<HTMLElement>(".right-arrow-btn");
+  const sliderWrapper = document.querySelector<HTMLElement>('.slider-area');
+  const slides = document.querySelectorAll<HTMLElement>('.slider-content');
+  const prevButton = document.querySelector<HTMLElement>('.left-arrow-btn');
+  const nextButton = document.querySelector<HTMLElement>('.right-arrow-btn');
   const controlLinesFill =
-    document.querySelectorAll<HTMLElement>(".control-line-fill");
+    document.querySelectorAll<HTMLElement>('.control-line-fill');
 
   let curSlide = 0;
   let maxSlide = slides.length - 1;
@@ -23,9 +23,9 @@ export const slider = () => {
   function updateProgressBar() {
     controlLinesFill.forEach((line, i) => {
       if (i === curSlide) {
-        line.classList.add("active-control-line");
+        line.classList.add('active-control-line');
       } else {
-        line.classList.remove("active-control-line");
+        line.classList.remove('active-control-line');
       }
     });
   }
@@ -81,37 +81,37 @@ export const slider = () => {
   }
 
   // Add event listener to prev button
-  prevButton?.addEventListener("click", () => {
+  prevButton?.addEventListener('click', () => {
     prevSlide();
     resetSlider();
   });
 
   // Add event listener to next button
-  nextButton?.addEventListener("click", () => {
+  nextButton?.addEventListener('click', () => {
     nextSlide();
     resetSlider();
   });
 
   // Stop infinite slider when hover or click on slider wrapper
-  sliderWrapper?.addEventListener("mouseover", (e: MouseEvent) => {
-    const slide = (e.target as HTMLElement)?.closest(".slider-content");
+  sliderWrapper?.addEventListener('mouseover', (e: MouseEvent) => {
+    const slide = (e.target as HTMLElement)?.closest('.slider-content');
     if (!slide || !sliderWrapper.contains(slide as HTMLElement)) return;
 
     isPaused = true;
     clearAllIntervals();
     const elapsed = Date.now() - startTime;
     remainingTime = slideInterval - elapsed;
-    controlLinesFill[curSlide].classList.add("paused");
+    controlLinesFill[curSlide].classList.add('paused');
   });
 
-  sliderWrapper?.addEventListener("mouseleave", () => {
+  sliderWrapper?.addEventListener('mouseleave', () => {
     isPaused = false;
     clearAllIntervals();
     timeoutId = setTimeout(() => {
       nextSlide();
       startSlider();
     }, remainingTime);
-    controlLinesFill[curSlide].classList.remove("paused");
+    controlLinesFill[curSlide].classList.remove('paused');
   });
 
   // ================= Touch Swipe =================
@@ -122,7 +122,7 @@ export const slider = () => {
   let isSwiping = false;
 
   // Add touchstart event listener
-  sliderWrapper?.addEventListener("touchstart", (e) => {
+  sliderWrapper?.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     touchEndX = touchStartX;
@@ -134,11 +134,11 @@ export const slider = () => {
     // Pause progress bar
     const elapsed = Date.now() - startTime;
     remainingTime = slideInterval - elapsed;
-    controlLinesFill[curSlide].classList.add("paused");
+    controlLinesFill[curSlide].classList.add('paused');
   });
 
   // Add touchmove event listener
-  sliderWrapper?.addEventListener("touchmove", (e) => {
+  sliderWrapper?.addEventListener('touchmove', (e) => {
     if (!isSwiping) return;
 
     touchEndX = e.touches[0].clientX;
@@ -154,12 +154,12 @@ export const slider = () => {
   });
 
   // Add touchend event listener
-  sliderWrapper?.addEventListener("touchend", () => {
+  sliderWrapper?.addEventListener('touchend', () => {
     if (!isSwiping) return;
 
     isSwiping = false;
     isPaused = false;
-    controlLinesFill[curSlide].classList.remove("paused");
+    controlLinesFill[curSlide].classList.remove('paused');
 
     handleSwipe();
 
