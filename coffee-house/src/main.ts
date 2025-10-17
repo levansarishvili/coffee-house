@@ -1,8 +1,8 @@
-import { burgerMenu } from './components/burgerMenu.js';
-import { home } from './home/home.js';
-import { menu } from './menu/menu.js';
-import { header } from './components/header.js';
-import { footer } from './components/footer.js';
+import { burgerMenu } from './ts/components/burgerMenu.js';
+import { home } from './ts/home/home.js';
+import { menu } from './ts/menu/menu.js';
+import { header } from './ts/components/header.js';
+import { footer } from './ts/components/footer.js';
 
 // Detect current page
 const currentPage = document.body.dataset.page;
