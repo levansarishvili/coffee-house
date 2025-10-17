@@ -1,6 +1,23 @@
 "use strict";
 
-export const products = [
+interface Product {
+  name: string;
+  description: string;
+  price: string | number;
+  category: string;
+  sizes: {
+    [key: string]: {
+      size: string;
+      "add-price": string;
+    };
+  };
+  additives: {
+    name: string;
+    "add-price": string;
+  }[];
+}
+
+const products: Product[] = [
   {
     name: "Irish coffee",
     description:
@@ -710,3 +727,133 @@ export const products = [
     ],
   },
 ];
+
+export const switchCategory = () => {
+  // ================ Product Category Tabs ================
+  const tabsWrapper = document.querySelector<HTMLElement>(".tabs-wrapper");
+  const tabItems = document.querySelectorAll<HTMLElement>(".tab-item");
+  const loadBtn = document.querySelector<HTMLElement>(".load-btn");
+
+  const productWrappers: Record<string, HTMLElement | null> = {
+    coffee: document.querySelector<HTMLElement>(".coffee-products"),
+    tea: document.querySelector<HTMLElement>(".tea-products"),
+    dessert: document.querySelector<HTMLElement>(".dessert-products"),
+  };
+
+  let curCategory: string = "coffee";
+  let curProducts: Product[] = [];
+
+  // Render products by category
+  function renderProducts(category: string) {
+    const curWrapper = productWrappers[category];
+    curWrapper ? (curWrapper.innerHTML = "") : null;
+
+    curProducts = products.filter((product) => product.category === category);
+
+    curProducts.forEach((product, index) => {
+      const productHTML = `
+      <div class="product-item ${category}-product-item flex-col cursor-pointer ${
+        index > 3 ? "hidden-product" : ""
+      }" 
+        data-product-name="${product.name}">
+        <div class="img-box">
+          <img class="product-img w-full" src="./assets/${product.name
+            .split(" ")
+            .join("-")}.png" alt="${product.name} image" />
+        </div>
+        <div class="product-desc flex-col justify-between dark-txt pd-20">
+          <p class="coffee-name heading-3-font weight-600 mb-12">${
+            product.name
+          }</p>
+          <p class="product-desc-txt medium-font weight-400 mb-auto">
+            ${product.description}
+          </p>
+          <p class="product-price heading-3-font weight-600">$${Number(
+            product.price
+          ).toFixed(2)}</p>
+        </div>
+      </div>
+    `;
+
+      curWrapper?.insertAdjacentHTML("beforeend", productHTML);
+    });
+  }
+
+  // Show products based on category
+  function showProducts(category = "coffee") {
+    // Hide all wrappers
+    Object.values(productWrappers).forEach((wrapper) => {
+      wrapper ? (wrapper.style.display = "none") : null;
+    });
+
+    // Show selected wrapper
+    const selectedWrapper = productWrappers[category];
+    selectedWrapper ? (selectedWrapper.style.display = "flex") : null;
+
+    curCategory = category;
+    renderProducts(category);
+    showLoadButton();
+  }
+
+  // Set active tab
+  function setActiveTab(category: string) {
+    tabItems.forEach((tab) => {
+      if (tab.dataset.category === category) {
+        tab.classList.add("active-tab");
+      } else {
+        tab.classList.remove("active-tab");
+      }
+    });
+  }
+
+  // Event listener for tab clicks
+  tabsWrapper?.addEventListener("click", (e: MouseEvent) => {
+    const clickedTab = (e.target as HTMLElement).closest<HTMLElement>(
+      ".tab-item"
+    );
+    const category = clickedTab?.dataset?.category;
+    if (!clickedTab || !category || category === curCategory) return;
+
+    showProducts(category);
+    setActiveTab(category);
+    showLoadButton();
+    curCategory = category;
+  });
+
+  // Load More Products
+  function loadProducts() {
+    const wrapper = productWrappers[curCategory];
+    if (!wrapper) return;
+    const hiddenItems =
+      wrapper.querySelectorAll<HTMLElement>(".hidden-product");
+    hiddenItems.forEach((item) => item.classList.remove("hidden-product"));
+  }
+
+  function showLoadButton() {
+    const wrapper = productWrappers[curCategory];
+    if (!wrapper) return;
+    const isMobile = window.innerWidth <= 768;
+    const hiddenProducts =
+      wrapper.querySelectorAll<HTMLElement>(".hidden-product");
+    loadBtn
+      ? (loadBtn.style.display =
+          isMobile && hiddenProducts.length > 0 ? "flex" : "none")
+      : null;
+  }
+
+  loadBtn?.addEventListener("click", () => {
+    loadProducts();
+    loadBtn.style.display = "none";
+  });
+
+  window.addEventListener("resize", () => {
+    showLoadButton();
+  });
+
+  // Initial setup
+  document.addEventListener("DOMContentLoaded", () => {
+    showProducts();
+    setActiveTab(curCategory);
+    showLoadButton();
+  });
+};
