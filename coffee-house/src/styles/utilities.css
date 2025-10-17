@@ -1,4 +1,4 @@
-@import "variables.css";
+@import 'variables.css';
 
 /* Typography */
 .heading-1-font-mob {
@@ -235,4 +235,20 @@
 
 .disable-scroll {
   overflow: hidden;
+}
+
+/* Simple CSS spinner */
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--border-light);
+  border-top-color: var(--text-dark);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

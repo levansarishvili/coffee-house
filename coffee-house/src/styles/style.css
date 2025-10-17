@@ -1,4 +1,4 @@
-@import "variables.css";
+@import 'variables.css';
 
 /* ======================== Hero Section ========================*/
 .hero {
@@ -47,6 +47,8 @@
 /* ======================== Slider Section ========================*/
 .slider-area {
   position: relative;
+  display: flex;
+  align-items: center;
   max-width: 115.2rem;
   flex-shrink: 1;
   overflow: hidden;
@@ -79,11 +81,18 @@
 }
 
 .slider-content {
-  max-width: 48rem;
+  width: 48rem;
+}
+
+.slider-img-wrapper {
+  width: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
 }
 
 .slider-img {
   width: 100%;
+  height: 100%;
 }
 
 .control-line {

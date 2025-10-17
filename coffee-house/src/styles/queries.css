@@ -77,6 +77,10 @@
     width: 56.8rem;
   }
 
+  .slider-content {
+    width: 46rem;
+  }
+
   /* Menu page */
   .modal-container {
     max-width: 68.8rem;
@@ -102,6 +106,10 @@
 
   .offer {
     width: 100%;
+  }
+
+  .slider-content {
+    width: 44rem;
   }
 
   /* Menu Page */
@@ -210,6 +218,14 @@
     justify-content: center;
   }
 
+  .slider-area {
+    min-height: 53.2rem;
+  }
+
+  .slider-content {
+    width: 34.8rem;
+  }
+
   /* Both */
   .heading-1-font-mob {
     font-size: 4.2rem;
@@ -265,6 +281,10 @@
     padding: 2rem 1.6rem 4rem 1.6rem;
   }
 
+  .slider-content {
+    width: 30rem;
+  }
+
   .footer {
     padding: 6rem 1.6rem;
     gap: 4rem;
@@ -286,6 +306,14 @@
   /* Home Page */
   .phone-img {
     width: 100%;
+  }
+
+  .slider-area {
+    min-height: 48rem;
+  }
+
+  .slider-content {
+    width: 26rem;
   }
 
   /* Menu Page */
