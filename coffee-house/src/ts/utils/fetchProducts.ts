@@ -1,9 +1,11 @@
 import { BASE_URL } from '../config/config.js';
 import type { Product, ProductsResponse } from '../../types/product.js';
 
-export const fetchFavoriteProducts = async (): Promise<Product[]> => {
+export const fetchProducts = async (favorites = false): Promise<Product[]> => {
   try {
-    const res = await fetch(`${BASE_URL}/products/favorites`);
+    const res = await fetch(
+      `${BASE_URL}/products${favorites ? '/favorites' : ''}`
+    );
 
     if (!res.ok) {
       throw new Error('Something went wrong. Please, refresh the page');

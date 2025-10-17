@@ -1,4 +1,4 @@
-@import "variables.css";
+@import 'variables.css';
 
 /* Animation only for menu button on menu page nav bar */
 .hover-underline-animation-menu {
@@ -6,7 +6,7 @@
 }
 
 .hover-underline-animation-menu::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 2.5px;

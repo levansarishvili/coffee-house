@@ -1,6 +1,6 @@
 'use strict';
 
-import { fetchFavoriteProducts } from '../utils/fetchFavoriteProducts.js';
+import { fetchProducts } from '../utils/fetchProducts.js';
 import { renderSlider } from '../utils/renderSlider.js';
 import { showErrorMessage } from '../utils/showErrorMessage.js';
 import { showSpinner } from '../utils/showSpinner.js';
@@ -22,7 +22,7 @@ export const slider = async () => {
 
   // Fetch and render slider data
   try {
-    const favoriteProducts = await fetchFavoriteProducts();
+    const favoriteProducts = await fetchProducts();
 
     showSpinner(false);
 
