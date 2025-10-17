@@ -1,0 +1,324 @@
+@import "variables.css";
+
+/* Animation only for menu button on menu page nav bar */
+.hover-underline-animation-menu {
+  position: relative;
+}
+
+.hover-underline-animation-menu::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2.5px;
+  border-radius: 10px;
+
+  bottom: -5px;
+  left: 0;
+  background-color: var(--text-dark);
+  transform-origin: 50% 50%;
+  transition: transform 0.5s ease-out;
+}
+
+@media (hover: hover) {
+  .hover-underline-animation-menu:hover::after {
+    transform: scaleX(1);
+    transform-origin: 50% 50%;
+  }
+}
+
+/* ======================== Main Section ======================== */
+.header-container {
+  width: 80rem;
+  width: 100%;
+}
+
+.tab-item {
+  padding: 8px 16px 8px 8px;
+  border-radius: 100px;
+  transition: 0.5s;
+}
+
+.tab-icon {
+  width: 16px;
+  height: 24px;
+}
+
+.icon-box {
+  padding: 3px 7px;
+  border-radius: 100px;
+  background-color: var(--border-light);
+  transition: all 0.5s;
+}
+
+.tab-1,
+.tab-2,
+.tab-3 {
+  background-color: var(--background-body);
+  border: 1px solid var(--border-light);
+  color: var(--text-dark);
+}
+
+@media (hover: hover) {
+  .tab-item:hover {
+    background: var(--background-container);
+    border: 1px solid var(--border-light);
+    color: var(--text-light);
+  }
+
+  .tab-item:hover .icon-box {
+    background: var(--background-body);
+  }
+}
+
+/* Class to add by javascript */
+.active-tab {
+  background: var(--background-container);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+}
+
+.active-tab .icon-box {
+  background: var(--background-body);
+}
+
+.primary-header {
+  width: 59%;
+}
+
+/* ======================== Coffee Products Part ======================== */
+.product-item {
+  border: 1px solid var(--border-light);
+  border-radius: 40px;
+  width: 310px;
+  height: 506px;
+  transition: transform 0.5s;
+}
+
+.product-img {
+  border-radius: 40px;
+  transform: scale(1.1);
+  transition: transform 0.5s;
+  display: block;
+}
+
+.product-desc {
+  flex: 1 0 0;
+}
+
+@media (hover: hover) {
+  .product-item:hover .product-img {
+    transform: scale(1);
+  }
+}
+
+.img-box {
+  overflow: hidden;
+  border-radius: 40px;
+}
+
+/* Modal styles */
+.overlay {
+  position: fixed;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--background-backdrop);
+  opacity: 0.9;
+}
+
+.modal-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  max-width: 80rem;
+  padding: 1.6rem;
+  border-radius: 4rem;
+  background: var(--background-body);
+}
+
+.modal-img-box {
+  flex-shrink: 0;
+  width: 31rem;
+  border-radius: 4rem;
+  overflow: hidden;
+}
+
+.modal-img {
+  width: 100%;
+  border-radius: 4rem;
+}
+
+.modal-product-info {
+  max-width: 43.8rem;
+  flex-shrink: 1;
+}
+
+.size-buttons-container {
+  flex-wrap: wrap;
+}
+
+.size-btn {
+  padding: 0.8rem 1.2rem 0.8rem 0.8rem;
+  border-radius: 10rem;
+  border: none;
+  background: none;
+  border: 1px solid var(--border-light);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.size-letter-box {
+  border-radius: 10rem;
+  background: var(--border-light);
+  transition: all 0.5s;
+}
+
+@media (hover: hover) {
+  .size-btn:hover {
+    background: var(--background-container);
+    border: 1px solid var(--border-dark);
+  }
+
+  .size-btn:hover p {
+    color: var(--text-light);
+  }
+
+  .size-btn:hover .size-letter-box {
+    background: var(--background-body);
+  }
+
+  .size-btn:hover .size-letter-box {
+    background: var(--background-body);
+  }
+}
+
+/* Class to add using javascript */
+.active-size-btn {
+  background: var(--background-container);
+}
+
+.active-size-btn p {
+  color: var(--text-light);
+}
+
+.active-size-btn .size-letter-box {
+  background: var(--background-body);
+}
+
+.size-letter {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Additives Buttons Style */
+.additive-buttons-container {
+  flex-wrap: wrap;
+}
+
+.additive-btn {
+  padding: 0.8rem 1.2rem 0.8rem 0.8rem;
+  border-radius: 10rem;
+  border: none;
+  background: none;
+  border: 1px solid var(--border-light);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.additive-number {
+  width: 3rem;
+  height: 3rem;
+}
+
+.additive-number-box {
+  border-radius: 10rem;
+  background: var(--border-light);
+  transition: all 0.5s;
+}
+
+@media (hover: hover) {
+  .additive-btn:hover {
+    background-color: var(--background-container);
+  }
+
+  .additive-btn:hover p {
+    color: var(--text-light);
+  }
+
+  .additive-btn:hover .additive-number-box {
+    background: var(--background-body);
+  }
+}
+
+/* Class to add using javascript */
+.active-additive-btn {
+  background-color: var(--background-container);
+  border: 1px solid var(--border-dark);
+}
+
+.active-additive-btn p {
+  color: var(--text-light);
+}
+
+.active-additive-btn .additive-number-box {
+  background: var(--background-body);
+}
+
+/* Modal warning */
+.modal-warning {
+  border-top: 1px solid var(--border-light);
+  padding: 1.2rem 0;
+}
+
+.modal-close-btn {
+  border-radius: 10rem;
+  border: 1px solid var(--border-dark);
+  padding: 1rem 7.8rem;
+  background: none;
+
+  transition: all 0.5s;
+}
+
+.modal-close-btn {
+  border-radius: 10rem;
+  border: 1px solid var(--border-dark);
+  padding: 1rem 7.8rem;
+  background: none;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .modal-close-btn:hover {
+    background-color: var(--background-container);
+    color: var(--text-light);
+  }
+}
+
+.load-btn {
+  display: none;
+  border-radius: 100px;
+  border: 1px solid var(--border-dark);
+  width: 60px;
+  height: 60px;
+  transition: 0.5s;
+}
+
+.load-btn svg > path {
+  transition: 0.5s;
+}
+
+@media (hover: hover) {
+  .load-btn:hover {
+    background: var(--background-container);
+  }
+
+  .load-btn:hover svg > path {
+    stroke: var(--text-light);
+  }
+}
