@@ -23,7 +23,7 @@ export default [
         setTimeout: "readonly",
         clearInterval: "readonly",
         clearTimeout: "readonly",
-        console: "readonly", // if you use console.log
+        console: "readonly",
       },
     },
     plugins: {
@@ -39,6 +39,7 @@ export default [
         "error",
         { allowShortCircuit: true, allowTernary: true },
       ],
+      "@typescript-eslint/no-explicit-any": "error",
     },
   },
 ];
