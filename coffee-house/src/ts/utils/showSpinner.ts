@@ -1,15 +1,19 @@
 export const showSpinner = (show: boolean, wrapper: HTMLElement | null) => {
+  if (!wrapper) return;
+
   const spinnerHtml = `
-    <span class="spinner"></span>
+    <div class="spinner-container">
+      <span class="spinner"></span>
+    </div>
   `;
 
   if (show) {
-    // Ensure the parent can position absolutely placed children
-    if (wrapper) {
-      wrapper.style.position = 'relative';
+    // Check if spinner already exists to avoid duplicates
+    const existingSpinner = wrapper.querySelector('.spinner-container');
+    if (!existingSpinner) {
       wrapper.insertAdjacentHTML('beforeend', spinnerHtml);
     }
   } else {
-    wrapper?.querySelector('.spinner')?.remove();
+    wrapper.querySelector('.spinner-container')?.remove();
   }
 };

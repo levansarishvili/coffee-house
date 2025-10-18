@@ -7,6 +7,7 @@
 
   /* Colors */
   --text-dark: #403f3d;
+  --discount-color: #908982;
   --text-light: #e1d4c9;
   --text-accent: #b0907a;
   --background-body: #e1d4c9;
@@ -16,8 +17,8 @@
   --border-dark: #665f55;
 
   /* Fonts */
-  --font-family: "Inter", sans-serif;
-  --second-family: "Manrope", sans-serif;
+  --font-family: 'Inter', sans-serif;
+  --second-family: 'Manrope', sans-serif;
 
   /* Font weights */
   --fw-light: 300;

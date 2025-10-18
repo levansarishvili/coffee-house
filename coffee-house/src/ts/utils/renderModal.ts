@@ -2,11 +2,14 @@ import type { ProductDetails } from '../../types/product.js';
 
 export const renderModal = (
   product: ProductDetails,
-  wrapper: HTMLElement | null
+  wrapper: HTMLElement | null,
+  isAuthenticated: boolean
 ) => {
   wrapper && (wrapper.innerHTML = '');
 
   const productSizes = Object.entries(product.sizes);
+
+  const showDiscountPrice = isAuthenticated && product.discountPrice;
 
   const sizeButtonsHtml = productSizes
     .map(
@@ -15,9 +18,11 @@ export const renderModal = (
         class="${
           index === 0 ? 'first-size-btn active-size-btn' : ''
         } size-btn flex-row align-center gap-8 medium-font dark-txt weight-600"
-        data-price="${size[1].price}" data-discount-price="${
-        size[1].discountPrice ?? 0
-      }"
+        data-price="${size[1].price}" ${
+        size[1].discountPrice
+          ? `data-discount-price="${size[1].discountPrice}"`
+          : ''
+      }
       >
         <div class="size-letter-box">
           <span class="size-letter flex-row align-center justify-center"
@@ -35,9 +40,11 @@ export const renderModal = (
       (additive, index) => `
       <div
         class="additive-btn flex-row align-center gap-8 medium-font dark-txt weight-600"
-        data-price="${additive.price}" data-discount-price="${
-        additive.discountPrice ?? 0
-      }"
+        data-price="${additive.price}" ${
+        additive.discountPrice
+          ? `data-discount-price="${additive.discountPrice}"`
+          : ''
+      }
       >
         <div class="additive-number-box">
           <span
@@ -91,12 +98,22 @@ export const renderModal = (
         class="total-price-container flex-row gap-20 align-center justify-between"
       >
         <p class="heading-3-font dark-txt weight-600">Total:</p>
-        <p
-          class="total-price heading-3-font dark-txt weight-600"
-          id="total-price"
-        >
-          $${product.price}
-        </p>
+        <div class='total-price-wrapper'>
+          <p
+            class="${
+              showDiscountPrice ? 'old-price' : 'total-price dark-txt'
+            } heading-3-font weight-600"
+          >
+            $${product.price}
+          </p>
+          <p
+            class="total-price heading-3-font dark-txt weight-600 ${
+              !showDiscountPrice ? 'display-none' : ''
+            }"
+          >
+            $${product.discountPrice}
+          </p>
+        </div>
       </div>
       <button
         class="modal-add-to-cart-btn w-full dark-txt weight-600 medium-font"

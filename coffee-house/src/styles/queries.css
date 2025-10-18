@@ -247,6 +247,10 @@
   .modal-img {
     display: none;
   }
+
+  .notification {
+    padding: 1rem 2rem;
+  }
 }
 
 /* <=660px screen size */

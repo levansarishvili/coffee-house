@@ -2,6 +2,8 @@
 
 import { fetchProductById } from '../utils/fetchProductById';
 import { renderModal } from '../utils/renderModal';
+import { showNotification } from '../utils/showNotification';
+import { showSpinner } from '../utils/showSpinner';
 
 const isAuthenticated = true;
 
@@ -25,6 +27,9 @@ export const modal = async () => {
   Object.values(productWrappers).forEach((wrapper) => {
     if (!(wrapper instanceof HTMLElement)) return;
     wrapper.addEventListener('click', async (e: MouseEvent) => {
+      modalOverlay?.classList.remove('display-none');
+      showSpinner(true, modalOverlay);
+
       const target = e.target as HTMLElement;
       const productItem = target.closest('.product-item') as HTMLElement | null;
       if (!productItem) return;
@@ -34,8 +39,9 @@ export const modal = async () => {
       try {
         const product = await fetchProductById(curProductId);
         console.log(product);
+        showSpinner(false, modalOverlay);
 
-        renderModal(product, modalContainer);
+        renderModal(product, modalContainer, isAuthenticated);
 
         showModal();
 
@@ -55,11 +61,12 @@ export const modal = async () => {
             btn.classList.contains('active-size-btn')
           );
           const pricePerSize = Number(
-            isAuthenticated && activeSizeBtn?.dataset.discountPrice !== '0'
-              ? activeSizeBtn?.dataset.discountPrice
-              : activeSizeBtn?.dataset.price
+            isAuthenticated && activeSizeBtn?.dataset.discountPrice
+              ? Number(activeSizeBtn?.dataset.discountPrice)
+              : Number(activeSizeBtn?.dataset.price)
           );
-          console.log(pricePerSize);
+
+          const oldPricePerSize = Number(activeSizeBtn?.dataset.price);
 
           // sum all active additives
           const additivesSum = Array.from(additiveButtons).reduce(
@@ -68,9 +75,9 @@ export const modal = async () => {
                 sum +
                 (btn.classList.contains('active-additive-btn')
                   ? Number(
-                      isAuthenticated && btn.dataset.discountPrice !== '0'
-                        ? btn.dataset.discountPrice
-                        : btn.dataset.price
+                      isAuthenticated && btn.dataset.discountPrice
+                        ? Number(btn.dataset.discountPrice)
+                        : Number(btn.dataset.price)
                     )
                   : 0)
               );
@@ -78,11 +85,31 @@ export const modal = async () => {
             0
           );
 
-          console.log(additivesSum);
+          const oldAdditivesSum = Array.from(additiveButtons).reduce(
+            (sum, btn) => {
+              return (
+                sum +
+                (btn.classList.contains('active-additive-btn')
+                  ? Number(Number(btn.dataset.price))
+                  : 0)
+              );
+            },
+            0
+          );
 
           totalPrice = pricePerSize + additivesSum;
+
+          const totalOldPrice = oldPricePerSize + oldAdditivesSum;
+          console.log(totalPrice, totalOldPrice);
+
           totalPriceEl &&
             (totalPriceEl.textContent = `$${totalPrice.toFixed(2)}`);
+          if (isAuthenticated && product.discountPrice) {
+            const oldPriceEl =
+              document.querySelector<HTMLElement>('.old-price');
+            oldPriceEl &&
+              (oldPriceEl.textContent = `$${totalOldPrice.toFixed(2)}`);
+          }
         }
 
         // Select size
@@ -104,20 +131,6 @@ export const modal = async () => {
           });
         });
 
-        // Reset size and additives when modal closed
-        // function resetModalSelections() {
-        //   sizeButtons.forEach((btn) => btn.classList.remove('active-size-btn'));
-        //   firstSizeButton?.classList.add('active-size-btn');
-        //   additiveButtons.forEach((btn) =>
-        //     btn.classList.remove('active-additive-btn')
-        //   );
-        //   totalPrice = initialPrice;
-        //   totalPriceEl &&
-        //     (totalPriceEl.textContent = `$${Number(totalPrice).toFixed(2)} `);
-
-        //   computeTotal();
-        // }
-
         // Close modal when click outside or on close button
         modalCloseBtn?.addEventListener('click', closeModal);
         body?.addEventListener('click', (e: MouseEvent) => {
@@ -128,6 +141,9 @@ export const modal = async () => {
         });
       } catch (error) {
         console.log(error);
+        showSpinner(false, modalOverlay);
+        modalOverlay?.classList.add('display-none');
+        showNotification('Something went wrong. Please, try again');
       }
     });
   });
