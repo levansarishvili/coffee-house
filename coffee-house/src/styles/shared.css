@@ -1,4 +1,4 @@
-@import "variables.css";
+@import 'variables.css';
 
 /* General CSS */
 * {
@@ -108,7 +108,7 @@ li a:active {
 }
 
 .hover-underline-animation::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -146,7 +146,7 @@ li a:active {
 }
 
 .hover-underline-animation-footer::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -202,4 +202,36 @@ li a:active {
 .contact-item {
   display: flex;
   gap: 8px;
+}
+
+/* Simple CSS spinner */
+.spinner {
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 5px solid var(--border-light);
+  border-top-color: var(--text-dark);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.error-message {
+  margin: auto;
+}
+
+.warning-icon {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 8px;
+  animation: pulse 1.2s ease-in-out infinite;
 }

@@ -5,7 +5,6 @@ export const renderProductCards = (
   wrapper: HTMLElement,
   category: string
 ) => {
-  console.log(products.length);
   const curProducts = products.filter(
     (product) => product.category === category
   );

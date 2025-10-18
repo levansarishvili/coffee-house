@@ -7,11 +7,12 @@ import { showSpinner } from '../utils/showSpinner.js';
 
 export const slider = async () => {
   // ================= Slider =================
-  showSpinner(true);
-
   const sliderContainer =
     document.querySelector<HTMLElement>('.slider-container');
   const sliderWrapper = document.querySelector<HTMLElement>('.slider-area');
+
+  showSpinner(true, sliderContainer);
+
   const prevButton = document.querySelector<HTMLElement>('.left-arrow-btn');
   const nextButton = document.querySelector<HTMLElement>('.right-arrow-btn');
   const controlLinesFill =
@@ -24,7 +25,10 @@ export const slider = async () => {
   try {
     const favoriteProducts = await fetchProducts(true);
 
-    showSpinner(false);
+    showSpinner(false, sliderContainer);
+    progressBar?.classList.remove('display-none');
+    prevButton?.classList.remove('display-none');
+    nextButton?.classList.remove('display-none');
 
     renderSlider(favoriteProducts, sliderWrapper);
     const slides = document.querySelectorAll<HTMLElement>('.slider-content');
@@ -215,7 +219,7 @@ export const slider = async () => {
     startSlider();
   } catch (error) {
     console.error(error);
-    showSpinner(false);
+    showSpinner(false, sliderContainer);
     showErrorMessage(
       'Something went wrong. Please, refresh the page',
       sliderContainer

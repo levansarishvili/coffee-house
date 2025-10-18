@@ -5,7 +5,6 @@ export const renderSlider = (
   sliderWrapper: HTMLElement | null
 ) => {
   if (!sliderWrapper) return;
-  console.log(products);
 
   products.forEach((product) => {
     const slideHtml = `

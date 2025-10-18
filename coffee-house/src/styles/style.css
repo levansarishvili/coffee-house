@@ -45,6 +45,9 @@
 }
 
 /* ======================== Slider Section ========================*/
+.slider-container {
+}
+
 .slider-area {
   position: relative;
   display: flex;

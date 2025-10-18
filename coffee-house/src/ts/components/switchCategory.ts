@@ -1,23 +1,30 @@
 import { fetchProducts } from '../utils/fetchProducts.js';
 import { renderProductCards } from '../utils/renderProductCards.js';
+import { showErrorMessage } from '../utils/showErrorMessage.js';
+import { showSpinner } from '../utils/showSpinner.js';
 
 export const switchCategory = async () => {
   // ================ Product Category Tabs ================
-  const tabsWrapper = document.querySelector<HTMLElement>('.tabs-wrapper');
-  const tabItems = document.querySelectorAll<HTMLElement>('.tab-item');
-  const loadBtn = document.querySelector<HTMLElement>('.load-btn');
-
+  const productsWrapper =
+    document.querySelector<HTMLElement>('.products-wrapper');
   const productWrappers: Record<string, HTMLElement | null> = {
     coffee: document.querySelector<HTMLElement>('.coffee-products'),
     tea: document.querySelector<HTMLElement>('.tea-products'),
     dessert: document.querySelector<HTMLElement>('.dessert-products'),
   };
 
+  const tabsWrapper = document.querySelector<HTMLElement>('.tabs-wrapper');
+  const tabItems = document.querySelectorAll<HTMLElement>('.tab-item');
+  const loadBtn = document.querySelector<HTMLElement>('.load-btn');
+
+  let curCategory: string = 'coffee';
+
+  showSpinner(true, productsWrapper);
+
   try {
     const products = await fetchProducts();
-    console.log(products);
-
-    let curCategory: string = 'coffee';
+    showSpinner(false, productsWrapper);
+    tabsWrapper?.classList.remove('display-none');
 
     renderProductCards(products, productWrappers[curCategory]!, curCategory);
 
@@ -100,5 +107,12 @@ export const switchCategory = async () => {
     });
   } catch (error) {
     console.error(error);
+    showSpinner(false, productsWrapper);
+    showErrorMessage(
+      'Something went wrong. Please, refresh the page',
+      productWrappers[curCategory]
+    );
+    tabsWrapper?.classList.add('display-none');
+    loadBtn?.classList.add('display-none');
   }
 };
