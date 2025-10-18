@@ -5,6 +5,7 @@ export const renderSlider = (
   sliderWrapper: HTMLElement | null
 ) => {
   if (!sliderWrapper) return;
+  console.log(products);
 
   products.forEach((product) => {
     const slideHtml = `
@@ -14,7 +15,7 @@ export const renderSlider = (
         <div class="slider-img-wrapper">
           <img
             class="slider-img"
-            src="assets/${product.name.split(' ').join('-')}.png"
+            src="assets/${product.id}.png"
             alt="slider image"
           />
         </div>        

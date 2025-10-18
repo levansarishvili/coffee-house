@@ -22,7 +22,7 @@ export const slider = async () => {
 
   // Fetch and render slider data
   try {
-    const favoriteProducts = await fetchProducts();
+    const favoriteProducts = await fetchProducts(true);
 
     showSpinner(false);
 
