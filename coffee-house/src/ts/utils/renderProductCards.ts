@@ -16,7 +16,7 @@ export const renderProductCards = (
       <div class="product-item ${category}-product-item flex-col cursor-pointer ${
       index > 3 ? 'hidden-product' : ''
     }" 
-        data-product-name="${product.name}">
+        data-product-id="${product.id}">
         <div class="img-box">
           <img class="product-img w-full h-full" src="./assets/${
             product.id

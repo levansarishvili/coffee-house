@@ -204,6 +204,7 @@
 /* Class to add using javascript */
 .active-size-btn {
   background: var(--background-container);
+  border: 1px solid var(--border-dark);
 }
 
 .active-size-btn p {
@@ -217,6 +218,7 @@
 .size-letter {
   width: 3rem;
   height: 3rem;
+  font-size: 1.4rem;
 }
 
 /* Additives Buttons Style */
@@ -238,6 +240,7 @@
 .additive-number {
   width: 3rem;
   height: 3rem;
+  font-size: 1.4rem;
 }
 
 .additive-number-box {
@@ -249,6 +252,7 @@
 @media (hover: hover) {
   .additive-btn:hover {
     background-color: var(--background-container);
+    border: 1px solid var(--border-dark);
   }
 
   .additive-btn:hover p {
@@ -281,26 +285,43 @@
 }
 
 .modal-close-btn {
-  border-radius: 10rem;
-  border: 1px solid var(--border-dark);
-  padding: 1rem 7.8rem;
+  position: absolute;
+  top: -4.5rem;
+  right: 0;
+  opacity: 0.7;
+  cursor: pointer;
   background: none;
-
+  border: none;
+  border-radius: 100%;
+  width: 4.4rem;
+  height: 4.4rem;
   transition: all 0.5s;
 }
 
-.modal-close-btn {
+.modal-close-icon {
+  width: 4.4rem;
+  height: 4.4rem;
+}
+
+.modal-add-to-cart-btn {
   border-radius: 10rem;
   border: 1px solid var(--border-dark);
   padding: 1rem 7.8rem;
   background: none;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+@media (hover: hover) {
+  .modal-add-to-cart-btn:hover {
+    background-color: var(--background-container);
+    color: var(--text-light);
+  }
 }
 
 @media (hover: hover) {
   .modal-close-btn:hover {
-    background-color: var(--background-container);
-    color: var(--text-light);
+    opacity: 1;
   }
 }
 
@@ -308,9 +329,10 @@
   display: none;
   border-radius: 100px;
   border: 1px solid var(--border-dark);
-  width: 60px;
-  height: 60px;
+  width: 6rem;
+  height: 6rem;
   transition: 0.5s;
+  margin-top: 4rem;
 }
 
 .load-btn svg > path {
