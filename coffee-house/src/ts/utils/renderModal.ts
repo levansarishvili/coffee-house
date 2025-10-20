@@ -3,13 +3,12 @@ import type { ProductDetails } from '../../types/product.js';
 export const renderModal = (
   product: ProductDetails,
   wrapper: HTMLElement | null,
-  isAuthenticated: boolean
+  isAuthenticated: boolean = false
 ) => {
   wrapper && (wrapper.innerHTML = '');
 
   const productSizes = Object.entries(product.sizes);
-
-  const showDiscountPrice = isAuthenticated && product.discountPrice;
+  const showDiscountPrice = isAuthenticated && !!product.sizes.s.discountPrice;
 
   const sizeButtonsHtml = productSizes
     .map(
@@ -100,18 +99,18 @@ export const renderModal = (
         <p class="heading-3-font dark-txt weight-600">Total:</p>
         <div class='total-price-wrapper'>
           <p
-            class="${
-              showDiscountPrice ? 'old-price' : 'total-price dark-txt'
-            } heading-3-font weight-600"
+            class="original-price heading-3-font weight-600 ${
+              showDiscountPrice ? '' : 'display-none'
+            }"
           >
             $${product.price}
           </p>
           <p
-            class="total-price heading-3-font dark-txt weight-600 ${
-              !showDiscountPrice ? 'display-none' : ''
-            }"
+            class="total-price heading-3-font dark-txt weight-600"
           >
-            $${product.discountPrice}
+            $${
+              showDiscountPrice ? product.sizes.s.discountPrice : product.price
+            }
           </p>
         </div>
       </div>

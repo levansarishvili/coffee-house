@@ -53,6 +53,8 @@ export const modal = async () => {
 
         const totalPriceEl =
           document.querySelector<HTMLElement>('.total-price');
+        const oldPriceEl =
+          document.querySelector<HTMLElement>('.original-price');
 
         // Compute total price
         function computeTotal() {
@@ -60,6 +62,7 @@ export const modal = async () => {
           const activeSizeBtn = Array.from(sizeButtons).find((btn) =>
             btn.classList.contains('active-size-btn')
           );
+
           const pricePerSize = Number(
             isAuthenticated && activeSizeBtn?.dataset.discountPrice
               ? Number(activeSizeBtn?.dataset.discountPrice)
@@ -68,7 +71,7 @@ export const modal = async () => {
 
           const oldPricePerSize = Number(activeSizeBtn?.dataset.price);
 
-          // sum all active additives
+          // Sum all active additives
           const additivesSum = Array.from(additiveButtons).reduce(
             (sum, btn) => {
               return (
@@ -85,6 +88,7 @@ export const modal = async () => {
             0
           );
 
+          // Sum all active additives prices for old price calculation
           const oldAdditivesSum = Array.from(additiveButtons).reduce(
             (sum, btn) => {
               return (
@@ -97,18 +101,30 @@ export const modal = async () => {
             0
           );
 
-          totalPrice = pricePerSize + additivesSum;
+          // Determine if we should show discount price
+          const showDiscountPrice: boolean = !!(
+            isAuthenticated &&
+            (activeSizeBtn?.dataset.discountPrice ||
+              Array.from(additiveButtons).some(
+                (btn) =>
+                  btn.classList.contains('active-additive-btn') &&
+                  btn.dataset.discountPrice
+              ))
+          );
 
-          const totalOldPrice = oldPricePerSize + oldAdditivesSum;
-          console.log(totalPrice, totalOldPrice);
+          totalPrice = pricePerSize + additivesSum;
 
           totalPriceEl &&
             (totalPriceEl.textContent = `$${totalPrice.toFixed(2)}`);
-          if (isAuthenticated && product.discountPrice) {
-            const oldPriceEl =
-              document.querySelector<HTMLElement>('.old-price');
+
+          if (showDiscountPrice) {
+            oldPriceEl?.classList.remove('display-none');
             oldPriceEl &&
-              (oldPriceEl.textContent = `$${totalOldPrice.toFixed(2)}`);
+              (oldPriceEl.textContent = `$${(
+                oldPricePerSize + oldAdditivesSum
+              ).toFixed(2)}`);
+          } else {
+            oldPriceEl?.classList.add('display-none');
           }
         }
 

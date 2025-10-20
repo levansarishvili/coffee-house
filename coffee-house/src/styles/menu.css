@@ -109,6 +109,18 @@
   flex: 1 0 0;
 }
 
+.product-price-wrapper {
+  display: flex;
+  justify-content: space-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-price-original {
+  color: var(--discount-color);
+  text-decoration: line-through;
+}
+
 @media (hover: hover) {
   .product-item:hover .product-img {
     transform: scale(1);

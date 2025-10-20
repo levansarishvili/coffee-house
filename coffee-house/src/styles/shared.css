@@ -246,7 +246,7 @@ li a:active {
   gap: 2rem;
 }
 
-.old-price {
+.original-price {
   color: var(--discount-color);
   text-decoration: line-through;
 }

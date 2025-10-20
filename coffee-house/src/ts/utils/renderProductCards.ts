@@ -3,7 +3,8 @@ import type { Product } from '../../types/product';
 export const renderProductCards = (
   products: Product[],
   wrapper: HTMLElement,
-  category: string
+  category: string,
+  isAuthenticated: boolean = false
 ) => {
   const curProducts = products.filter(
     (product) => product.category === category
@@ -12,6 +13,7 @@ export const renderProductCards = (
   wrapper.innerHTML = '';
 
   curProducts.forEach((product, index) => {
+    const showDiscountPrice = isAuthenticated && !!product.discountPrice;
     const productHTML = `
       <div class="product-item ${category}-product-item flex-col cursor-pointer ${
       index > 3 ? 'hidden-product' : ''
@@ -29,9 +31,20 @@ export const renderProductCards = (
           <p class="product-desc-txt medium-font weight-400 mb-auto">
             ${product.description}
           </p>
-          <p class="product-price heading-3-font weight-600">$${Number(
-            product.price
-          ).toFixed(2)}</p>
+          <div class='product-price-wrapper'>
+            <p
+              class="product-price-original heading-3-font weight-600 ${
+                showDiscountPrice ? '' : 'display-none'
+              }"
+            >
+              $${product.price}
+            </p>
+            <p
+              class="product-price heading-3-font dark-txt weight-600"
+            >
+              $${showDiscountPrice ? product.discountPrice : product.price}
+            </p>
+          </div>
         </div>
       </div>
     `;

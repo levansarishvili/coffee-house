@@ -3,6 +3,8 @@ import { renderProductCards } from '../utils/renderProductCards.js';
 import { showErrorMessage } from '../utils/showErrorMessage.js';
 import { showSpinner } from '../utils/showSpinner.js';
 
+const isAuthenticated = true;
+
 export const switchCategory = async () => {
   // ================ Product Category Tabs ================
   const productsWrapper =
@@ -26,7 +28,12 @@ export const switchCategory = async () => {
     showSpinner(false, productsWrapper);
     tabsWrapper?.classList.remove('display-none');
 
-    renderProductCards(products, productWrappers[curCategory]!, curCategory);
+    renderProductCards(
+      products,
+      productWrappers[curCategory]!,
+      curCategory,
+      isAuthenticated
+    );
 
     // Show products based on category
     function showProducts(category = 'coffee') {
@@ -40,7 +47,12 @@ export const switchCategory = async () => {
       selectedWrapper && (selectedWrapper.style.display = 'flex');
 
       curCategory = category;
-      renderProductCards(products, productWrappers[curCategory]!, curCategory);
+      renderProductCards(
+        products,
+        productWrappers[curCategory]!,
+        curCategory,
+        isAuthenticated
+      );
 
       showLoadButton();
     }
