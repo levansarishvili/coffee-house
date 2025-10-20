@@ -8,7 +8,7 @@ export const renderModal = (
   wrapper && (wrapper.innerHTML = '');
 
   const productSizes = Object.entries(product.sizes);
-  const showDiscountPrice = isAuthenticated && !!product.sizes.s.discountPrice;
+  const hasDiscount = isAuthenticated && !!product.sizes.s.discountPrice;
 
   const sizeButtonsHtml = productSizes
     .map(
@@ -29,6 +29,12 @@ export const renderModal = (
           >
         </div>
         <p id="size-1">${size[1].size}</p>
+
+        <!-- Tooltip -->
+        <div class="tooltip">
+          <span class="tooltip-original-price display-none"></span>
+          <span class='tooltip-price'></span>
+        </div>
       </div>
   `
     )
@@ -52,6 +58,12 @@ export const renderModal = (
           >
         </div>
         <p id="additive-1">${additive.name}</p>
+        
+        <!-- Tooltip -->
+        <div class="tooltip">
+          <span class="tooltip-additive-original-price display-none"></span>
+          <span class='tooltip-additive-price'></span>
+        </div>
       </div>
   `
     )
@@ -98,20 +110,18 @@ export const renderModal = (
       >
         <p class="heading-3-font dark-txt weight-600">Total:</p>
         <div class='total-price-wrapper'>
-          <p
+          <span
             class="original-price heading-3-font weight-600 ${
-              showDiscountPrice ? '' : 'display-none'
+              hasDiscount ? '' : 'display-none'
             }"
           >
             $${product.price}
-          </p>
-          <p
+          </span>
+          <span
             class="total-price heading-3-font dark-txt weight-600"
           >
-            $${
-              showDiscountPrice ? product.sizes.s.discountPrice : product.price
-            }
-          </p>
+            $${hasDiscount ? product.sizes.s.discountPrice : product.price}
+          </span>
         </div>
       </div>
       <button
@@ -123,7 +133,7 @@ export const renderModal = (
         class="modal-close-btn dark-txt weight-600 medium-font"
       >
         <img class='modal-close-icon' src='./assets/button-close.svg' alt='Close icon'/>
-      </button>
+      </button>       
     </div>`;
 
   if (wrapper) {

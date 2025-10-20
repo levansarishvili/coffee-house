@@ -4,6 +4,7 @@ import { fetchProductById } from '../utils/fetchProductById';
 import { renderModal } from '../utils/renderModal';
 import { showNotification } from '../utils/showNotification';
 import { showSpinner } from '../utils/showSpinner';
+import { updateTooltipPrice } from '../utils/updateTooltipPrice';
 
 const isAuthenticated = true;
 
@@ -47,6 +48,12 @@ export const modal = async () => {
 
         const modalCloseBtn =
           document.querySelector<HTMLElement>('.modal-close-btn');
+        const sizeContainer = document.querySelector<HTMLElement>(
+          '.size-buttons-container'
+        );
+        const additiveContainer = document.querySelector<HTMLElement>(
+          '.additive-buttons-container'
+        );
         const additiveButtons =
           document.querySelectorAll<HTMLElement>('.additive-btn');
         const sizeButtons = document.querySelectorAll<HTMLElement>('.size-btn');
@@ -128,24 +135,54 @@ export const modal = async () => {
           }
         }
 
-        // Select size
-        sizeButtons.forEach((button) => {
-          button.addEventListener('click', () => {
-            sizeButtons.forEach((btn) =>
-              btn.classList.remove('active-size-btn')
-            );
-            button.classList.add('active-size-btn');
-            computeTotal();
-          });
+        // Select size button
+        sizeContainer?.addEventListener('click', (e) => {
+          const button = (e.target as HTMLElement).closest(
+            '.size-btn'
+          ) as HTMLElement;
+          if (!button) return;
+
+          const allButtons = sizeContainer.querySelectorAll('.size-btn');
+          allButtons.forEach((btn) => btn.classList.remove('active-size-btn'));
+          button.classList.add('active-size-btn');
+          computeTotal();
         });
 
-        // Select additives
-        additiveButtons.forEach((button) => {
-          button.addEventListener('click', () => {
-            button.classList.toggle('active-additive-btn');
-            computeTotal();
-          });
+        // Size buttons hover
+        sizeContainer?.addEventListener(
+          'mouseenter',
+          (e) => {
+            const button = (e.target as HTMLElement).closest(
+              '.size-btn'
+            ) as HTMLElement;
+            if (!button) return;
+            updateTooltipPrice(button, isAuthenticated, 'size');
+          },
+          true
+        );
+
+        // Select additive button
+        additiveContainer?.addEventListener('click', (e) => {
+          const button = (e.target as HTMLElement).closest(
+            '.additive-btn'
+          ) as HTMLElement;
+          if (!button) return;
+          button.classList.toggle('active-additive-btn');
+          computeTotal();
         });
+
+        // Additive buttons hover
+        additiveContainer?.addEventListener(
+          'mouseenter',
+          (e) => {
+            const button = (e.target as HTMLElement).closest(
+              '.additive-btn'
+            ) as HTMLElement;
+            if (!button) return;
+            updateTooltipPrice(button, isAuthenticated, 'additive');
+          },
+          true
+        );
 
         // Close modal when click outside or on close button
         modalCloseBtn?.addEventListener('click', closeModal);

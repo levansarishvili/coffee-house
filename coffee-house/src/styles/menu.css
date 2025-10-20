@@ -116,11 +116,6 @@
   gap: 1rem;
 }
 
-.product-price-original {
-  color: var(--discount-color);
-  text-decoration: line-through;
-}
-
 @media (hover: hover) {
   .product-item:hover .product-img {
     transform: scale(1);
@@ -178,6 +173,7 @@
 }
 
 .size-btn {
+  position: relative;
   padding: 0.8rem 1.2rem 0.8rem 0.8rem;
   border-radius: 10rem;
   border: none;
@@ -212,6 +208,11 @@
     background: var(--background-body);
   }
 }
+@media (hover: hover) {
+  .size-btn:hover .tooltip {
+    opacity: 1;
+  }
+}
 
 /* Class to add using javascript */
 .active-size-btn {
@@ -239,6 +240,7 @@
 }
 
 .additive-btn {
+  position: relative;
   padding: 0.8rem 1.2rem 0.8rem 0.8rem;
   border-radius: 10rem;
   border: none;
@@ -276,6 +278,12 @@
   }
 }
 
+@media (hover: hover) {
+  .additive-btn:hover .tooltip {
+    opacity: 1;
+  }
+}
+
 /* Class to add using javascript */
 .active-additive-btn {
   background-color: var(--background-container);
@@ -288,11 +296,6 @@
 
 .active-additive-btn .additive-number-box {
   background: var(--background-body);
-}
-
-.modal-warning {
-  border-top: 1px solid var(--border-light);
-  padding: 1.2rem 0;
 }
 
 .modal-close-btn {
