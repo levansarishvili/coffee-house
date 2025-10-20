@@ -1,6 +1,7 @@
 import { burgerMenu } from './ts/components/burgerMenu.js';
 import { home } from './ts/home/home.js';
 import { menu } from './ts/menu/menu.js';
+// import { registration } from './ts/registration/registration.js';
 
 // Detect current page
 const currentPage = document.body.dataset.page;

@@ -9,5 +9,5 @@ export const showNotification = (message: string) => {
   setTimeout(() => {
     notification.classList.remove('show-notification');
     notification.classList.add('display-none');
-  }, 3000);
+  }, 1500);
 };

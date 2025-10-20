@@ -11,6 +11,9 @@ export default [
       parser: typescriptParser,
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parserOptions: {
+        project: './tsconfig.json',
+      },
       globals: {
         // Browser globals
         document: 'readonly',

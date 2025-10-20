@@ -110,9 +110,6 @@
 }
 
 .product-price-wrapper {
-  display: flex;
-  justify-content: space-start;
-  align-items: center;
   gap: 1rem;
 }
 
@@ -313,22 +310,6 @@
 .modal-close-icon {
   width: 4.4rem;
   height: 4.4rem;
-}
-
-.modal-add-to-cart-btn {
-  border-radius: 10rem;
-  border: 1px solid var(--border-dark);
-  padding: 1rem 7.8rem;
-  background: none;
-  cursor: pointer;
-  transition: all 0.5s;
-}
-
-@media (hover: hover) {
-  .modal-add-to-cart-btn:hover {
-    background-color: var(--background-container);
-    color: var(--text-light);
-  }
 }
 
 .load-btn {

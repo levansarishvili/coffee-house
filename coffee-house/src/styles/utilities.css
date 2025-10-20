@@ -133,6 +133,10 @@
   gap: 2rem;
 }
 
+.gap-24 {
+  gap: 2.4rem;
+}
+
 .gap-16 {
   gap: 1.6rem;
 }

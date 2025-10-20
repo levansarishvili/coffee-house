@@ -137,6 +137,7 @@ export const modal = async () => {
 
         // Select size button
         sizeContainer?.addEventListener('click', (e) => {
+          console.log('Fired');
           const button = (e.target as HTMLElement).closest(
             '.size-btn'
           ) as HTMLElement;
@@ -184,11 +185,16 @@ export const modal = async () => {
           true
         );
 
-        // Close modal when click outside or on close button
+        // Close modal when click outside or on close button, also when press ESC
         modalCloseBtn?.addEventListener('click', closeModal);
         body?.addEventListener('click', (e: MouseEvent) => {
           const target = e.target as HTMLElement;
           if (target.classList.contains('overlay')) {
+            closeModal();
+          }
+        });
+        document.addEventListener('keydown', (e: KeyboardEvent) => {
+          if (e.key === 'Escape') {
             closeModal();
           }
         });
@@ -197,6 +203,8 @@ export const modal = async () => {
         showSpinner(false, modalOverlay);
         modalOverlay?.classList.add('display-none');
         showNotification('Something went wrong. Please, try again');
+      } finally {
+        showSpinner(false, modalOverlay);
       }
     });
   });

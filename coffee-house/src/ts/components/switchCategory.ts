@@ -44,7 +44,7 @@ export const switchCategory = async () => {
 
       // Show selected wrapper
       const selectedWrapper = productWrappers[category];
-      selectedWrapper && (selectedWrapper.style.display = 'flex');
+      selectedWrapper && (selectedWrapper.style.display = 'flex-row');
 
       curCategory = category;
       renderProductCards(
@@ -99,7 +99,7 @@ export const switchCategory = async () => {
         wrapper.querySelectorAll<HTMLElement>('.hidden-product');
       loadBtn &&
         (loadBtn.style.display =
-          isMobile && hiddenProducts.length > 0 ? 'flex' : 'none');
+          isMobile && hiddenProducts.length > 0 ? 'flex-row' : 'none');
     }
 
     loadBtn?.addEventListener('click', () => {

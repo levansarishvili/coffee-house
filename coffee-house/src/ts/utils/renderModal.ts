@@ -125,7 +125,7 @@ export const renderModal = (
         </div>
       </div>
       <button
-        class="modal-add-to-cart-btn w-full dark-txt weight-600 medium-font"
+        class="modal-add-to-cart-btn btn w-full dark-txt weight-600 medium-font"
       >
         Add to Cart
       </button>

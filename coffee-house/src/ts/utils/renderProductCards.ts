@@ -31,7 +31,7 @@ export const renderProductCards = (
           <p class="product-desc-txt medium-font weight-400 mb-auto">
             ${product.description}
           </p>
-          <div class='product-price-wrapper'>
+          <div class='product-price-wrapper flex-row align-center justify-start'>
             <p
               class="product-price-original heading-3-font weight-600 ${
                 showDiscountPrice ? '' : 'display-none'
