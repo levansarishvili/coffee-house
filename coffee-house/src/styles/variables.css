@@ -16,7 +16,7 @@
   --border-light: #c1b6ad;
   --border-dark: #665f55;
   --border-green: #0dbb42;
-  --border-red: #f44336;
+  --error-color: #f44336;
 
   /* Fonts */
   --font-family: 'Inter', sans-serif;

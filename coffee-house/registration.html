@@ -116,34 +116,41 @@
           </h2>
 
           <form
-            action=""
             class="registration-form w-full flex-col justify-center align-center gap-40"
+            method="POST"
           >
             <div class="form-inputs-wrapper flex-row gap-24 flex-wrap w-full">
               <!-- Username -->
-              <div class="input-wrapper first-input-wrapper flex-col">
+              <div
+                class="input-wrapper input-wrapper--login first-input-wrapper flex-col"
+              >
                 <label class="input-label" for="username">Login</label>
                 <input
                   type="text"
                   name="username"
                   id="username"
                   placeholder="Placeholder"
-                  class="input"
+                  class="input login-input"
                 />
+                <span
+                  class="validation-error login-validation-error display-none"
+                ></span>
               </div>
               <!-- Password -->
-              <div class="input-wrapper flex-col">
+              <div class="input-wrapper input-wrapper--password flex-col">
                 <label class="input-label" for="password">Password</label>
                 <input
                   type="password"
                   name="password"
                   id="password"
                   placeholder="Placeholder"
-                  class="input"
+                  class="input password-input"
                 />
               </div>
               <!-- Confirm Password -->
-              <div class="input-wrapper flex-col">
+              <div
+                class="input-wrapper input-wrapper--confirm-password flex-col"
+              >
                 <label class="input-label" for="confirm-password"
                   >Confirm Password</label
                 >
@@ -152,7 +159,7 @@
                   name="confirm-password"
                   id="confirm-password"
                   placeholder="Placeholder"
-                  class="input"
+                  class="input confirm-password-input"
                 />
               </div>
               <!-- City -->
@@ -204,7 +211,7 @@
                 </select>
               </div>
               <!-- House Number -->
-              <div class="input-wrapper flex-col">
+              <div class="input-wrapper input-wrapper--house-number flex-col">
                 <label class="input-label" for="house-number"
                   >House number</label
                 >
@@ -213,7 +220,7 @@
                   name="house-number"
                   id="house-number"
                   placeholder="Placeholder"
-                  class="input input--small"
+                  class="input input--small house-number-input"
                 />
               </div>
               <!-- Pay by -->

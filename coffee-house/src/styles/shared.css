@@ -343,3 +343,48 @@ li a:active {
   color: var(--text-light);
   opacity: 0.8;
 }
+
+/* Inputs */
+
+/* Checkmark for valid input */
+.input-wrapper.valid::before,
+.input-wrapper.invalid::before {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 5.8rem;
+  transform: translateY(-50%);
+  width: 1.6rem;
+  height: 1.6rem;
+  background-image: url('/assets/checkmark.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.input-wrapper.valid::before {
+  background-image: url('/assets/checkmark.svg');
+}
+
+/* Warning for invalid input */
+.input-wrapper.invalid::before {
+  background-image: url('/assets/alert-triangle.svg');
+}
+
+.input-wrapper.valid input {
+  border: 1px solid var(--border-green);
+}
+.input-wrapper.invalid input {
+  border: 1px solid var(--error-color);
+}
+
+/* Error message */
+.input-wrapper.invalid::after {
+  content: attr(data-error);
+  position: absolute;
+  bottom: -2rem;
+  left: 0;
+  color: var(--error-color);
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+  white-space: nowrap;
+}
