@@ -89,6 +89,11 @@
   .modal-product-info {
     max-width: 32.6rem;
   }
+
+  /* Registration page */
+  .first-input-wrapper {
+    margin-left: 0;
+  }
 }
 
 /* <=768px screen size */
@@ -251,6 +256,11 @@
   .notification {
     padding: 1rem 2rem;
   }
+
+  /* Registration page */
+  .form-inputs-wrapper {
+    gap: 1.6rem;
+  }
 }
 
 /* <=660px screen size */
@@ -302,6 +312,12 @@
   /* Menu page */
   .modal-container {
     max-width: 34.2rem;
+  }
+
+  /* Registration */
+  .input,
+  .input-wrapper {
+    width: 100%;
   }
 }
 
