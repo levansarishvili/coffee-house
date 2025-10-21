@@ -3,8 +3,8 @@ export const showErrorMessage = (
   container: HTMLElement | null
 ) => {
   const errorHtml = `
-    <div class="error-message w-full flex-row items-center justify-center dark-txt medium-font weight-500 txt-align-center">
-      <img class='warning-icon' src='./assets/warning-circle.svg' alt='Warning icon'/>
+    <div class="error-message w-full gap-6 flex-row align-center justify-center medium-font weight-500 txt-align-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#f44305" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"></path></svg>
       <p>${message}</p>
     </div>
   `;

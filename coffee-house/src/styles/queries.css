@@ -256,11 +256,6 @@
   .notification {
     padding: 1rem 2rem;
   }
-
-  /* Registration page */
-  .form-inputs-wrapper {
-    gap: 1.6rem;
-  }
 }
 
 /* <=660px screen size */

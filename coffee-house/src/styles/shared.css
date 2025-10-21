@@ -237,9 +237,9 @@ li a:active {
 }
 
 .spinner {
-  width: 4.8rem;
-  height: 4.8rem;
-  border: 5px solid var(--border-light);
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 4px solid var(--border-light);
   border-top-color: var(--text-dark);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -253,12 +253,13 @@ li a:active {
 
 .error-message {
   margin: auto;
+  color: var(--error-color);
 }
 
-.warning-icon {
-  width: 4rem;
-  height: 4rem;
-  margin-right: 8px;
+.warning-icon,
+.check-icon {
+  width: 3rem;
+  height: 3rem;
   animation: pulse 1.2s ease-in-out infinite;
 }
 
@@ -331,9 +332,6 @@ li a:active {
   border-color: var(--text-dark) transparent transparent transparent;
 }
 
- {
-}
-
 .tooltip-price,
 .tooltip-additive-price {
   color: var(--text-light);
@@ -370,10 +368,12 @@ li a:active {
   background-image: url('/assets/alert-triangle.svg');
 }
 
-.input-wrapper.valid input {
+.input-wrapper.valid input,
+.input-wrapper.valid select {
   border: 1px solid var(--border-green);
 }
-.input-wrapper.invalid input {
+.input-wrapper.invalid input,
+.input-wrapper.invalid select {
   border: 1px solid var(--error-color);
 }
 
@@ -387,4 +387,20 @@ li a:active {
   font-size: 1.2rem;
   margin-top: 0.4rem;
   white-space: nowrap;
+}
+
+/* Chrome, Edge, Safari */
+.house-number-input::-webkit-outer-spin-button,
+.house-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.house-number-input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.success-message {
+  color: var(--border-green);
 }

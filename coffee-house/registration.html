@@ -120,15 +120,15 @@
             method="POST"
           >
             <div class="form-inputs-wrapper flex-row gap-24 flex-wrap w-full">
-              <!-- Username -->
+              <!-- Login -->
               <div
                 class="input-wrapper input-wrapper--login first-input-wrapper flex-col"
               >
-                <label class="input-label" for="username">Login</label>
+                <label class="input-label" for="login">Login</label>
                 <input
                   type="text"
-                  name="username"
-                  id="username"
+                  name="login"
+                  id="login"
                   placeholder="Placeholder"
                   class="input login-input"
                 />
@@ -151,74 +151,63 @@
               <div
                 class="input-wrapper input-wrapper--confirm-password flex-col"
               >
-                <label class="input-label" for="confirm-password"
+                <label class="input-label" for="confirmPassword"
                   >Confirm Password</label
                 >
                 <input
                   type="password"
-                  name="confirm-password"
-                  id="confirm-password"
+                  name="confirmPassword"
+                  id="confirmPassword"
                   placeholder="Placeholder"
                   class="input confirm-password-input"
                 />
               </div>
               <!-- City -->
-              <div class="input-wrapper flex-col">
+              <div
+                class="input-wrapper select-wrapper input-wrapper--city flex-col"
+              >
                 <label class="input-label" for="city">City</label>
-                <select name="city" id="city" class="input select align-center">
+                <select
+                  name="city"
+                  id="city"
+                  class="input select city-select align-center"
+                >
                   <button>
                     <selectedcontent class="selected-content"></selectedcontent>
                   </button>
-                  <option class="select-option" value="Tbilisi">Tbilisi</option>
-                  <option class="select-option" value="los-angeles">
-                    Los Angeles
-                  </option>
+                  <option value="" disabled selected hidden>Placeholder</option>
+                  <option class="select-option" value="tbilisi">Tbilisi</option>
+                  <option class="select-option" value="milan">Milan</option>
                   <option class="select-option" value="chicago">Chicago</option>
                 </select>
               </div>
               <!-- Street -->
-              <div class="input-wrapper flex-col">
+              <div
+                class="input-wrapper select-wrapper input-wrapper--street flex-col"
+              >
                 <label class="input-label" for="city">Street</label>
                 <select
                   name="street"
                   id="street"
-                  class="input select align-center"
+                  class="input select align-center street-select"
+                  disabled
                 >
                   <button>
                     <selectedcontent class="selected-content"></selectedcontent>
                   </button>
-                  <option class="select-option" value="rustaveli-ave">
-                    Rustaveli Avenue
-                  </option>
-                  <option class="select-option" value="agmashebeli-ave">
-                    Agmashenebeli Avenue
-                  </option>
-                  <option class="select-option" value="chavchavadze-ave">
-                    Chavchavadze Avenue
-                  </option>
-                  <option class="select-option" value="sunset-blvd">
-                    Sunset Boulevard
-                  </option>
-                  <option class="select-option" value="sunset-blvd">
-                    Sunset Boulevard
-                  </option>
-                  <option class="select-option" value="sunset-blvd">
-                    Sunset Boulevard
-                  </option>
-                  <option class="select-option" value="sunset-blvd">
-                    Sunset Boulevard
-                  </option>
+                  <option value="" disabled selected hidden>Placeholder</option>
+                  <div class="street-select-options"></div>
                 </select>
               </div>
               <!-- House Number -->
               <div class="input-wrapper input-wrapper--house-number flex-col">
-                <label class="input-label" for="house-number"
+                <label class="input-label" for="houseNumber"
                   >House number</label
                 >
                 <input
                   type="number"
-                  name="house-number"
-                  id="house-number"
+                  name="houseNumber"
+                  id="houseNumber"
                   placeholder="Placeholder"
                   class="input input--small house-number-input"
                 />
@@ -232,7 +221,7 @@
                   >
                     <input
                       type="radio"
-                      name="payment"
+                      name="paymentMethod"
                       id="cash"
                       class="radio-input"
                       value="cash"
@@ -246,7 +235,7 @@
                   >
                     <input
                       type="radio"
-                      name="payment"
+                      name="paymentMethod"
                       id="card"
                       class="radio-input"
                       value="card"
@@ -257,9 +246,12 @@
               </div>
             </div>
 
-            <button type="submit" class="btn register-btn registration-btn">
+            <button type="submit" class="btn register-btn disabled-btn">
               Registration
             </button>
+
+            <div class="result-message-wrapper"></div>
+            <div class="register-spinner-wrapper"></div>
           </form>
         </section>
 
