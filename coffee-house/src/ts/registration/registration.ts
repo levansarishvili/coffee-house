@@ -13,9 +13,9 @@ import {
   validateStreet,
 } from '../utils/validations';
 
-export const registration = async () => {
-  const registrationFormEl =
-    document.querySelector<HTMLFormElement>('.registration-form');
+export const register = async () => {
+  const registerFormEl =
+    document.querySelector<HTMLFormElement>('.register-form');
 
   const inputWrapperEls = {
     login: document.querySelector<HTMLDivElement>('.input-wrapper--login'),
@@ -53,16 +53,18 @@ export const registration = async () => {
   );
 
   // Handle form submission
-  registrationFormEl?.addEventListener('submit', async (e: SubmitEvent) => {
+  registerFormEl?.addEventListener('submit', async (e: SubmitEvent) => {
     e.preventDefault();
     showSpinner(true, registerSpinnerWrapperEl);
     resultMessageWrapperEl && (resultMessageWrapperEl.textContent = '');
+
+    submitBtn && submitBtn.classList.add('disabled-btn');
 
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    const registrationData = {
+    const registerData = {
       login: data.login.toString(),
       password: data.password.toString(),
       confirmPassword: data.confirmPassword.toString(),
@@ -73,7 +75,7 @@ export const registration = async () => {
     };
 
     try {
-      const res = await registerUser(registrationData);
+      const res = await registerUser(registerData);
 
       showSpinner(false, registerSpinnerWrapperEl);
       showSuccessMessage(res.message, resultMessageWrapperEl);
@@ -83,6 +85,8 @@ export const registration = async () => {
 
       showSpinner(false, registerSpinnerWrapperEl);
       showErrorMessage(errorMessage, resultMessageWrapperEl);
+    } finally {
+      submitBtn && submitBtn.classList.remove('disabled-btn');
     }
   });
 
@@ -206,7 +210,7 @@ export const registration = async () => {
 
   // Function to reset form after successful registration
   function resetForm() {
-    registrationFormEl && registrationFormEl.reset();
+    registerFormEl && registerFormEl.reset();
 
     // Clear validation states
     Object.values(inputWrapperEls).forEach((wrapperEl) => {
