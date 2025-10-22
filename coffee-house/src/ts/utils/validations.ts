@@ -31,6 +31,8 @@ export function validateConfirmPassword(
   confirmPassword: string
 ): string | null {
   if (!confirmPassword.trim()) return 'Please confirm your password.';
+  if (confirmPassword.length < 6)
+    return 'Confirm password must be at least 6 characters long.';
   if (password !== confirmPassword) return 'Passwords do not match.';
   return null;
 }

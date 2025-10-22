@@ -44,7 +44,7 @@ export const switchCategory = async () => {
 
       // Show selected wrapper
       const selectedWrapper = productWrappers[category];
-      selectedWrapper && (selectedWrapper.style.display = 'flex-row');
+      selectedWrapper && (selectedWrapper.style.display = 'flex');
 
       curCategory = category;
       renderProductCards(

@@ -38,6 +38,12 @@ export const registration = async () => {
   const streetSelectOptionsEl = document.querySelector<HTMLSelectElement>(
     '.street-select-options'
   );
+  const passwordInputEl =
+    document.querySelector<HTMLSelectElement>('.password-input');
+  const confirmPasswordInputEl = document.querySelector<HTMLSelectElement>(
+    '.confirm-password-input'
+  );
+
   const submitBtn = document.querySelector<HTMLButtonElement>('.register-btn');
   const resultMessageWrapperEl = document.querySelector<HTMLDivElement>(
     '.result-message-wrapper'
@@ -187,6 +193,16 @@ export const registration = async () => {
       );
     });
   }
+
+  // When password input is filled enable confirm password input
+  passwordInputEl?.addEventListener('input', () => {
+    if (!passwordInputEl.value.trim()) {
+      confirmPasswordInputEl!.disabled = true;
+      confirmPasswordInputEl!.value = '';
+    } else {
+      confirmPasswordInputEl!.disabled = false;
+    }
+  });
 
   // Function to reset form after successful registration
   function resetForm() {
