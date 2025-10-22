@@ -1,0 +1,46 @@
+@import 'variables.css';
+
+.cart-section {
+  padding-bottom: 10rem;
+}
+
+.cart-item-img-box {
+  overflow: hidden;
+  border-radius: 2rem;
+  min-width: 10rem;
+  height: 10rem;
+}
+
+.cart-item-img {
+  min-width: 10rem;
+  height: 10rem;
+}
+
+.cart-item-extra {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+.cart-item-total-price {
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 125%;
+}
+
+.cart-delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-totals {
+  padding-left: 4.4rem;
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 125%;
+}
+
+.confirm-order-btn {
+  width: 20rem;
+}

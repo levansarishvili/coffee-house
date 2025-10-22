@@ -23,7 +23,7 @@
 
     <title>Coffee-House</title>
   </head>
-  <body data-page="login">
+  <body data-page="cart">
     <div id="app">
       <div class="container centered flex-col align-center">
         <div class="centered">
@@ -108,56 +108,107 @@
           </header>
         </div>
 
-        <!-- ======================== Login Section ========================  -->
+        <!-- ======================== Cart Section ========================  -->
         <main
-          class="login-section centered flex-col justify-center align-center gap-40"
+          class="cart-section centered flex-col justify-center align-center gap-40"
           id="registration"
         >
           <h2
-            class="login-section-header txt-align-center dark-txt heading-2-font heading-2-font-mob weight-600"
+            class="cart-section-header txt-align-center dark-txt heading-2-font heading-2-font-mob weight-600"
           >
-            Sign In
+            Cart
           </h2>
 
-          <form
-            class="login-form w-full flex-col justify-center align-center gap-40"
-            method="POST"
-          >
-            <div class="form-inputs-wrapper flex-col gap-24 flex-wrap">
-              <!-- Login -->
-              <div class="input-wrapper input-wrapper--login flex-col">
-                <label class="input-label" for="login">Login</label>
-                <input
-                  type="text"
-                  name="login"
-                  id="login"
-                  placeholder="Placeholder"
-                  class="input login-input"
-                />
-                <span
-                  class="validation-error login-validation-error display-none"
-                ></span>
+          <div class="flex-col gap-12 w-full">
+            <div class="cart-item flex-row gap-20 align-center w-full">
+              <div class="flex-row gap-20 align-center justify-center">
+                <button class="cart-delete-button">
+                  <img src="/assets/trash.svg" alt="Trash icon" />
+                </button>
+                <div class="cart-item-img-box">
+                  <img
+                    class="cart-item-img"
+                    src="/assets/1.png"
+                    alt="Product image"
+                  />
+                </div>
               </div>
-              <!-- Password -->
-              <div class="input-wrapper input-wrapper--password flex-col">
-                <label class="input-label" for="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Placeholder"
-                  class="input password-input"
-                />
+
+              <div
+                class="cart-text-content flex-row gap-20 align-center justify-between w-full"
+              >
+                <div class="flex-col gap-6 align-start justify-center w-full">
+                  <h3 class="cart-item-name dark-txt heading-3-font">
+                    Irish coffee
+                  </h3>
+                  <p class="cart-item-extra dark-tsx">
+                    <span class="item-size">200 ml</span>,
+                    <span class="item-additive">Sugar</span>,
+                    <span class="item-additive">Cinnamon</span>,
+                    <span class="item-additive">Syrup</span>
+                  </p>
+                </div>
+
+                <p class="cart-item-total-price dark-txt">$7.00</p>
               </div>
             </div>
 
-            <button type="submit" class="btn login-btn disabled-btn">
-              Sign in
-            </button>
+            <div class="cart-item flex-row gap-20 align-center w-full">
+              <div class="flex-row gap-20 align-center justify-center">
+                <button class="cart-delete-button">
+                  <img src="/assets/trash.svg" alt="Trash icon" />
+                </button>
+                <div class="cart-item-img-box">
+                  <img
+                    class="cart-item-img"
+                    src="/assets/2.png"
+                    alt="Product image"
+                  />
+                </div>
+              </div>
 
-            <div class="result-message-wrapper"></div>
-            <div class="login-spinner-wrapper"></div>
-          </form>
+              <div
+                class="cart-text-content flex-row gap-20 align-center justify-between w-full"
+              >
+                <div class="flex-col gap-6 align-start justify-center w-full">
+                  <h3 class="cart-item-name dark-txt heading-3-font">
+                    Irish coffee
+                  </h3>
+                  <p class="cart-item-extra dark-tsx">
+                    <span class="item-size">200 ml</span>,
+                    <span class="item-additive">Sugar</span>,
+                    <span class="item-additive">Cinnamon</span>,
+                    <span class="item-additive">Syrup</span>
+                  </p>
+                </div>
+
+                <p class="cart-item-total-price dark-txt">$7.00</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-totals w-full flex-col gap-8 dark-txt">
+            <div class="w-full flex-row justify-between">
+              <span>Total:</span>
+              <span>$14.00</span>
+            </div>
+            <div class="w-full flex-row justify-between">
+              <span>Address:</span>
+              <span>City, Street, 7</span>
+            </div>
+            <div class="w-full flex-row justify-between">
+              <span>Pay by:</span>
+              <span>Card</span>
+            </div>
+          </div>
+
+          <div
+            class="cart-buttons-wrapper flex-row gap-40 align-center justify-center"
+          >
+            <button class="btn login-btn">Sign In</button>
+            <button class="btn register-btn">Registration</button>
+            <button class="btn confirm-order-btn">Confirm</button>
+          </div>
         </main>
 
         <!-- ======================== Footer Section ========================-->

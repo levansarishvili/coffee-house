@@ -9,6 +9,7 @@ export default defineConfig({
         menu: 'menu.html',
         register: 'register.html',
         login: 'login.html',
+        cart: 'cart.html',
       },
     },
   },
