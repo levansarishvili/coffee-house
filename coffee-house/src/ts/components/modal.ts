@@ -28,9 +28,6 @@ export const modal = async () => {
   Object.values(productWrappers).forEach((wrapper) => {
     if (!(wrapper instanceof HTMLElement)) return;
     wrapper.addEventListener('click', async (e: MouseEvent) => {
-      modalOverlay?.classList.remove('display-none');
-      showSpinner(true, modalOverlay);
-
       const target = e.target as HTMLElement;
       const productItem = target.closest('.product-item') as HTMLElement | null;
       if (!productItem) return;
@@ -38,6 +35,9 @@ export const modal = async () => {
       curProductId = productItem?.dataset?.productId;
 
       try {
+        modalOverlay?.classList.remove('display-none');
+        showSpinner(true, modalOverlay);
+
         const product = await fetchProductById(curProductId);
         console.log(product);
         showSpinner(false, modalOverlay);
