@@ -1,3 +1,4 @@
+import type { SignInResponse } from '../../types/signIn';
 import { showErrorMessage } from '../utils/showErrorMessage';
 import { showSpinner } from '../utils/showSpinner';
 import { showSuccessMessage } from '../utils/showSuccessMessage';
@@ -43,7 +44,9 @@ export const login = async () => {
 
       showSpinner(false, signInSpinnerWrapperEl);
       showSuccessMessage(res.message, resultMessageWrapperEl);
+      saveUserData(res);
       resetForm();
+      window.location.href = '/menu.html';
     } catch (err) {
       const errorMessage = (err as Error).message;
 
@@ -109,6 +112,12 @@ export const login = async () => {
   }
 
   setupValidations();
+
+  // Function to store user data in local storage
+  function saveUserData(userData: SignInResponse) {
+    localStorage.clear();
+    localStorage.setItem('user', JSON.stringify(userData.data));
+  }
 
   // Function to reset signIn form
   function resetForm() {

@@ -14,6 +14,7 @@ export default [
       parserOptions: {
         project: './tsconfig.json',
       },
+
       globals: {
         // Browser globals
         document: 'readonly',
@@ -28,6 +29,7 @@ export default [
         clearTimeout: 'readonly',
         console: 'readonly',
         fetch: 'readonly',
+        localStorage: 'readonly',
       },
     },
     plugins: {
