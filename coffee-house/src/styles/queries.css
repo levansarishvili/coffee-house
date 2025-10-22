@@ -94,6 +94,74 @@
   .first-input-wrapper {
     margin-left: 0;
   }
+  /* Burger menu */
+  .coffee,
+  .cart-icon-wrapper {
+    display: none;
+  }
+
+  .burger-menu {
+    display: flex;
+  }
+
+  .nav-bar {
+    position: absolute;
+    left: 100vw;
+    z-index: 5;
+    top: 9.9rem;
+    padding-top: 6rem;
+    height: 100vh;
+    width: 100vw;
+    background-color: #e1d4c9;
+    transition: all 1s;
+  }
+
+  .nav-items {
+    flex-direction: column;
+    gap: 6rem;
+  }
+
+  .coffee-nav,
+  .cart-nav {
+    display: flex;
+    gap: 1.6rem;
+    font-size: 3.2rem;
+    line-height: 125%;
+  }
+
+  .coffee-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .nav-items li a {
+    font-size: 3.2rem;
+    line-height: 125%;
+  }
+
+  /* Burger Menu Default Styles */
+  .top-line {
+    transition: all 0.4s;
+  }
+
+  .bottom-line {
+    transition: all 0.4s;
+  }
+
+  /* Active Burger Menu Styles */
+  .burger-menu--open.nav-bar {
+    visibility: visible;
+    left: 0;
+    width: 100%;
+  }
+
+  .burger-menu--open .top-line {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .burger-menu--open .bottom-line {
+    transform: translateY(-5px) rotate(-45deg);
+  }
 }
 
 /* <=768px screen size */
@@ -139,76 +207,9 @@
     width: 100%;
   }
 
-  .nav-items li a {
-    font-size: 3.2rem;
-    line-height: 125%;
-  }
-
-  .coffee {
-    display: none;
-  }
-
-  .burger-menu {
-    display: flex;
-  }
-
   .footer-offer {
     width: 51.6rem;
     width: 100%;
-  }
-
-  /* Burger Menu Default Styles */
-  .top-line {
-    transition: all 0.4s;
-  }
-
-  .bottom-line {
-    transition: all 0.4s;
-  }
-
-  .nav-bar {
-    position: absolute;
-    left: 100vw;
-    z-index: 5;
-    top: 9.9rem;
-    padding-top: 6rem;
-    height: 100vh;
-    width: 100vw;
-    background-color: #e1d4c9;
-    transition: all 1s;
-  }
-
-  .nav-items {
-    flex-direction: column;
-    gap: 6rem;
-  }
-
-  .coffee-nav {
-    margin-top: 4rem;
-    display: flex;
-    gap: 1.6rem;
-    font-size: 3.2rem;
-    line-height: 125%;
-  }
-
-  .coffee-icon {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  /* Active Burger Menu Styles */
-  .burger-menu--open.nav-bar {
-    visibility: visible;
-    left: 0;
-    width: 100%;
-  }
-
-  .burger-menu--open .top-line {
-    transform: translateY(5px) rotate(45deg);
-  }
-
-  .burger-menu--open .bottom-line {
-    transform: translateY(-5px) rotate(-45deg);
   }
 }
 

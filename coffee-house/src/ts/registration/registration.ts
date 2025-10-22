@@ -1,5 +1,7 @@
+import { isLoggedIn } from '../authStore';
 import { CITIES } from '../constants/constants';
 import { registerUser } from '../utils/registerUser';
+import { renderCartIcon } from '../utils/renderCartIcon';
 import { renderStreetOptions } from '../utils/renderStreetOptions';
 import { showErrorMessage } from '../utils/showErrorMessage';
 import { showSpinner } from '../utils/showSpinner';
@@ -14,6 +16,10 @@ import {
 } from '../utils/validations';
 
 export const register = async () => {
+  const isAuthenticated = isLoggedIn();
+
+  renderCartIcon(0, isAuthenticated);
+
   const registerFormEl =
     document.querySelector<HTMLFormElement>('.register-form');
 
@@ -80,6 +86,7 @@ export const register = async () => {
       showSpinner(false, registerSpinnerWrapperEl);
       showSuccessMessage(res.message, resultMessageWrapperEl);
       resetForm();
+      window.location.href = '/login.html';
     } catch (err) {
       const errorMessage = (err as Error).message;
 

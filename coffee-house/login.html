@@ -82,14 +82,18 @@
                 </li>
               </ul>
             </nav>
-            <a
-              class="coffee flex-row align-center gap-8 hover-underline-animation"
-              href="menu.html"
-              >Menu<img
-                class="coffee-icon"
-                src="assets/coffee-cup.svg"
-                alt="coffee cup icon"
-            /></a>
+            <div class="flex-row gap-24 align-center justify-center">
+              <!-- Render only if user is logged in or cart is not empty -->
+              <div class="cart-icon-wrapper"></div>
+              <a
+                class="coffee flex-row align-center gap-8 hover-underline-animation"
+                href="menu.html"
+                >Menu<img
+                  class="coffee-icon"
+                  src="assets/coffee-cup.svg"
+                  alt="coffee cup icon"
+              /></a>
+            </div>
 
             <a
               class="burger-menu display-none flex-row justify-center align-center cursor-pointer"

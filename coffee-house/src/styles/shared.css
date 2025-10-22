@@ -404,3 +404,11 @@ li a:active {
 .success-message {
   color: var(--border-green);
 }
+
+/* Cart */
+.cart-items-quantity {
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 150%;
+  color: var(--text-dark);
+}

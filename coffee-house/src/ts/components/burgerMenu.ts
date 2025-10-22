@@ -13,13 +13,13 @@ export const burgerMenu = () => {
     screenWidth = window.innerWidth;
     const burgerMenuIsOpen = navBar?.classList.contains('burger-menu--open');
 
-    if (screenWidth > 768 && burgerMenuIsOpen) {
+    if (screenWidth > 864 && burgerMenuIsOpen) {
       toggleBurgerMenu();
     }
   });
 
   function toggleBurgerMenu() {
-    if (screenWidth > 768) return;
+    if (screenWidth > 864) return;
     navBar?.classList.toggle('burger-menu--open');
     burgerLines?.classList.toggle('burger-menu--open');
     body?.classList.toggle('disable-scroll');

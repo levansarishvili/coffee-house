@@ -1,4 +1,6 @@
 import type { SignInResponse } from '../../types/signIn';
+import { isLoggedIn } from '../authStore';
+import { renderCartIcon } from '../utils/renderCartIcon';
 import { showErrorMessage } from '../utils/showErrorMessage';
 import { showSpinner } from '../utils/showSpinner';
 import { showSuccessMessage } from '../utils/showSuccessMessage';
@@ -6,6 +8,10 @@ import { signInUser } from '../utils/signInUser';
 import { validateLogin, validatePassword } from '../utils/validations';
 
 export const login = async () => {
+  const isAuthenticated = isLoggedIn();
+
+  renderCartIcon(0, isAuthenticated);
+
   const signInFormEl = document.querySelector<HTMLFormElement>('.login-form');
   const inputWrapperEls = {
     login: document.querySelector<HTMLDivElement>('.input-wrapper--login'),
