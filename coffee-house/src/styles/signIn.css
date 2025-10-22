@@ -1,0 +1,12 @@
+@import 'variables.css';
+
+.login-section {
+  padding-bottom: 10rem;
+}
+
+.login-form {
+}
+
+.login-btn {
+  width: 20rem;
+}

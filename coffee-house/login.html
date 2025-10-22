@@ -23,7 +23,7 @@
 
     <title>Coffee-House</title>
   </head>
-  <body data-page="registration">
+  <body data-page="login">
     <div id="app">
       <div class="container centered flex-col align-center">
         <div class="centered">
@@ -104,26 +104,24 @@
           </header>
         </div>
 
-        <!-- ======================== Registration Section ========================  -->
+        <!-- ======================== Login Section ========================  -->
         <section
-          class="registration-section centered flex-col justify-center align-center gap-40"
+          class="login-section centered flex-col justify-center align-center gap-40"
           id="registration"
         >
           <h2
-            class="registration-section-header txt-align-center dark-txt heading-2-font heading-2-font-mob weight-600"
+            class="login-section-header txt-align-center dark-txt heading-2-font heading-2-font-mob weight-600"
           >
-            Registration
+            Sign In
           </h2>
 
           <form
-            class="registration-form w-full flex-col justify-center align-center gap-40"
+            class="login-form w-full flex-col justify-center align-center gap-40"
             method="POST"
           >
-            <div class="form-inputs-wrapper flex-row gap-24 flex-wrap w-full">
+            <div class="form-inputs-wrapper flex-col gap-24 flex-wrap">
               <!-- Login -->
-              <div
-                class="input-wrapper input-wrapper--login first-input-wrapper flex-col"
-              >
+              <div class="input-wrapper input-wrapper--login flex-col">
                 <label class="input-label" for="login">Login</label>
                 <input
                   type="text"
@@ -147,112 +145,14 @@
                   class="input password-input"
                 />
               </div>
-              <!-- Confirm Password -->
-              <div
-                class="input-wrapper input-wrapper--confirm-password flex-col"
-              >
-                <label class="input-label" for="confirmPassword"
-                  >Confirm Password</label
-                >
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  placeholder="Placeholder"
-                  class="input confirm-password-input"
-                  disabled
-                />
-              </div>
-              <!-- City -->
-              <div
-                class="input-wrapper select-wrapper input-wrapper--city flex-col"
-              >
-                <label class="input-label" for="city">City</label>
-                <select
-                  name="city"
-                  id="city"
-                  class="input select city-select align-center"
-                >
-                  <button>
-                    <selectedcontent class="selected-content"></selectedcontent>
-                  </button>
-                  <option value="" disabled selected hidden>Placeholder</option>
-                  <option class="select-option" value="tbilisi">Tbilisi</option>
-                  <option class="select-option" value="milan">Milan</option>
-                  <option class="select-option" value="chicago">Chicago</option>
-                </select>
-              </div>
-              <!-- Street -->
-              <div
-                class="input-wrapper select-wrapper input-wrapper--street flex-col"
-              >
-                <label class="input-label" for="city">Street</label>
-                <select
-                  name="street"
-                  id="street"
-                  class="input select align-center street-select"
-                  disabled
-                >
-                  <button>
-                    <selectedcontent class="selected-content"></selectedcontent>
-                  </button>
-                  <option value="" disabled selected hidden>Placeholder</option>
-                  <div class="street-select-options"></div>
-                </select>
-              </div>
-              <!-- House Number -->
-              <div class="input-wrapper input-wrapper--house-number flex-col">
-                <label class="input-label" for="houseNumber"
-                  >House number</label
-                >
-                <input
-                  type="number"
-                  name="houseNumber"
-                  id="houseNumber"
-                  placeholder="Placeholder"
-                  class="input input--small house-number-input"
-                />
-              </div>
-              <!-- Pay by -->
-              <div class="radio-buttons-wrapper flex-col align-start gap-20">
-                <p class="input-label radio-label">Pay by</p>
-                <div class="radio-buttons-content flex-row align-center gap-24">
-                  <div
-                    class="radio-button-wrapper flex-row align-center gap-12"
-                  >
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      id="cash"
-                      class="radio-input"
-                      value="cash"
-                      checked
-                    />
-                    <label class="input-label" for="cash">Cash</label>
-                  </div>
-
-                  <div
-                    class="radio-button-wrapper flex-row align-center gap-12"
-                  >
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      id="card"
-                      class="radio-input"
-                      value="card"
-                    />
-                    <label class="input-label" for="card">Card</label>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            <button type="submit" class="btn register-btn disabled-btn">
-              Registration
+            <button type="submit" class="btn login-btn disabled-btn">
+              Sign in
             </button>
 
             <div class="result-message-wrapper"></div>
-            <div class="register-spinner-wrapper"></div>
+            <div class="login-spinner-wrapper"></div>
           </form>
         </section>
 
