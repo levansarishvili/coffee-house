@@ -1,14 +1,11 @@
-export const header = (page: string | undefined) => {
+export const header = (isMenuPage: boolean = false) => {
   // ================= Header =================
   const headerEl = document.querySelector<HTMLElement>('.main-header');
   if (!headerEl) return;
 
-  const isHomePage = page === 'home';
-  const isMenuPage = page === 'menu';
-
   const headerHtml = `
     <div class="logo">
-      <a href="${isHomePage ? '#' : 'index.html'}"
+      <a href="${isMenuPage ? 'index.html' : '#'}"
         ><img src="./assets/logo.svg" alt="coffee house logo"
       /></a>
     </div>
@@ -20,28 +17,28 @@ export const header = (page: string | undefined) => {
         <li>
           <a
             class="hover-underline-animation dark-txt medium-font weight-600"
-            href="${isHomePage ? '#slider' : 'index.html#slider'}"
+            href="${isMenuPage ? 'index.html#slider' : '#slider'}"
             >Favorite coffee</a
           >
         </li>
         <li>
           <a
             class="hover-underline-animation dark-txt medium-font weight-600"
-            href="${isHomePage ? '#about' : 'index.html#about'}"
+            href="${isMenuPage ? 'index.html#about' : '#about'}"
             >About</a
           >
         </li>
         <li>
           <a
             class="hover-underline-animation dark-txt medium-font weight-600"
-            href="${isHomePage ? '#mobile-app' : 'index.html#mobile-app'}"
+            href="${isMenuPage ? 'index.html#mobile-app' : '#mobile-app'}"
             >Mobile app</a
           >
         </li>
         <li>
           <a
             class="hover-underline-animation dark-txt medium-font weight-600"
-            href="${isHomePage ? 'index.html#footer' : '#footer'}"
+            href="${isMenuPage ? '#footer' : 'index.html#footer'}"
             >Contact us</a
           >
         </li>

@@ -1,9 +1,10 @@
+import { isLoggedIn } from '../authStore.js';
 import { fetchProducts } from '../utils/fetchProducts.js';
 import { renderProductCards } from '../utils/renderProductCards.js';
 import { showErrorMessage } from '../utils/showErrorMessage.js';
 import { showSpinner } from '../utils/showSpinner.js';
 
-const isAuthenticated = true;
+const isAuthenticated = isLoggedIn();
 
 export const switchCategory = async () => {
   // ================ Product Category Tabs ================

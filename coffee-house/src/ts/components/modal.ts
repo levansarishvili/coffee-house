@@ -1,12 +1,13 @@
 'use strict';
 
+import { isLoggedIn } from '../authStore';
 import { fetchProductById } from '../utils/fetchProductById';
 import { renderModal } from '../utils/renderModal';
 import { showNotification } from '../utils/showNotification';
 import { showSpinner } from '../utils/showSpinner';
 import { updateTooltipPrice } from '../utils/updateTooltipPrice';
 
-const isAuthenticated = true;
+const isAuthenticated = isLoggedIn();
 
 // ================ Product Size and Additives Selection ================
 export const modal = async () => {

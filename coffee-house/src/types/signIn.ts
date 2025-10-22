@@ -19,3 +19,15 @@ export type SignInResponse = {
   message: string;
   error?: string;
 };
+export type UserData = {
+  access_token: string;
+  user: {
+    id: number;
+    login: string;
+    city: string;
+    street: string;
+    houseNumber: number;
+    paymentMethod: string;
+    createdAt: string;
+  };
+};
