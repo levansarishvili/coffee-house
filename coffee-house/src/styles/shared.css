@@ -274,7 +274,8 @@ li a:active {
 .product-price-original,
 .tooltip-original-price,
 .tooltip-additive-original-price,
-.total-discount {
+.total-discount,
+.cart-item-original-price {
   color: var(--text-dark);
   text-decoration: line-through;
   opacity: 0.5;

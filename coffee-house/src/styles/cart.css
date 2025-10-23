@@ -22,7 +22,8 @@
   line-height: 150%;
 }
 
-.cart-item-total-price {
+.cart-item-total-price,
+.cart-item-original-price {
   font-weight: 600;
   font-size: 2.4rem;
   line-height: 125%;

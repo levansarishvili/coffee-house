@@ -1,5 +1,6 @@
 export interface CartProduct {
-  id: number;
+  id: string;
+  productId: number;
   name: string;
   selectedSize: string;
   selectedAdditives: string[];

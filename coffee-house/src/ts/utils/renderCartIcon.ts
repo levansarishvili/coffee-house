@@ -14,7 +14,9 @@ export const renderCartIcon = (
     >
       <img src="/assets/shopping-bag-desktop.svg" alt="Shopping bag" />
       <span class="cart-items-quantity display-none">${cartItemsQuantity}</span>
-      <span class="total-discount display-none">${totalDiscount}</span>
+      <span class="total-discount ${
+        isAuthenticated && totalDiscount > 0 ? '' : 'display-none'
+      }">${totalDiscount}</span>
     </a>`;
   const cartIconHtmlMobile = `
     <li class="nav-item--cart">
@@ -47,11 +49,5 @@ export const renderCartIcon = (
     cartItemsQuantityEl?.classList.remove('display-none');
     cartItemsQuantityEl &&
       (cartItemsQuantityEl.textContent = String(cartItemsQuantity));
-  }
-
-  const totalDiscountEl =
-    document.querySelector<HTMLElement>('.total-discount');
-  if (isAuthenticated && totalDiscount > 0) {
-    totalDiscountEl?.classList.remove('display-none');
   }
 };

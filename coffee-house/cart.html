@@ -82,6 +82,7 @@
                 </li>
               </ul>
             </nav>
+            <button class="logout-btn">Logout</button>
             <div class="flex-row gap-24 align-center justify-center">
               <!-- Render only if user is logged in or cart is not empty -->
               <div class="cart-icon-wrapper"></div>
@@ -119,97 +120,27 @@
             Cart
           </h2>
 
-          <div class="flex-col gap-12 w-full">
-            <div class="cart-item flex-row gap-20 align-center w-full">
-              <div class="flex-row gap-20 align-center justify-center">
-                <button class="cart-delete-button">
-                  <img src="/assets/trash.svg" alt="Trash icon" />
-                </button>
-                <div class="cart-item-img-box">
-                  <img
-                    class="cart-item-img"
-                    src="/assets/1.png"
-                    alt="Product image"
-                  />
-                </div>
-              </div>
+          <div class="cart-items-wrapper flex-col gap-12 w-full"></div>
 
-              <div
-                class="cart-text-content flex-row gap-20 align-center justify-between w-full"
-              >
-                <div class="flex-col gap-6 align-start justify-center w-full">
-                  <h3 class="cart-item-name dark-txt heading-3-font">
-                    Irish coffee
-                  </h3>
-                  <p class="cart-item-extra dark-tsx">
-                    <span class="item-size">200 ml</span>,
-                    <span class="item-additive">Sugar</span>,
-                    <span class="item-additive">Cinnamon</span>,
-                    <span class="item-additive">Syrup</span>
-                  </p>
-                </div>
-
-                <p class="cart-item-total-price dark-txt">$7.00</p>
-              </div>
-            </div>
-
-            <div class="cart-item flex-row gap-20 align-center w-full">
-              <div class="flex-row gap-20 align-center justify-center">
-                <button class="cart-delete-button">
-                  <img src="/assets/trash.svg" alt="Trash icon" />
-                </button>
-                <div class="cart-item-img-box">
-                  <img
-                    class="cart-item-img"
-                    src="/assets/2.png"
-                    alt="Product image"
-                  />
-                </div>
-              </div>
-
-              <div
-                class="cart-text-content flex-row gap-20 align-center justify-between w-full"
-              >
-                <div class="flex-col gap-6 align-start justify-center w-full">
-                  <h3 class="cart-item-name dark-txt heading-3-font">
-                    Irish coffee
-                  </h3>
-                  <p class="cart-item-extra dark-tsx">
-                    <span class="item-size">200 ml</span>,
-                    <span class="item-additive">Sugar</span>,
-                    <span class="item-additive">Cinnamon</span>,
-                    <span class="item-additive">Syrup</span>
-                  </p>
-                </div>
-
-                <p class="cart-item-total-price dark-txt">$7.00</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cart-totals w-full flex-col gap-8 dark-txt">
-            <div class="w-full flex-row justify-between">
-              <span>Total:</span>
-              <span>$14.00</span>
-            </div>
-            <div class="w-full flex-row justify-between">
-              <span>Address:</span>
-              <span>City, Street, 7</span>
-            </div>
-            <div class="w-full flex-row justify-between">
-              <span>Pay by:</span>
-              <span>Card</span>
-            </div>
-          </div>
+          <div class="cart-totals-wrapper w-full flex-col gap-8 dark-txt"></div>
 
           <div
             class="cart-buttons-wrapper flex-row gap-40 align-center justify-center"
           >
             <button class="btn login-btn">
-              <a href="login.html"> Sign In </a>
+              <a
+                class="flex-row justify-center align-center h-full"
+                href="login.html"
+              >
+                Sign In
+              </a>
             </button>
             <button class="btn register-btn">
-              <a href="register.html">Registration</a>
+              <a
+                class="flex-row justify-center align-center h-full"
+                href="register.html"
+                >Registration</a
+              >
             </button>
             <button class="btn confirm-order-btn">Confirm</button>
           </div>

@@ -46,7 +46,7 @@ export function getTotalDiscount(): number {
 }
 
 // Remove an item
-export function removeFromCart(id: number): void {
+export function removeFromCart(id: string | undefined): void {
   cartItems = cartItems.filter((product) => product.id !== id);
   saveCart();
 }

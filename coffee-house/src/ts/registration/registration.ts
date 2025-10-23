@@ -1,8 +1,8 @@
 import { isLoggedIn } from '../authStore';
 import { CITIES } from '../constants/constants';
 import { registerUser } from '../utils/registerUser';
-import { renderCartIcon } from '../utils/renderCartIcon';
 import { renderStreetOptions } from '../utils/renderStreetOptions';
+import { setupHeaderCartListener } from '../utils/setupHeaderCartListener';
 import { showErrorMessage } from '../utils/showErrorMessage';
 import { showSpinner } from '../utils/showSpinner';
 import { showSuccessMessage } from '../utils/showSuccessMessage';
@@ -18,7 +18,7 @@ import {
 export const register = async () => {
   const isAuthenticated = isLoggedIn();
 
-  renderCartIcon(0, isAuthenticated);
+  setupHeaderCartListener();
 
   const registerFormEl =
     document.querySelector<HTMLFormElement>('.register-form');
