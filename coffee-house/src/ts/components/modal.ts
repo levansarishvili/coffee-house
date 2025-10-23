@@ -221,17 +221,20 @@ export const modal = async () => {
       '.modal-add-to-cart-btn'
     );
 
-    const cartItemData = {
-      id: curProduct.id,
-      name: curProduct.name,
-      selectedSize: selectedSizeValue,
-      selectedAdditives: selectedAdditives,
-      price: totalPrice,
-      discountedPrice: discountedTotalPrice,
-      discount: totalDiscount,
-    };
-
     addToCartButtonEl?.addEventListener('click', () => {
+      const cartItemId = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+      const cartItemData = {
+        id: cartItemId,
+        productId: curProduct.id,
+        name: curProduct.name,
+        selectedSize: selectedSizeValue,
+        selectedAdditives: selectedAdditives,
+        price: totalPrice,
+        discountedPrice: discountedTotalPrice,
+        discount: totalDiscount,
+      };
+
       addToCart(cartItemData);
       notifyCartUpdate();
       closeModal();
