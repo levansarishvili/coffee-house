@@ -1,6 +1,8 @@
 'use strict';
 
+import type { ProductDetails } from '../../types/product';
 import { isLoggedIn } from '../authStore';
+import { addToCart, notifyCartUpdate } from '../cartStore';
 import { fetchProductById } from '../utils/fetchProductById';
 import { renderModal } from '../utils/renderModal';
 import { showNotification } from '../utils/showNotification';
@@ -22,8 +24,14 @@ export const modal = async () => {
     document.querySelector<HTMLElement>('.modal-container');
   const modalOverlay = document.querySelector<HTMLElement>('.overlay');
 
+  // Component states
   let curProductId: string | undefined;
+  let curProduct: ProductDetails;
   let totalPrice = 0;
+  let discountedTotalPrice = 0;
+  let totalDiscount = 0;
+  let selectedSizeValue = '';
+  let selectedAdditives: string[] = [];
 
   // Update modal content
   Object.values(productWrappers).forEach((wrapper) => {
@@ -40,12 +48,17 @@ export const modal = async () => {
         showSpinner(true, modalOverlay);
 
         const product = await fetchProductById(curProductId);
-        console.log(product);
+        curProduct = product;
         showSpinner(false, modalOverlay);
 
         renderModal(product, modalContainer, isAuthenticated);
         setupModalInteractions();
         openModal();
+
+        // Set default states
+        setStatesToDefault(product);
+
+        handleAddToCartClick();
       } catch (error) {
         console.log(error);
         showSpinner(false, modalOverlay);
@@ -57,6 +70,16 @@ export const modal = async () => {
     });
   });
 
+  // Update states width default values when modal is open
+  function setStatesToDefault(product: ProductDetails) {
+    selectedSizeValue = product.sizes.s.size;
+    totalPrice = Number(product.price);
+    discountedTotalPrice = Number(product.sizes.s.discountPrice) || 0;
+    totalDiscount = discountedTotalPrice
+      ? +(totalPrice - discountedTotalPrice).toFixed(2)
+      : 0;
+  }
+
   // Select size button
   function selectSizeButton() {
     const sizeContainer = document.querySelector<HTMLElement>(
@@ -64,7 +87,6 @@ export const modal = async () => {
     );
     // Select size button
     sizeContainer?.addEventListener('click', (e) => {
-      console.log('Fired');
       const button = (e.target as HTMLElement).closest(
         '.size-btn'
       ) as HTMLElement;
@@ -144,7 +166,11 @@ export const modal = async () => {
 
     if (!activeSizeBtn) return;
 
+    activeSizeBtn.dataset.size &&
+      (selectedSizeValue = activeSizeBtn.dataset.size);
+
     const sizePrice = Number(activeSizeBtn.dataset.price ?? 0);
+
     const sizeDiscount = isAuthenticated
       ? Number(activeSizeBtn.dataset.discountPrice ?? sizePrice)
       : sizePrice;
@@ -153,30 +179,63 @@ export const modal = async () => {
     let oldAdditives = 0;
 
     additiveButtons.forEach((btn) => {
+      const additive = btn.dataset.additive;
+      const price = Number(btn.dataset.price ?? 0);
+      const discount = isAuthenticated
+        ? Number(btn.dataset.discountPrice ?? price)
+        : price;
       if (btn.classList.contains('active-additive-btn')) {
-        const price = Number(btn.dataset.price ?? 0);
-        const discount = isAuthenticated
-          ? Number(btn.dataset.discountPrice ?? price)
-          : price;
+        if (additive && !selectedAdditives.includes(additive)) {
+          selectedAdditives.push(additive);
+        }
+
         totalAdditives += discount;
         oldAdditives += price;
+      } else {
+        if (additive && selectedAdditives.includes(additive)) {
+          selectedAdditives = selectedAdditives.filter((a) => a !== additive);
+        }
       }
     });
 
-    const total = sizeDiscount + totalAdditives;
-    const oldTotal = sizePrice + oldAdditives;
+    discountedTotalPrice = sizeDiscount + totalAdditives;
+    totalPrice = sizePrice + oldAdditives;
+    totalDiscount = discountedTotalPrice
+      ? +(totalPrice - discountedTotalPrice).toFixed(2)
+      : 0;
 
-    totalPriceEl && (totalPriceEl.textContent = `$${total.toFixed(2)}`);
+    totalPriceEl &&
+      (totalPriceEl.textContent = `$${discountedTotalPrice.toFixed(2)}`);
 
-    if (isAuthenticated && total !== oldTotal) {
+    if (isAuthenticated && discountedTotalPrice !== totalPrice) {
       oldPriceEl?.classList.remove('display-none');
-      oldPriceEl && (oldPriceEl.textContent = `$${oldTotal.toFixed(2)}`);
+      oldPriceEl && (oldPriceEl.textContent = `$${totalPrice.toFixed(2)}`);
     } else {
       oldPriceEl?.classList.add('display-none');
     }
+  }
 
-    // Update the global totalPrice if needed
-    totalPrice = total;
+  // Handle add to cart click
+  function handleAddToCartClick() {
+    const addToCartButtonEl = document.querySelector<HTMLButtonElement>(
+      '.modal-add-to-cart-btn'
+    );
+
+    const cartItemData = {
+      id: curProduct.id,
+      name: curProduct.name,
+      selectedSize: selectedSizeValue,
+      selectedAdditives: selectedAdditives,
+      price: totalPrice,
+      discountedPrice: discountedTotalPrice,
+      discount: totalDiscount,
+    };
+
+    addToCartButtonEl?.addEventListener('click', () => {
+      addToCart(cartItemData);
+      notifyCartUpdate();
+      closeModal();
+    });
   }
 
   // Setup modal interactions
@@ -201,6 +260,15 @@ export const modal = async () => {
     modalOverlay?.classList.add('display-none');
     body?.classList.remove('disable-scroll');
     unregisterModalCloseEvents();
+    resetStates();
+  }
+
+  // Reset component states on modal close
+  function resetStates() {
+    selectedSizeValue = '';
+    selectedAdditives = [];
+    totalPrice = 0;
+    discountedTotalPrice = 0;
   }
 
   // Register all close events (once per modal open)

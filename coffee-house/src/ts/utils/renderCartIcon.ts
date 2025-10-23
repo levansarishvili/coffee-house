@@ -1,6 +1,7 @@
 export const renderCartIcon = (
-  cartItemsQuantity: number,
-  isAuthenticated: boolean
+  cartItemsQuantity: number = 0,
+  isAuthenticated: boolean,
+  totalDiscount: number = 0
 ) => {
   const navItemsWrapperEl = document.querySelector<HTMLElement>('.nav-items');
   const cartIconWrapperEl =
@@ -13,6 +14,7 @@ export const renderCartIcon = (
     >
       <img src="/assets/shopping-bag-desktop.svg" alt="Shopping bag" />
       <span class="cart-items-quantity display-none">${cartItemsQuantity}</span>
+      <span class="total-discount display-none">${totalDiscount}</span>
     </a>`;
   const cartIconHtmlMobile = `
     <li class="nav-item--cart">
@@ -45,5 +47,11 @@ export const renderCartIcon = (
     cartItemsQuantityEl?.classList.remove('display-none');
     cartItemsQuantityEl &&
       (cartItemsQuantityEl.textContent = String(cartItemsQuantity));
+  }
+
+  const totalDiscountEl =
+    document.querySelector<HTMLElement>('.total-discount');
+  if (isAuthenticated && totalDiscount > 0) {
+    totalDiscountEl?.classList.remove('display-none');
   }
 };

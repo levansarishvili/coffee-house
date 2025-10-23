@@ -21,14 +21,14 @@ export const renderModal = (
         size[1].discountPrice
           ? `data-discount-price="${size[1].discountPrice}"`
           : ''
-      }
+      } data-size="${size[1].size}" 
       >
         <div class="size-letter-box">
           <span class="size-letter flex-row align-center justify-center"
             >${size[0].toUpperCase()}</span
           >
         </div>
-        <p id="size-1">${size[1].size}</p>
+        <p>${size[1].size}</p>
 
         <!-- Tooltip -->
         <div class="tooltip">
@@ -49,7 +49,7 @@ export const renderModal = (
         additive.discountPrice
           ? `data-discount-price="${additive.discountPrice}"`
           : ''
-      }
+      } data-additive = "${additive.name}"
       >
         <div class="additive-number-box">
           <span
