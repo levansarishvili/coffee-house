@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: '.',
-  base: '/coffee-house/',
   build: {
     rollupOptions: {
       input: {
