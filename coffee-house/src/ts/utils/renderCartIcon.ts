@@ -12,7 +12,7 @@ export const renderCartIcon = (
       class="cart-icon flex-row gap-8 align-center justify-center"
     >
       <img src="/assets/shopping-bag-desktop.svg" alt="Shopping bag" />
-      <span class="cart-items-quantity">4</span>
+      <span class="cart-items-quantity display-none">${cartItemsQuantity}</span>
     </a>`;
   const cartIconHtmlMobile = `
     <li class="nav-item--cart">
@@ -35,5 +35,15 @@ export const renderCartIcon = (
   if (isAuthenticated || cartItemsQuantity > 0) {
     cartIconWrapperEl?.insertAdjacentHTML('beforeend', cartIconHtmlDesktop);
     navItemsWrapperEl?.insertAdjacentHTML('beforeend', cartIconHtmlMobile);
+  }
+
+  // Show cart items number if it is not 0
+  const cartItemsQuantityEl = document.querySelector<HTMLElement>(
+    '.cart-items-quantity'
+  );
+  if (cartItemsQuantity > 0) {
+    cartItemsQuantityEl?.classList.remove('display-none');
+    cartItemsQuantityEl &&
+      (cartItemsQuantityEl.textContent = String(cartItemsQuantity));
   }
 };

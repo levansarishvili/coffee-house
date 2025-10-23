@@ -6,7 +6,7 @@ import { renderCartIcon } from '../utils/renderCartIcon.js';
 export const menu = () => {
   const isAuthenticated = isLoggedIn();
 
-  renderCartIcon(0, isAuthenticated);
+  renderCartIcon(11, isAuthenticated);
 
   // Initialize Switch Category Tabs
   switchCategory();
