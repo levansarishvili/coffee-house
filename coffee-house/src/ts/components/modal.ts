@@ -74,7 +74,7 @@ export const modal = async () => {
   function setStatesToDefault(product: ProductDetails) {
     selectedSizeValue = product.sizes.s.size;
     totalPrice = Number(product.price);
-    discountedTotalPrice = Number(product.sizes.s.discountPrice) || 0;
+    discountedTotalPrice = Number(product.sizes.s.discountPrice) || totalPrice;
     totalDiscount = discountedTotalPrice
       ? +(totalPrice - discountedTotalPrice).toFixed(2)
       : 0;
@@ -202,7 +202,7 @@ export const modal = async () => {
     totalPrice = sizePrice + oldAdditives;
     totalDiscount = discountedTotalPrice
       ? +(totalPrice - discountedTotalPrice).toFixed(2)
-      : 0;
+      : totalPrice;
 
     totalPriceEl &&
       (totalPriceEl.textContent = `$${discountedTotalPrice.toFixed(2)}`);

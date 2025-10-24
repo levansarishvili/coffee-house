@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-.cart-totals {
+.cart-totals-wrapper {
   padding-left: 4.4rem;
   font-weight: 600;
   font-size: 2.4rem;

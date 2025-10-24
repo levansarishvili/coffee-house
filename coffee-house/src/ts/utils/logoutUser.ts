@@ -1,3 +1,4 @@
+import { AuthEvent } from '../../types/enums';
 import { logout } from '../authStore';
 import { getCart } from '../cartStore';
 
@@ -15,6 +16,6 @@ export const logoutUser = () => {
     );
 
     // Also notify authentication change
-    document.dispatchEvent(new CustomEvent('auth-updated'));
+    document.dispatchEvent(new CustomEvent(AuthEvent.Updated));
   });
 };

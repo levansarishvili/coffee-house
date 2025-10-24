@@ -1,3 +1,4 @@
+import { AuthEvent } from '../types/enums';
 import type { UserData } from '../types/signIn';
 import { clearCart } from './cartStore';
 
@@ -34,5 +35,5 @@ export function logout() {
 
 // Notify other parts of the app
 export function notifyAuthUpdate() {
-  document.dispatchEvent(new CustomEvent('auth-updated', { detail: user }));
+  document.dispatchEvent(new CustomEvent(AuthEvent.Updated, { detail: user }));
 }

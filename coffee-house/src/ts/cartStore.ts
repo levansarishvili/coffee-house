@@ -38,9 +38,11 @@ export function addToCart(item: CartProduct): void {
 export function getTotalDiscount(): number {
   if (!cartItems || cartItems.length === 0) return 0;
 
-  const totalDiscount = cartItems.reduce((acc, item) => {
-    return acc + (item.discount ?? 0);
-  }, 0);
+  const totalDiscount = Number(
+    cartItems.reduce((acc, item) => {
+      return acc + (item.discount ?? 0);
+    }, 0)
+  );
 
   return totalDiscount;
 }

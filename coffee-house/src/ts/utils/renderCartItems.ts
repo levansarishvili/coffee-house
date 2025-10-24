@@ -1,9 +1,19 @@
 import type { CartProduct } from '../../types/cart';
+import { getUser } from '../authStore';
 
 export const renderCartItems = (
   isAuthenticated: boolean,
   cartItems: CartProduct[]
 ) => {
+  const user = getUser();
+
+  const city = user?.user.city;
+  const street = user?.user.street;
+  const houseNumber = user?.user.houseNumber;
+  const paymentMethod = user?.user.paymentMethod;
+  const capitalizedCity = city
+    ? city.charAt(0).toUpperCase() + city.slice(1)
+    : '';
   const cartItemsWrapperEl = document.querySelector<HTMLDivElement>(
     '.cart-items-wrapper'
   );
@@ -20,10 +30,12 @@ export const renderCartItems = (
   const totalDiscountedPrice = cartItems.reduce((acc, item) => {
     return (acc += item.discountedPrice);
   }, 0);
-  console.log(totalPrice, totalDiscountedPrice);
+  const hasDiscount = totalPrice > totalDiscountedPrice;
 
   const cartItemsHtml = cartItems
     .map((item) => {
+      const hasDiscount = item.price > item.discountedPrice;
+
       const additivesContent = item.selectedAdditives
         .map((additive) => `<span class="item-additive">${additive}</span>`)
         .join(', ');
@@ -57,12 +69,12 @@ export const renderCartItems = (
             </div>
 
             <p class="${
-              isAuthenticated && item.discountedPrice > 0
+              isAuthenticated && hasDiscount
                 ? 'cart-item-original-price'
                 : 'cart-item-total-price'
             } dark-txt">$${item.price.toFixed(2)}</p>
             <p class="cart-item-total-price dark-txt ${
-              isAuthenticated && item.discountedPrice > 0 ? '' : 'display-none'
+              isAuthenticated && hasDiscount ? '' : 'display-none'
             }">$${item.discountedPrice.toFixed(2)}</p>
           </div>
         </div>
@@ -75,20 +87,28 @@ export const renderCartItems = (
   const cartTotalsHtml = `
     <div class="w-full flex-row justify-between">
       <span>Total:</span>
-      <span class="${isAuthenticated ? '' : 'display-none'}">$14.00</span>
+      <div class="flex-row gap-20">
+        <span class="${
+          isAuthenticated && hasDiscount ? 'cart-total-original-price' : ''
+        }">$${totalPrice.toFixed(2)}</span>
+        <span class="${
+          isAuthenticated && hasDiscount ? '' : 'display-none'
+        }">$${totalDiscountedPrice.toFixed(2)}</span> 
+      </div>
     </div>
     <div class="w-full flex-row justify-between ${
       isAuthenticated ? '' : 'display-none'
     }">
       <span>Address:</span>
-      <span>City, Street, 7</span>
+      <span>${capitalizedCity}, ${street}, ${houseNumber}</span>
     </div>
     <div class="w-full flex-row justify-between ${
       isAuthenticated ? '' : 'display-none'
     }">
       <span>Pay by:</span>
-      <span>Card</span>
+      <span>${paymentMethod}</span>
     </div>`;
 
   cartItemsWrapperEl && (cartItemsWrapperEl.innerHTML = cartItemsHtml);
+  cartTotalsWrapper && (cartTotalsWrapper.innerHTML = cartTotalsHtml);
 };

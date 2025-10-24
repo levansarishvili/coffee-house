@@ -16,7 +16,7 @@ export const renderCartIcon = (
       <span class="cart-items-quantity display-none">${cartItemsQuantity}</span>
       <span class="total-discount ${
         isAuthenticated && totalDiscount > 0 ? '' : 'display-none'
-      }">${totalDiscount}</span>
+      }">${totalDiscount.toFixed(2)}</span>
     </a>`;
   const cartIconHtmlMobile = `
     <li class="nav-item--cart">
