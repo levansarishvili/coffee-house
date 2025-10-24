@@ -6,3 +6,7 @@ export enum AuthStatus {
   LoggedOut = 'LOGGED_OUT',
   LoggedIn = 'LOGGED_IN',
 }
+
+export enum CartEvent {
+  Updated = 'cart-updated',
+}

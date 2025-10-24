@@ -20,9 +20,13 @@ export const renderCartItems = (
   const cartTotalsWrapper = document.querySelector<HTMLElement>(
     '.cart-totals-wrapper'
   );
+  const cartButtonsWrapperEl = document.querySelector<HTMLDivElement>(
+    '.cart-buttons-wrapper'
+  );
 
   cartItemsWrapperEl && (cartItemsWrapperEl.innerHTML = '');
   cartTotalsWrapper && (cartTotalsWrapper.innerHTML = '');
+  cartButtonsWrapperEl && (cartButtonsWrapperEl.innerHTML = '');
 
   const totalPrice = cartItems.reduce((acc, item) => {
     return (acc += item.price);
@@ -63,7 +67,9 @@ export const renderCartItems = (
                 ${item.name}
               </h3>
               <p class="cart-item-extra dark-tsx">
-                <span class="item-size">${item.selectedSize},</span>
+                <span class="item-size">${item.selectedSizeValue}${
+        item.selectedAdditives.length > 0 ? ',' : ''
+      }</span>
                 ${additivesContent}
               </p>
             </div>
@@ -111,4 +117,27 @@ export const renderCartItems = (
 
   cartItemsWrapperEl && (cartItemsWrapperEl.innerHTML = cartItemsHtml);
   cartTotalsWrapper && (cartTotalsWrapper.innerHTML = cartTotalsHtml);
+
+  // Render buttons
+  const cartButtonsHtml = `
+    <a
+      class="btn login-btn flex-row justify-center align-center ${
+        !isAuthenticated ? '' : 'display-none'
+      }"
+      href="login.html"
+    >
+      Sign In
+    </a>
+    <a
+      class="btn register-btn flex-row justify-center align-center ${
+        !isAuthenticated ? '' : 'display-none'
+      }"
+      href="register.html"
+      >Registration</a
+    >
+    <button class="btn confirm-order-btn ${
+      isAuthenticated ? '' : 'display-none'
+    }">Confirm</button>`;
+
+  cartButtonsWrapperEl && (cartButtonsWrapperEl.innerHTML = cartButtonsHtml);
 };

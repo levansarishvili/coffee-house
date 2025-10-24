@@ -24,6 +24,8 @@
     <title>Coffee-House</title>
   </head>
   <body data-page="cart">
+    <div class="notification display-none"></div>
+
     <div id="app">
       <div class="container centered flex-col align-center">
         <div class="centered">
@@ -128,24 +130,9 @@
 
           <div
             class="cart-buttons-wrapper flex-row gap-40 align-center justify-center"
-          >
-            <button class="btn login-btn">
-              <a
-                class="flex-row justify-center align-center h-full"
-                href="login.html"
-              >
-                Sign In
-              </a>
-            </button>
-            <button class="btn register-btn">
-              <a
-                class="flex-row justify-center align-center h-full"
-                href="register.html"
-                >Registration</a
-              >
-            </button>
-            <button class="btn confirm-order-btn">Confirm</button>
-          </div>
+          ></div>
+          <div class="cart-message-wrapper"></div>
+          <div class="cart-spinner-wrapper"></div>
         </main>
 
         <!-- ======================== Footer Section ========================-->

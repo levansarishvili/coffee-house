@@ -10,6 +10,7 @@ export const renderModal = (
   const productSizes = Object.entries(product.sizes);
   const hasDiscount = isAuthenticated && !!product.sizes.s.discountPrice;
 
+  console.log(productSizes);
   const sizeButtonsHtml = productSizes
     .map(
       (size, index) => `
@@ -21,7 +22,7 @@ export const renderModal = (
         size[1].discountPrice
           ? `data-discount-price="${size[1].discountPrice}"`
           : ''
-      } data-size="${size[1].size}" 
+      } data-size="${size[0]}" data-size-value="${size[1].size}" 
       >
         <div class="size-letter-box">
           <span class="size-letter flex-row align-center justify-center"

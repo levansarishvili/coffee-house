@@ -30,6 +30,7 @@ export const modal = async () => {
   let totalPrice = 0;
   let discountedTotalPrice = 0;
   let totalDiscount = 0;
+  let selectedSize = 's';
   let selectedSizeValue = '';
   let selectedAdditives: string[] = [];
 
@@ -166,8 +167,9 @@ export const modal = async () => {
 
     if (!activeSizeBtn) return;
 
-    activeSizeBtn.dataset.size &&
-      (selectedSizeValue = activeSizeBtn.dataset.size);
+    activeSizeBtn.dataset.size && (selectedSize = activeSizeBtn.dataset.size);
+    activeSizeBtn.dataset.sizeValue &&
+      (selectedSizeValue = activeSizeBtn.dataset.sizeValue);
 
     const sizePrice = Number(activeSizeBtn.dataset.price ?? 0);
 
@@ -228,7 +230,8 @@ export const modal = async () => {
         id: cartItemId,
         productId: curProduct.id,
         name: curProduct.name,
-        selectedSize: selectedSizeValue,
+        selectedSize,
+        selectedSizeValue,
         selectedAdditives: selectedAdditives,
         price: totalPrice,
         discountedPrice: discountedTotalPrice,
@@ -236,6 +239,7 @@ export const modal = async () => {
       };
 
       addToCart(cartItemData);
+      console.log(cartItemData);
       notifyCartUpdate();
       closeModal();
     });

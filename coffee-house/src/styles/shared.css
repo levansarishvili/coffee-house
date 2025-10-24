@@ -73,11 +73,11 @@ a:active {
 }
 
 .btn {
+  flex-wrap: nowrap;
   cursor: pointer;
   background: none;
   border: 1px solid var(--background-container);
   border-radius: 10rem;
-  padding: 1rem 7.8;
   height: 4.4rem;
   font-weight: 600;
   font-size: 1.6rem;
