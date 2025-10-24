@@ -1,4 +1,4 @@
-import { isLoggedIn, signIn } from '../authStore';
+import { signIn } from '../authStore';
 import { setupHeaderCartListener } from '../utils/setupHeaderCartListener';
 import { showErrorMessage } from '../utils/showErrorMessage';
 import { showSpinner } from '../utils/showSpinner';
@@ -7,7 +7,7 @@ import { signInUser } from '../utils/signInUser';
 import { validateLogin, validatePassword } from '../utils/validations';
 
 export const login = async () => {
-  const isAuthenticated = isLoggedIn();
+  // const isAuthenticated = isLoggedIn();
 
   setupHeaderCartListener();
 

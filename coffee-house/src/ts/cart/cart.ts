@@ -72,8 +72,8 @@ export const cart = async () => {
         'Thank you for your order! Our manager will contact you shortly.',
         cartMessageWrapperEl
       );
-      // clearCart();
-      // notifyCartUpdate();
+      clearCart();
+      notifyCartUpdate();
     } catch (err) {
       showSpinner(false, cartSpinnerWrapperEl);
       showNotification('Something went wrong. Please, try again.');
