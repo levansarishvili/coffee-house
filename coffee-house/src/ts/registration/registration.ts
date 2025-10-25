@@ -114,23 +114,10 @@ export const register = async () => {
     validationFn: (value: string) => string | null,
     wrapperEl: HTMLDivElement
   ) {
-    const setValidationState = (errorMessage: string | null) => {
-      if (errorMessage) {
-        wrapperEl.classList.add('invalid');
-        wrapperEl.classList.remove('valid');
-        wrapperEl.setAttribute('data-error', errorMessage);
-      } else {
-        wrapperEl.classList.remove('invalid');
-        wrapperEl.classList.add('valid');
-        wrapperEl.removeAttribute('data-error');
-      }
-      checkFormValidity();
-    };
-
     const selectEl = wrapperEl.querySelector<HTMLSelectElement>('select');
     if (selectEl) {
       selectEl.addEventListener('change', () => {
-        setValidationState(validationFn(selectEl.value));
+        setValidationState(wrapperEl, validationFn(selectEl.value));
       });
       return;
     }
@@ -138,9 +125,26 @@ export const register = async () => {
     const inputEl = wrapperEl.querySelector<HTMLInputElement>('input');
     if (inputEl) {
       inputEl.addEventListener('blur', () => {
-        setValidationState(validationFn(inputEl.value));
+        setValidationState(wrapperEl, validationFn(inputEl.value));
       });
     }
+  }
+
+  // Set validation state
+  function setValidationState(
+    wrapperEl: HTMLDivElement | null,
+    errorMessage: string | null
+  ) {
+    if (wrapperEl && errorMessage) {
+      wrapperEl.classList.add('invalid');
+      wrapperEl.classList.remove('valid');
+      wrapperEl.setAttribute('data-error', errorMessage);
+    } else if (wrapperEl) {
+      wrapperEl.classList.remove('invalid');
+      wrapperEl.classList.add('valid');
+      wrapperEl.removeAttribute('data-error');
+    }
+    checkFormValidity();
   }
 
   // Validate Inputs on blur
@@ -206,12 +210,17 @@ export const register = async () => {
   }
 
   // When password input is filled enable confirm password input
-  passwordInputEl?.addEventListener('input', () => {
-    if (!passwordInputEl.value.trim()) {
-      confirmPasswordInputEl!.disabled = true;
-      confirmPasswordInputEl!.value = '';
-    } else {
-      confirmPasswordInputEl!.disabled = false;
+  passwordInputEl?.addEventListener('blur', () => {
+    if (confirmPasswordInputEl) {
+      const errorMessage = validateConfirmPassword(
+        passwordInputEl.value,
+        confirmPasswordInputEl.value
+      );
+
+      inputWrapperEls &&
+        setValidationState(inputWrapperEls.confirmPassword, errorMessage);
+
+      checkFormValidity();
     }
   });
 
