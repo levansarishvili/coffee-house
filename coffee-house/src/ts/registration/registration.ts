@@ -211,7 +211,7 @@ export const register = async () => {
 
   // When password input is filled enable confirm password input
   passwordInputEl?.addEventListener('blur', () => {
-    if (confirmPasswordInputEl) {
+    if (confirmPasswordInputEl && confirmPasswordInputEl.value.trim() !== '') {
       const errorMessage = validateConfirmPassword(
         passwordInputEl.value,
         confirmPasswordInputEl.value
