@@ -6,6 +6,7 @@ export const renderModal = (
   isAuthenticated: boolean = false
 ) => {
   wrapper && (wrapper.innerHTML = '');
+  console.log(product);
 
   const productSizes = Object.entries(product.sizes);
   const hasDiscount = isAuthenticated && !!product.sizes.s.discountPrice;
@@ -118,7 +119,7 @@ export const renderModal = (
             $${product.price}
           </span>
           <span
-            class="total-price heading-3-font dark-txt weight-600"
+            class="total-price--modal heading-3-font dark-txt weight-600"
           >
             $${hasDiscount ? product.sizes.s.discountPrice : product.price}
           </span>

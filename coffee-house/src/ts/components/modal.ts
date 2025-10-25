@@ -154,7 +154,9 @@ export const modal = async () => {
   }
 
   function computeTotal() {
-    const totalPriceEl = document.querySelector<HTMLElement>('.total-price');
+    const totalPriceEl = document.querySelector<HTMLElement>(
+      '.total-price--modal'
+    );
     const oldPriceEl = document.querySelector<HTMLElement>('.original-price');
     const sizeButtons = document.querySelectorAll<HTMLElement>('.size-btn');
     const additiveButtons =
@@ -195,9 +197,11 @@ export const modal = async () => {
 
     // Use discount only if logged in
     const finalPrice = isAuthenticated ? discountedTotalPrice : totalPrice;
+    console.log(finalPrice);
 
     // Update visible total
     totalPriceEl && (totalPriceEl.textContent = `$${finalPrice.toFixed(2)}`);
+    console.log(totalPriceEl);
 
     // Show old (strikethrough) price only if user logged in and discount applies
     if (isAuthenticated && discountedTotalPrice !== totalPrice) {

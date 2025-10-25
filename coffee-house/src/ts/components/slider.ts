@@ -11,7 +11,7 @@ export const slider = async () => {
     document.querySelector<HTMLElement>('.slider-container');
   const sliderWrapper = document.querySelector<HTMLElement>('.slider-area');
 
-  showSpinner(true, sliderContainer);
+  showSpinner(true, sliderWrapper);
 
   const prevButton = document.querySelector<HTMLElement>('.left-arrow-btn');
   const nextButton = document.querySelector<HTMLElement>('.right-arrow-btn');
@@ -25,7 +25,7 @@ export const slider = async () => {
   try {
     const favoriteProducts = await fetchProducts(true);
 
-    showSpinner(false, sliderContainer);
+    showSpinner(false, sliderWrapper);
     progressBar?.classList.remove('display-none');
     prevButton?.classList.remove('display-none');
     nextButton?.classList.remove('display-none');
@@ -219,11 +219,13 @@ export const slider = async () => {
     startSlider();
   } catch (error) {
     console.error(error);
-    showSpinner(false, sliderContainer);
+    showSpinner(false, sliderWrapper);
     showErrorMessage(
       'Something went wrong. Please, refresh the page',
       sliderContainer
     );
     progressBar?.classList.add('display-none');
+  } finally {
+    showSpinner(false, sliderWrapper);
   }
 };

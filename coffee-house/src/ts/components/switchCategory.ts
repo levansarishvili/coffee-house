@@ -100,7 +100,7 @@ export const switchCategory = async () => {
         wrapper.querySelectorAll<HTMLElement>('.hidden-product');
       loadBtn &&
         (loadBtn.style.display =
-          isMobile && hiddenProducts.length > 0 ? 'flex-row' : 'none');
+          isMobile && hiddenProducts.length > 0 ? 'flex' : 'none');
     }
 
     loadBtn?.addEventListener('click', () => {
