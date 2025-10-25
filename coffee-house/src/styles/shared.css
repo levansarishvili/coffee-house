@@ -253,7 +253,6 @@ li a:active {
 
 .error-message {
   margin: auto;
-  color: var(--error-color);
 }
 
 .warning-icon,
@@ -402,10 +401,6 @@ li a:active {
 /* Firefox */
 .house-number-input[type='number'] {
   -moz-appearance: textfield;
-}
-
-.success-message {
-  color: var(--border-green);
 }
 
 /* Cart */

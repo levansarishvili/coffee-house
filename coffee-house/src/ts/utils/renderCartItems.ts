@@ -48,7 +48,7 @@ export const renderCartItems = (
         <div class="cart-item flex-row gap-20 align-center w-full">
           <div class="flex-row gap-20 align-center justify-center">
             <button class="cart-delete-button" data-id="${item.id}">
-              <img src="/assets/trash.svg" alt="Trash icon" />
+              <img class="cart-delete-icon" src="/assets/trash.svg" alt="Trash icon" />
             </button>
             <div class="cart-item-img-box">
               <img
@@ -60,7 +60,7 @@ export const renderCartItems = (
           </div>
 
           <div
-            class="cart-text-content flex-row gap-20 align-center justify-between w-full"
+            class="cart-text-content flex-row gap-20 align-end justify-between w-full"
           >
             <div class="flex-col gap-6 align-start justify-center w-full">
               <h3 class="cart-item-name dark-txt heading-3-font">
@@ -74,14 +74,15 @@ export const renderCartItems = (
               </p>
             </div>
 
-            <p class="${
-              isAuthenticated && hasDiscount
-                ? 'cart-item-original-price'
-                : 'cart-item-total-price'
-            } dark-txt">$${item.price.toFixed(2)}</p>
-            <p class="cart-item-total-price dark-txt ${
-              isAuthenticated && hasDiscount ? '' : 'display-none'
-            }">$${item.discountedPrice.toFixed(2)}</p>
+            <div class="flex-row gap-12 justify-center align-center">
+              <p class="${
+                isAuthenticated && hasDiscount
+                  ? 'cart-item-original-price'
+                  : 'cart-item-total-price'
+              } dark-txt">$${item.price.toFixed(2)}</p>
+              <p class="cart-item-total-price dark-txt ${
+                isAuthenticated && hasDiscount ? '' : 'display-none'
+              }">$${item.discountedPrice.toFixed(2)}</p></div>
           </div>
         </div>
   `;
@@ -91,7 +92,7 @@ export const renderCartItems = (
     .join('');
 
   const cartTotalsHtml = `
-    <div class="w-full flex-row justify-between">
+    <div class="w-full flex-row gap-16 justify-between">
       <span>Total:</span>
       <div class="flex-row gap-20">
         <span class="${
@@ -102,13 +103,13 @@ export const renderCartItems = (
         }">$${totalDiscountedPrice.toFixed(2)}</span> 
       </div>
     </div>
-    <div class="w-full flex-row justify-between ${
+    <div class="w-full flex-row gap-16 justify-between ${
       isAuthenticated ? '' : 'display-none'
     }">
       <span>Address:</span>
       <span>${capitalizedCity}, ${street}, ${houseNumber}</span>
     </div>
-    <div class="w-full flex-row justify-between ${
+    <div class="w-full flex-row gap-16 justify-between ${
       isAuthenticated ? '' : 'display-none'
     }">
       <span>Pay by:</span>
@@ -136,7 +137,7 @@ export const renderCartItems = (
       >Registration</a
     >
     <button class="btn confirm-order-btn ${
-      isAuthenticated ? '' : 'display-none'
+      isAuthenticated && cartItems.length > 0 ? '' : 'display-none'
     }">Confirm</button>`;
 
   cartButtonsWrapperEl && (cartButtonsWrapperEl.innerHTML = cartButtonsHtml);

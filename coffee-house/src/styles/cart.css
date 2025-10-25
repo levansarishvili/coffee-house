@@ -30,9 +30,16 @@
 }
 
 .cart-delete-button {
+  width: 2.4rem;
+  height: 2.4rem;
+  overflow: hidden;
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.cart-delete-icon {
+  width: 100%;
 }
 
 .cart-totals-wrapper {
