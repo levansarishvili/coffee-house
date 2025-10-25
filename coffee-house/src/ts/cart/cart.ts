@@ -116,10 +116,4 @@ export const cart = async () => {
       });
     });
   }
-
-  // const loginButtonEl = document.querySelector<HTMLButtonElement>('.login-btn');
-  // const registerButtonEl =
-  //   document.querySelector<HTMLButtonElement>('.register-btn');
-  // const confirmOrderButtonEl =
-  //   document.querySelector<HTMLButtonElement>('.confirm-order-btn');
 };

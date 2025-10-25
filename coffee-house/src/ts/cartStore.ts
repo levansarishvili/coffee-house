@@ -34,19 +34,6 @@ export function addToCart(item: CartProduct): void {
   saveCart();
 }
 
-// Get total discount amount
-export function getTotalDiscount(): number {
-  if (!cartItems || cartItems.length === 0) return 0;
-
-  const totalDiscount = Number(
-    cartItems.reduce((acc, item) => {
-      return acc + (item.discount ?? 0);
-    }, 0)
-  );
-
-  return totalDiscount;
-}
-
 // Remove an item
 export function removeFromCart(id: string | undefined): void {
   cartItems = cartItems.filter((product) => product.id !== id);
@@ -66,6 +53,27 @@ export function notifyCartUpdate() {
       detail: cartItems,
     })
   );
+}
+
+// --- Function: getFinalPrice ---
+export function getFinalPrice(isAuthenticated: boolean): {
+  totalPrice: number;
+  discountedTotalPrice: number;
+  finalPrice: number;
+} {
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const discountedTotalPrice = cartItems.reduce(
+    (acc, item) => acc + (item.discountedPrice ?? item.price),
+    0
+  );
+
+  const finalPrice = isAuthenticated ? discountedTotalPrice : totalPrice;
+
+  return {
+    totalPrice: +totalPrice.toFixed(2),
+    discountedTotalPrice: +discountedTotalPrice.toFixed(2),
+    finalPrice: +finalPrice.toFixed(2),
+  };
 }
 
 // --- helper ---

@@ -160,22 +160,14 @@ export const modal = async () => {
     const additiveButtons =
       document.querySelectorAll<HTMLElement>('.additive-btn');
 
-    // Find active size
     const activeSizeBtn = Array.from(sizeButtons).find((btn) =>
       btn.classList.contains('active-size-btn')
     );
-
     if (!activeSizeBtn) return;
 
-    activeSizeBtn.dataset.size && (selectedSize = activeSizeBtn.dataset.size);
-    activeSizeBtn.dataset.sizeValue &&
-      (selectedSizeValue = activeSizeBtn.dataset.sizeValue);
-
     const sizePrice = Number(activeSizeBtn.dataset.price ?? 0);
-
-    const sizeDiscount = isAuthenticated
-      ? Number(activeSizeBtn.dataset.discountPrice ?? sizePrice)
-      : sizePrice;
+    const sizeDiscount =
+      Number(activeSizeBtn.dataset.discountPrice) || sizePrice;
 
     let totalAdditives = 0;
     let oldAdditives = 0;
@@ -183,14 +175,12 @@ export const modal = async () => {
     additiveButtons.forEach((btn) => {
       const additive = btn.dataset.additive;
       const price = Number(btn.dataset.price ?? 0);
-      const discount = isAuthenticated
-        ? Number(btn.dataset.discountPrice ?? price)
-        : price;
+      const discount = Number(btn.dataset.discountPrice) || price;
+
       if (btn.classList.contains('active-additive-btn')) {
         if (additive && !selectedAdditives.includes(additive)) {
           selectedAdditives.push(additive);
         }
-
         totalAdditives += discount;
         oldAdditives += price;
       } else {
@@ -202,13 +192,14 @@ export const modal = async () => {
 
     discountedTotalPrice = sizeDiscount + totalAdditives;
     totalPrice = sizePrice + oldAdditives;
-    totalDiscount = discountedTotalPrice
-      ? +(totalPrice - discountedTotalPrice).toFixed(2)
-      : totalPrice;
 
-    totalPriceEl &&
-      (totalPriceEl.textContent = `$${discountedTotalPrice.toFixed(2)}`);
+    // Use discount only if logged in
+    const finalPrice = isAuthenticated ? discountedTotalPrice : totalPrice;
 
+    // Update visible total
+    totalPriceEl && (totalPriceEl.textContent = `$${finalPrice.toFixed(2)}`);
+
+    // Show old (strikethrough) price only if user logged in and discount applies
     if (isAuthenticated && discountedTotalPrice !== totalPrice) {
       oldPriceEl?.classList.remove('display-none');
       oldPriceEl && (oldPriceEl.textContent = `$${totalPrice.toFixed(2)}`);
@@ -239,7 +230,6 @@ export const modal = async () => {
       };
 
       addToCart(cartItemData);
-      console.log(cartItemData);
       notifyCartUpdate();
       closeModal();
     });

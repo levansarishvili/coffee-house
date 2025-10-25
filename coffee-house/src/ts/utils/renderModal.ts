@@ -10,7 +10,6 @@ export const renderModal = (
   const productSizes = Object.entries(product.sizes);
   const hasDiscount = isAuthenticated && !!product.sizes.s.discountPrice;
 
-  console.log(productSizes);
   const sizeButtonsHtml = productSizes
     .map(
       (size, index) => `
