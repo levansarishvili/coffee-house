@@ -30,12 +30,22 @@
 }
 
 .cart-delete-button {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 3.2rem;
+  height: 3.2rem;
   overflow: hidden;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  border-radius: 100%;
+  padding: 0.4rem;
+  border: 1px solid var(--background-body);
+  transition: all 0.3s;
+}
+
+@media (hover: hover) {
+  .cart-delete-button:hover {
+    background-color: var(--border-light);
+  }
 }
 
 .cart-delete-icon {

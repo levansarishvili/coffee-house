@@ -10,7 +10,7 @@ export const renderCartIcon = (
   const cartIconHtmlDesktop = `
     <a
       href="cart.html"
-      class="cart-icon flex-row gap-8 align-center justify-center"
+      class="cart-icon hover-underline-animation flex-row gap-8 align-center justify-center"
     >
       <img src="/assets/shopping-bag-desktop.svg" alt="Shopping bag" />
       <span class="cart-items-quantity display-none">${cartItemsQuantity}</span>
