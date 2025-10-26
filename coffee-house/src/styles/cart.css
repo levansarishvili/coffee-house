@@ -1,7 +1,7 @@
 @import 'variables.css';
 
 .cart-section {
-  padding-bottom: 10rem;
+  padding-bottom: 6rem;
 }
 
 .cart-item-img-box {
@@ -22,19 +22,37 @@
   line-height: 150%;
 }
 
-.cart-item-total-price {
+.cart-item-total-price,
+.cart-item-original-price {
   font-weight: 600;
   font-size: 2.4rem;
   line-height: 125%;
 }
 
 .cart-delete-button {
+  width: 3.2rem;
+  height: 3.2rem;
+  overflow: hidden;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  border-radius: 100%;
+  padding: 0.4rem;
+  border: 1px solid var(--background-body);
+  transition: all 0.3s;
 }
 
-.cart-totals {
+@media (hover: hover) {
+  .cart-delete-button:hover {
+    background-color: var(--border-light);
+  }
+}
+
+.cart-delete-icon {
+  width: 100%;
+}
+
+.cart-totals-wrapper {
   padding-left: 4.4rem;
   font-weight: 600;
   font-size: 2.4rem;

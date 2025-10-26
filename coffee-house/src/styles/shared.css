@@ -73,11 +73,11 @@ a:active {
 }
 
 .btn {
+  flex-wrap: nowrap;
   cursor: pointer;
   background: none;
   border: 1px solid var(--background-container);
   border-radius: 10rem;
-  padding: 1rem 7.8;
   height: 4.4rem;
   font-weight: 600;
   font-size: 1.6rem;
@@ -253,7 +253,6 @@ li a:active {
 
 .error-message {
   margin: auto;
-  color: var(--error-color);
 }
 
 .warning-icon,
@@ -273,7 +272,10 @@ li a:active {
 .original-price,
 .product-price-original,
 .tooltip-original-price,
-.tooltip-additive-original-price {
+.tooltip-additive-original-price,
+.total-discount,
+.cart-item-original-price,
+.cart-total-original-price {
   color: var(--text-dark);
   text-decoration: line-through;
   opacity: 0.5;
@@ -399,10 +401,6 @@ li a:active {
 /* Firefox */
 .house-number-input[type='number'] {
   -moz-appearance: textfield;
-}
-
-.success-message {
-  color: var(--border-green);
 }
 
 /* Cart */

@@ -1,4 +1,5 @@
 import type { City } from '../../types/cities';
+import type { Product } from '../../types/product';
 
 export const CITIES: City[] = [
   {
@@ -45,5 +46,35 @@ export const CITIES: City[] = [
       'Roosevelt Road',
       'Halsted Street',
     ],
+  },
+];
+
+export const FALLBACK_DATA: Product[] = [
+  {
+    id: 1,
+    name: 'Product name unavailable',
+    description: 'Product description is currently unavailable.',
+    price: '0.00',
+    discountPrice: 0,
+    category: 'N/A',
+    imageUrl: '/assets/slider-placeholder.svg',
+  },
+  {
+    id: 2,
+    name: 'Product name unavailable',
+    description: 'Product description is currently unavailable.',
+    price: '0.00',
+    discountPrice: 0,
+    category: 'N/A',
+    imageUrl: '/assets/slider-placeholder.svg',
+  },
+  {
+    id: 3,
+    name: 'Product name unavailable',
+    description: 'Product description is currently unavailable.',
+    price: '0.00',
+    discountPrice: 0,
+    category: 'N/A',
+    imageUrl: '/assets/slider-placeholder.svg',
   },
 ];

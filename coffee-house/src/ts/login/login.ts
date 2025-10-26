@@ -1,6 +1,5 @@
-import type { SignInResponse } from '../../types/signIn';
-import { isLoggedIn } from '../authStore';
-import { renderCartIcon } from '../utils/renderCartIcon';
+import { signIn } from '../authStore';
+import { setupHeaderCartListener } from '../utils/setupHeaderCartListener';
 import { showErrorMessage } from '../utils/showErrorMessage';
 import { showSpinner } from '../utils/showSpinner';
 import { showSuccessMessage } from '../utils/showSuccessMessage';
@@ -8,9 +7,7 @@ import { signInUser } from '../utils/signInUser';
 import { validateLogin, validatePassword } from '../utils/validations';
 
 export const login = async () => {
-  const isAuthenticated = isLoggedIn();
-
-  renderCartIcon(0, isAuthenticated);
+  setupHeaderCartListener();
 
   const signInFormEl = document.querySelector<HTMLFormElement>('.login-form');
   const inputWrapperEls = {
@@ -46,11 +43,10 @@ export const login = async () => {
 
     try {
       const res = await signInUser(signInData);
-      console.log(res);
 
       showSpinner(false, signInSpinnerWrapperEl);
       showSuccessMessage(res.message, resultMessageWrapperEl);
-      saveUserData(res);
+      signIn(res.data);
       resetForm();
       window.location.href = '/menu.html';
     } catch (err) {
@@ -118,12 +114,6 @@ export const login = async () => {
   }
 
   setupValidations();
-
-  // Function to store user data in local storage
-  function saveUserData(userData: SignInResponse) {
-    localStorage.clear();
-    localStorage.setItem('user', JSON.stringify(userData.data));
-  }
 
   // Function to reset signIn form
   function resetForm() {

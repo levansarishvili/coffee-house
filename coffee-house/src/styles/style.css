@@ -45,13 +45,12 @@
 }
 
 /* ======================== Slider Section ========================*/
-.slider-container {
-}
 
 .slider-area {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   max-width: 115.2rem;
   flex-shrink: 1;
   overflow: hidden;
