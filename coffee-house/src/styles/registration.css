@@ -1,0 +1,118 @@
+@import 'variables.css';
+
+.register-section {
+  padding-bottom: 6rem;
+}
+
+.first-input-wrapper {
+  margin-left: 6rem;
+}
+
+.input-wrapper {
+  gap: 0.5rem;
+  position: relative;
+}
+.input-label {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+  color: var(--text-dark);
+}
+
+.input {
+  border: 1px solid var(--border-light);
+  border-radius: 1.2rem;
+  padding: 0 1.2rem;
+  width: 40rem;
+  height: 5.6rem;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder,
+.select-placeholder {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+  color: var(--input-placeholder);
+}
+.input--small {
+  max-width: 26rem;
+}
+
+.register-btn {
+  width: 20rem;
+}
+
+/* Custom styles for select and radio buttons */
+.select {
+  max-width: 26rem;
+}
+
+.select {
+  &,
+  &::picker(select) {
+    appearance: base-select;
+  }
+}
+
+.select::picker-icon {
+  display: none;
+}
+
+.selected-content {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+  color: var(--text-dark);
+}
+
+::picker(select) {
+  border: 1px solid var(--border-light);
+  border-radius: 1.2rem;
+  background-color: var(--background-body);
+  margin-top: 0.5rem;
+  padding: 1rem 0.8rem;
+  font-size: 1.4rem;
+  color: var(--text-dark);
+}
+
+.select-option {
+  padding: 0.8rem 0.5rem;
+  border-radius: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.select-option::checkmark {
+  color: var(--text-dark);
+}
+
+.select-option:checked {
+  background-color: var(--border-light);
+}
+
+/* ============ Radio Buttons ============ */
+.radio-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--border-dark);
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+/* Checked State */
+.radio-input:checked {
+  background-color: transparent;
+  border: 5px solid var(--border-dark);
+}

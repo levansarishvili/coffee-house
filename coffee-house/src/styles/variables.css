@@ -1,0 +1,49 @@
+:root {
+  /* Breakpoints in em */
+  --bp-mobile: 30em;
+  --bp-tablet: 48em;
+  --bp-desktop: 64em;
+  --bp-large: 75em;
+
+  /* Colors */
+  --text-dark: #403f3d;
+  --text-light: #e1d4c9;
+  --input-placeholder: #a1a8b3;
+  --text-accent: #b0907a;
+  --background-body: #e1d4c9;
+  --background-container: #665f55;
+  --background-backdrop: rgba(64, 63, 61, 0.8);
+  --border-light: #c1b6ad;
+  --border-dark: #665f55;
+  --border-green: #0dbb42;
+  --error-color: #f44336;
+
+  /* Fonts */
+  --font-family: 'Inter', sans-serif;
+  --second-family: 'Manrope', sans-serif;
+
+  /* Font weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Headings */
+  --h1-size: 7.2rem;
+  --h2-size: 6rem;
+  --h3-size: 2.4rem;
+  --h4-size: 1.25rem;
+
+  --h1-size-mobile: 4.2rem;
+  --h2-size-mobile: 3.2rem;
+
+  /* Body text */
+  --text-body-md: 1.6rem;
+  --text-body-sm: 1rem;
+
+  /* Buttons & Links */
+  --text-button: 1.6rem;
+  --text-link-lg: 3.2rem;
+}
