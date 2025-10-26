@@ -2,7 +2,7 @@
 
 ## ☕ Project Overview
 
-Coffee-House is an e-commerce website for a coffee shop where users can browse products, view product details, and explore featured items on a slider. The project is built with TypeScript, Vite, and vanilla JS/TS.
+Coffee-House is an e-commerce website for a coffee shop where users can browse products, view product details, and explore featured items on a slider. Users can also add items to the cart, sign in, and register. The project is built with TypeScript, Vite, and vanilla JS/TS.
 
 ## 📝 Notes for Reviewers
 
