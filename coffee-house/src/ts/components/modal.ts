@@ -197,11 +197,9 @@ export const modal = async () => {
 
     // Use discount only if logged in
     const finalPrice = isAuthenticated ? discountedTotalPrice : totalPrice;
-    console.log(finalPrice);
 
     // Update visible total
     totalPriceEl && (totalPriceEl.textContent = `$${finalPrice.toFixed(2)}`);
-    console.log(totalPriceEl);
 
     // Show old (strikethrough) price only if user logged in and discount applies
     if (isAuthenticated && discountedTotalPrice !== totalPrice) {

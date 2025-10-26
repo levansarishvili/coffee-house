@@ -6,7 +6,6 @@ export const renderModal = (
   isAuthenticated: boolean = false
 ) => {
   wrapper && (wrapper.innerHTML = '');
-  console.log(product);
 
   const productSizes = Object.entries(product.sizes);
   const hasDiscount = isAuthenticated && !!product.sizes.s.discountPrice;

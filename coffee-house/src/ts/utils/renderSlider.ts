@@ -7,6 +7,8 @@ export const renderSlider = (
   if (!sliderWrapper) return;
 
   products.forEach((product) => {
+    const showFallback = product.category === 'N/A';
+
     const slideHtml = `
       <div
         class="slider-content flex-col justify-between align-center gap-20"
@@ -14,7 +16,9 @@ export const renderSlider = (
         <div class="slider-img-wrapper">
           <img
             class="slider-img"
-            src="assets/${product.id}.png"
+            src="${
+              showFallback ? product.imageUrl : `assets/${product.id}.png`
+            }"
             alt="slider image"
           />
         </div>        
