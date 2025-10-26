@@ -51,9 +51,10 @@ export const login = async () => {
       window.location.href = '/menu.html';
     } catch (err) {
       const errorMessage = (err as Error).message;
+      console.log(errorMessage);
 
       showSpinner(false, signInSpinnerWrapperEl);
-      showErrorMessage(errorMessage, resultMessageWrapperEl);
+      showErrorMessage('Incorrect login or password', resultMessageWrapperEl);
     } finally {
       submitBtn && submitBtn.classList.remove('disabled-btn');
     }
