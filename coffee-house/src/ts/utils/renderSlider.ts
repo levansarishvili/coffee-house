@@ -24,7 +24,7 @@ export const renderSlider = (
         </div>        
         <div class="slider-desc flex-col align-center gap-12">
           <p
-            class="slider-desc-name dark-txt heading-3-font weight-600"
+            class="slider-desc-name txt-align-center dark-txt heading-3-font weight-600"
           >
             ${product.name}
           </p>

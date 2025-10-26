@@ -15,7 +15,7 @@ export const renderCartIcon = (
       <span class="cart-items-quantity display-none">${cartItemsQuantity}</span>
     </a>`;
   const cartIconHtmlMobile = `
-    <li class="nav-item--cart">
+    <li class="nav-item--cart display-none">
       <a
         class="cart-nav display-none flex-row align-center gap-8 hover-underline-animation"
         href="cart.html"
@@ -35,6 +35,8 @@ export const renderCartIcon = (
   if (isAuthenticated || cartItemsQuantity > 0) {
     cartIconWrapperEl?.insertAdjacentHTML('beforeend', cartIconHtmlDesktop);
     navItemsWrapperEl?.insertAdjacentHTML('beforeend', cartIconHtmlMobile);
+    const cartNavItemEl = document.querySelector('.nav-item--cart');
+    cartNavItemEl && cartNavItemEl.classList.remove('display-none');
   }
 
   // Show cart items number if it is not 0
