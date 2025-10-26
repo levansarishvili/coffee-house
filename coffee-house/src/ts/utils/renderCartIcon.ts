@@ -1,7 +1,6 @@
 export const renderCartIcon = (
   cartItemsQuantity: number = 0,
-  isAuthenticated: boolean,
-  totalPrice: number
+  isAuthenticated: boolean
 ) => {
   const navItemsWrapperEl = document.querySelector<HTMLElement>('.nav-items');
   const cartIconWrapperEl =
@@ -14,9 +13,6 @@ export const renderCartIcon = (
     >
       <img src="/assets/shopping-bag-desktop.svg" alt="Shopping bag" />
       <span class="cart-items-quantity display-none">${cartItemsQuantity}</span>
-      <span class="total-price ${
-        isAuthenticated && totalPrice > 0 ? '' : 'display-none'
-      }">${totalPrice.toFixed(2)}</span>
     </a>`;
   const cartIconHtmlMobile = `
     <li class="nav-item--cart">

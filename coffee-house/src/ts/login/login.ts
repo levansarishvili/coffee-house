@@ -7,8 +7,6 @@ import { signInUser } from '../utils/signInUser';
 import { validateLogin, validatePassword } from '../utils/validations';
 
 export const login = async () => {
-  // const isAuthenticated = isLoggedIn();
-
   setupHeaderCartListener();
 
   const signInFormEl = document.querySelector<HTMLFormElement>('.login-form');
@@ -45,7 +43,6 @@ export const login = async () => {
 
     try {
       const res = await signInUser(signInData);
-      console.log(res);
 
       showSpinner(false, signInSpinnerWrapperEl);
       showSuccessMessage(res.message, resultMessageWrapperEl);

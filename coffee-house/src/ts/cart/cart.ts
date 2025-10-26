@@ -8,7 +8,6 @@ import {
   removeFromCart,
 } from '../cartStore';
 import { confirmOrder } from '../utils/confirmOrder';
-import { logoutUser } from '../utils/logoutUser';
 import { renderCartItems } from '../utils/renderCartItems';
 import { setupHeaderCartListener } from '../utils/setupHeaderCartListener';
 import { showNotification } from '../utils/showNotification';
@@ -30,8 +29,6 @@ export const cart = async () => {
   renderCartItems(isAuthenticated, cartItems);
 
   deleteCartItem();
-
-  logoutUser();
 
   // Listen for cart updates and re-render only here
   document.addEventListener(CartEvent.Updated, (e) => {
@@ -65,8 +62,7 @@ export const cart = async () => {
     try {
       showSpinner(true, cartSpinnerWrapperEl);
       orderSubmitButtonEl && orderSubmitButtonEl.classList.add('disabled-btn');
-      const res = await confirmOrder(ordersData);
-      console.log(res);
+      await confirmOrder(ordersData);
       showSpinner(false, cartSpinnerWrapperEl);
       showSuccessMessage(
         'Thank you for your order! Our manager will contact you shortly.',

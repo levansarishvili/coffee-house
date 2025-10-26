@@ -1,4 +1,3 @@
-// import { isLoggedIn } from '../authStore';
 import { CITIES } from '../constants/constants';
 import { registerUser } from '../utils/registerUser';
 import { renderStreetOptions } from '../utils/renderStreetOptions';
@@ -16,8 +15,6 @@ import {
 } from '../utils/validations';
 
 export const register = async () => {
-  // const isAuthenticated = isLoggedIn();
-
   setupHeaderCartListener();
 
   const registerFormEl =
