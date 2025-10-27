@@ -7,8 +7,8 @@ export function validateLogin(login: string): string | null {
   if (login.length < 3) {
     return 'Login must be at least 3 characters long.';
   }
-  if (!/^[A-Za-z]+$/.test(login)) {
-    return 'Only English letters are allowed.';
+  if (!/^[A-Za-z0-9]+$/.test(login)) {
+    return 'Only English letters and numbers are allowed.';
   }
 
   return null;

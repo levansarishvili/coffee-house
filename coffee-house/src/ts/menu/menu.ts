@@ -4,6 +4,7 @@ import { setupHeaderCartListener } from '../utils/setupHeaderCartListener.js';
 
 export const menu = () => {
   setupHeaderCartListener();
+
   // Initialize Switch Category Tabs
   switchCategory();
 
