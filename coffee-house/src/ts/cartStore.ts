@@ -61,9 +61,13 @@ export function getFinalPrice(isAuthenticated: boolean): {
   discountedTotalPrice: number;
   finalPrice: number;
 } {
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + Number(item.price),
+    0
+  );
+
   const discountedTotalPrice = cartItems.reduce(
-    (acc, item) => acc + (item.discountedPrice ?? item.price),
+    (acc, item) => acc + Number(item.discountedPrice ?? item.price),
     0
   );
 
