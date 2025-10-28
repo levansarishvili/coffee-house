@@ -27,60 +27,64 @@ export const cart = async () => {
   );
 
   renderCartItems(isAuthenticated, cartItems);
+  setupCartListeners();
 
-  deleteCartItem();
-
-  // Listen for cart updates and re-render only here
   document.addEventListener(CartEvent.Updated, (e) => {
     const event = e as CustomEvent<CartProduct[]>;
     cartItems = event.detail;
     isAuthenticated = isLoggedIn();
     renderCartItems(isAuthenticated, cartItems);
+    setupCartListeners();
   });
 
-  // Calculate ordersData
-  const ordersArr = cartItems.map((item) => {
-    return {
-      productId: item.productId,
-      size: item.selectedSize,
-      additives: item.selectedAdditives,
-      quantity: 1,
-    };
-  });
-  const ordersData = {
-    items: ordersArr,
-    totalPrice: cartItems.reduce((acc, item) => {
-      return (acc += item.discountedPrice);
-    }, 0),
-  };
-
-  // Handle confirm order
-  const orderSubmitButtonEl =
-    document.querySelector<HTMLButtonElement>('.confirm-order-btn');
-
-  async function handleConfirmOrder() {
-    try {
-      showSpinner(true, cartSpinnerWrapperEl);
-      orderSubmitButtonEl && orderSubmitButtonEl.classList.add('disabled-btn');
-      await confirmOrder(ordersData);
-      showSpinner(false, cartSpinnerWrapperEl);
-      showSuccessMessage(
-        'Thank you for your order! Our manager will contact you shortly.',
-        cartMessageWrapperEl
-      );
-      clearCart();
-      notifyCartUpdate();
-    } catch (err) {
-      showSpinner(false, cartSpinnerWrapperEl);
-      showNotification('Something went wrong. Please, try again.');
-      console.error('Order confirmation failed:', err);
-    } finally {
-      orderSubmitButtonEl &&
-        orderSubmitButtonEl.classList.remove('disabled-btn');
-      showSpinner(false, cartSpinnerWrapperEl);
-    }
+  function setupCartListeners() {
+    deleteCartItem();
+    setupConfirmOrderButton();
   }
-  orderSubmitButtonEl?.addEventListener('click', handleConfirmOrder);
+
+  function setupConfirmOrderButton() {
+    const orderSubmitButtonEl =
+      document.querySelector<HTMLButtonElement>('.confirm-order-btn');
+
+    if (!orderSubmitButtonEl) return;
+
+    orderSubmitButtonEl.addEventListener('click', async () => {
+      const ordersArr = getCart().map((item) => ({
+        productId: item.productId,
+        size: item.selectedSize,
+        additives: item.selectedAdditives,
+        quantity: 1,
+      }));
+
+      const ordersData = {
+        items: ordersArr,
+        totalPrice: ordersArr.reduce((acc, item) => {
+          const product = cartItems.find((p) => p.productId === item.productId);
+          return acc + (product?.discountedPrice || 0);
+        }, 0),
+      };
+
+      try {
+        showSpinner(true, cartSpinnerWrapperEl);
+        orderSubmitButtonEl.classList.add('disabled-btn');
+        await confirmOrder(ordersData);
+        showSpinner(false, cartSpinnerWrapperEl);
+        showSuccessMessage(
+          'Thank you for your order! Our manager will contact you shortly.',
+          cartMessageWrapperEl
+        );
+        clearCart();
+        notifyCartUpdate();
+      } catch (err) {
+        showSpinner(false, cartSpinnerWrapperEl);
+        showNotification('Something went wrong. Please, try again.');
+        console.error('Order confirmation failed:', err);
+      } finally {
+        orderSubmitButtonEl.classList.remove('disabled-btn');
+        showSpinner(false, cartSpinnerWrapperEl);
+      }
+    });
+  }
 
   // Function to delete cart item by id
   function deleteCartItem() {
@@ -104,11 +108,9 @@ export const cart = async () => {
           new CustomEvent('cart-updated', { detail: updatedCartItems })
         );
 
-        // Re-render the cart UI
+        // Re-render and reattach listeners
         renderCartItems(isAuthenticated, updatedCartItems);
-
-        // Re-attach delete listeners after re-render
-        deleteCartItem();
+        setupCartListeners();
       });
     });
   }
