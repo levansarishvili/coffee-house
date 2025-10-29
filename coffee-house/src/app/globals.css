@@ -1,37 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --text-dark: #403f3d;
-  --text-light: #e1d4c9;
-  --input-placeholder: #a1a8b3;
+  --text-primary: #403f3d;
+  --text-inverse: #e1d4c9;
   --text-accent: #b0907a;
-  --background-body: #e1d4c9;
-  --background-container: #665f55;
-  --background-backdrop: rgba(64, 63, 61, 0.8);
+  --placeholder: #a1a8b3;
+  --background-primary: #e1d4c9;
+  --background-secondary: #665f55;
+  --backdrop: rgba(64, 63, 61, 0.8);
   --border-light: #c1b6ad;
   --border-dark: #665f55;
-  --border-green: #0dbb42;
-  --error-color: #f44336;
+  --success: #0dbb42;
+  --error: #f44336;
+}
+
+@theme {
+  --color-primary: var(--text-primary);
+  --color-inverse: var(--text-inverse);
+  --color-accent: var(--text-accent);
+  --color-placeholder: var(--placeholder);
+  --color-background: var(--background-primary);
+  --color-background-alt: var(--background-secondary);
+  --color-backdrop: var(--backdrop);
+  --color-border: var(--border-light);
+  --color-border-dark: var(--border-dark);
+  --color-success: var(--success);
+  --color-error: var(--error);
+
+  /* Fonts */
+  --font-inter: var(--font-inter), Arial, Helvetica, sans-serif;
+
+  /* Screens */
+  --screen-sm: 380px;
+  --screen-md: 768px;
+  --screen-lg: 1440px;
+
+  /* Max Width */
+  --max-width-sm: 380px;
+  --max-width-md: 768px;
+  --max-width-lg: 1440px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-dark: #403f3d;
-    --text-light: #e1d4c9;
-    --input-placeholder: #a1a8b3;
-    --text-accent: #b0907a;
-    --background-body: #e1d4c9;
-    --background-container: #665f55;
-    --background-backdrop: rgba(64, 63, 61, 0.8);
-    --border-light: #c1b6ad;
-    --border-dark: #665f55;
-    --border-green: #0dbb42;
-    --error-color: #f44336;
+    --text-primary: #403f3d;
+    --text-inverse: #e1d4c9;
+    --background-primary: #e1d4c9;
+    --background-secondary: #665f55;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background-body);
-  color: var(--text-dark);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+  font-size: 1rem;
 }
