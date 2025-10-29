@@ -1,11 +1,18 @@
 {
-  "HomePage": {
-    "Navigation": {
-      "favorite": "Favorite coffee",
-      "about": "About",
-      "mobile": "Mobile app",
-      "contact": "Contact us",
-      "menu": "Menu"
-    }
+  "Navigation": {
+    "favorite": "Favorite coffee",
+    "about": "About",
+    "mobile": "Mobile app",
+    "contact": "Contact us",
+    "menu": "Menu"
+  },
+  "ModeToggle": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "LanguageToggle": {
+    "en": "Eng",
+    "ka": "ქართ"
   }
 }

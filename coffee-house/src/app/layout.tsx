@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_Georgian } from "next/font/google";
 import "./globals.css";
-import Header from "./components/header-component/Header";
 import { ThemeProvider } from "./components/theme-provider";
 
 const inter = Inter({
@@ -42,7 +41,6 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Header />
             {children}
           </ThemeProvider>
         </div>

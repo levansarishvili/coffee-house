@@ -1,11 +1,18 @@
 {
-  "HomePage": {
-    "Navigation": {
-      "favorite": "ყავა",
-      "about": "ჩვენს შესახებ",
-      "mobile": "აპლიკაცია",
-      "contact": "კონტაქტი",
-      "menu": "მენიუ"
-    }
+  "Navigation": {
+    "favorite": "ყავა",
+    "about": "ჩვენს შესახებ",
+    "mobile": "აპლიკაცია",
+    "contact": "კონტაქტი",
+    "menu": "მენიუ"
+  },
+  "ModeToggle": {
+    "light": "ღია",
+    "dark": "მუქი",
+    "system": "სისტემა"
+  },
+  "LanguageToggle": {
+    "en": "Eng",
+    "ka": "ქართ"
   }
 }

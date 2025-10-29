@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 export default function Navigation() {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("Navigation");
 
   return (
     <nav className="flex items-center justify-between w-full py-4 font-semibold">
@@ -28,7 +28,7 @@ export default function Navigation() {
             href="#slider"
             className="hover:text-primary transition-all duration-400 relative group"
           >
-            {t("Navigation.favorite")}
+            {t("favorite")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </li>
@@ -37,7 +37,7 @@ export default function Navigation() {
             href="#about"
             className="hover:text-primary transition-all duration-400 relative group"
           >
-            {t("Navigation.about")}
+            {t("about")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </li>
@@ -46,7 +46,7 @@ export default function Navigation() {
             href="#mobile-app"
             className="hover:text-primary transition-all duration-400 relative group"
           >
-            {t("Navigation.mobile")}
+            {t("mobile")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </li>
@@ -55,7 +55,7 @@ export default function Navigation() {
             href="#footer"
             className="hover:text-primary transition-all duration-400 relative group"
           >
-            {t("Navigation.contact")}
+            {t("contact")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </li>
@@ -67,7 +67,12 @@ export default function Navigation() {
           href="/cart"
           className="flex items-center gap-2 hover:text-primary transition-all duration-400 relative group"
         >
-          <ShoppingBagIcon className="w-5 h-5 stroke-1.5 text-primary" />
+          <Image
+            src="/assets/shopping-bag.svg"
+            width={20}
+            height={20}
+            alt="Shopping bag"
+          />
           <span className="cart-items-quantity">12</span>
 
           <div className="header-prices-wrapper flex gap-1.5 text-xs font-medium absolute bottom-6">
@@ -93,7 +98,7 @@ export default function Navigation() {
           href="/menu"
           className="flex items-center gap-2 hover:text-primary transition-all duration-400 relative group"
         >
-          <span>{t("Navigation.menu")}</span>
+          <span>{t("menu")}</span>
           <Image
             src="/assets/coffee-cup.svg"
             width={20}
