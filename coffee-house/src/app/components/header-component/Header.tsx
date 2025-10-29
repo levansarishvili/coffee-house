@@ -1,11 +1,13 @@
-import Image from "next/image";
 import React from "react";
 import Navigation from "./Navigation";
+import { ModeToggle } from "../ModeToggle";
 
 export default function Header() {
   return (
     <header className="flex justify-between items-center h-15 mb-5">
       <Navigation />
+
+      <ModeToggle />
 
       <a
         className="burger-menu display-none flex justify-center align-center cursor-pointer"

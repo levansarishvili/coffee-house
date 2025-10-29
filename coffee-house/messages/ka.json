@@ -1,5 +1,11 @@
 {
   "HomePage": {
-    "title": "გამარჯობა!"
+    "Navigation": {
+      "favorite": "ყავა",
+      "about": "ჩვენს შესახებ",
+      "mobile": "აპლიკაცია",
+      "contact": "კონტაქტი",
+      "menu": "მენიუ"
+    }
   }
 }

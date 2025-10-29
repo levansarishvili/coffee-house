@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Noto_Sans_Georgian } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header-component/Header";
+import { ThemeProvider } from "./components/theme-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,13 +31,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${notoSansGeorgian.className} antialiased`}
       >
         <div className="mx-auto max-w-lg text-primary px-10 py-5">
-          <Header />
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+          </ThemeProvider>
         </div>
       </body>
     </html>

@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@plugin "tailwindcss-animate";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
 :root {
   --text-primary: #403f3d;
   --text-inverse: #e1d4c9;
@@ -59,4 +64,32 @@ body {
   color: var(--text-primary);
   font-family: var(--font-inter);
   font-size: 1rem;
+}
+
+@theme inline {
+  --color-primary: var(--text-primary);
+  --color-inverse: var(--text-inverse);
+  --color-accent: var(--text-accent);
+  --color-placeholder: var(--placeholder);
+  --color-background: var(--background-primary);
+  --color-background-alt: var(--background-secondary);
+  --color-backdrop: var(--backdrop);
+  --color-border: var(--border-light);
+  --color-border-dark: var(--border-dark);
+  --color-success: var(--success);
+  --color-error: var(--error);
+}
+
+.dark {
+  --text-primary: #e1d4c9;
+  --text-inverse: #403f3d;
+  --text-accent: #b0907a;
+  --placeholder: #a1a8b3;
+  --background-primary: #403f3d;
+  --background-secondary: #e1d4c9;
+  --backdrop: rgba(64, 63, 61, 0.8);
+  --border-light: #c1b6ad;
+  --border-dark: #665f55;
+  --success: #0dbb42;
+  --error: #f44336;
 }

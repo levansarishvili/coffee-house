@@ -2,8 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function Navigation() {
+  const t = useTranslations("HomePage");
+
   return (
     <nav className="flex items-center justify-between w-full py-4 font-semibold">
       {/* Left: Logo */}
@@ -25,7 +28,7 @@ export default function Navigation() {
             href="#slider"
             className="hover:text-primary transition-all duration-400 relative group"
           >
-            Favorite coffee
+            {t("Navigation.favorite")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </li>
@@ -34,7 +37,7 @@ export default function Navigation() {
             href="#about"
             className="hover:text-primary transition-all duration-400 relative group"
           >
-            About
+            {t("Navigation.about")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </li>
@@ -43,7 +46,7 @@ export default function Navigation() {
             href="#mobile-app"
             className="hover:text-primary transition-all duration-400 relative group"
           >
-            Mobile app
+            {t("Navigation.mobile")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </li>
@@ -52,7 +55,7 @@ export default function Navigation() {
             href="#footer"
             className="hover:text-primary transition-all duration-400 relative group"
           >
-            Contact us
+            {t("Navigation.contact")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </li>
@@ -90,7 +93,7 @@ export default function Navigation() {
           href="/menu"
           className="flex items-center gap-2 hover:text-primary transition-all duration-400 relative group"
         >
-          <span>Menu</span>
+          <span>{t("Navigation.menu")}</span>
           <Image
             src="/assets/coffee-cup.svg"
             width={20}

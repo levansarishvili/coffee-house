@@ -1,5 +1,11 @@
 {
   "HomePage": {
-    "title": "Hello world!"
+    "Navigation": {
+      "favorite": "Favorite coffee",
+      "about": "About",
+      "mobile": "Mobile app",
+      "contact": "Contact us",
+      "menu": "Menu"
+    }
   }
 }
