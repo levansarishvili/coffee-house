@@ -1,18 +1,23 @@
 "use client";
 
-import * as React from "react";
 import { useTheme } from "next-themes";
 
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
-
-const THEMES = {
-  DARK: "dark",
-  LIGHT: "light",
-};
+import { useEffect, useState, useTransition } from "react";
+import { THEMES } from "../constants/constants";
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
-  const [isPending, startTransition] = React.useTransition();
+  const [isPending, startTransition] = useTransition();
+  const [mount, setMount] = useState(false);
+
+  useEffect(() => {
+    setMount(true);
+  }, []);
+
+  if (!mount) {
+    return;
+  }
 
   const nextTheme = theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
 
@@ -46,7 +51,7 @@ export function ModeToggle() {
       }
     `}
         >
-          <SunIcon className="w-4" />
+          <SunIcon className="w-4.5 h-4.5 stroke-1.5" />
         </span>
 
         <span
@@ -59,7 +64,7 @@ export function ModeToggle() {
       }
     `}
         >
-          <MoonIcon className="w-4" />
+          <MoonIcon className="w-4.5 h-4.5 stroke-1.5" />
         </span>
       </button>
     </>
