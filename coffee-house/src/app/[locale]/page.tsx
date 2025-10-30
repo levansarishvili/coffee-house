@@ -1,6 +1,7 @@
 import { use } from "react";
 import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import Hero from "../components/hero/Hero";
 
 export default function HomePage({ params }) {
   const { locale } = use(params);
@@ -8,44 +9,10 @@ export default function HomePage({ params }) {
   // Enable static rendering
   setRequestLocale(locale);
 
-  // Once the request locale is set, you
-  // can call hooks from `next-intl`
-
   return (
     <>
-      {/* <!-- ======================== Header Section ========================--> */}
+      <Hero />
 
-      {/* <!-- ======================== Hero Section ======================== --> */}
-      <section className="hero centered pd-100">
-        <video className="enjoy-video" autoPlay muted loop id="enjoyVideo">
-          <source src="./assets/enjoy-video.mp4" type="video/mp4" />
-        </video>
-        <div className="offer flex-col justify-center gap-40">
-          <h1 className="offer-header heading-1-font heading-1-font-mob weight-600 light-txt">
-            <span className="accent">Enjoy</span> premium coffee at our charming
-            cafe
-          </h1>
-          <p className="offer-txt medium-font light-txt weight-400">
-            With its inviting atmosphere and delicious coffee options, the
-            Coffee House Resource is a popular destination for coffee lovers and
-            those seeking a warm and inviting space to enjoy their favorite
-            beverage.
-          </p>
-          <a
-            className="main-btn flex-row justify-center align-center gap-8 light-background dark-txt medium-font weight-600"
-            href="menu.html"
-          >
-            Menu
-            <img
-              className="main-btn-img"
-              src="assets/coffee-cup.svg"
-              alt="coffee cup"
-            />
-          </a>
-        </div>
-      </section>
-
-      {/* <!-- ======================== About Section ======================== --> */}
       <section
         className="about centered flex-col gap-40 overflow-hidden align-center"
         id="about"
@@ -92,10 +59,9 @@ export default function HomePage({ params }) {
         </div>
       </section>
 
-      {/* <!-- ======================== Mobile App Section ========================  --> */}
       <section
         className="mobile-app centered flex-row justify-center align-center gap-100"
-        id="mobile-app"
+        id="mobile"
       >
         <div className="app-offer flex-col gap-40">
           <h2 className="app-offer-header dark-txt heading-2-font heading-2-font-mob weight-600">
@@ -179,10 +145,9 @@ export default function HomePage({ params }) {
         />
       </section>
 
-      {/* <!-- ======================== Footer Section ========================--> */}
       <footer
         className="footer centered flex-row justify-start align-center gap-100 pd-100 medium-background"
-        id="footer"
+        id="contact"
       >
         <div className="footer-offer flex-col txt-align-left gap-40">
           <h2 className="footer-header heading-2-font heading-2-font-mob weight-600 light-txt">

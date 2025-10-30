@@ -14,5 +14,11 @@
   "LanguageToggle": {
     "en": "Eng",
     "ka": "ქართ"
+  },
+  "Hero": {
+    "enjoy": "Enjoy",
+    "header": "premium coffee at our charming cafe",
+    "desc": "With its inviting atmosphere and delicious coffee options, the CoffeeHouse Resource is a popular destination for coffee lovers and thoseseeking a warm and inviting space to enjoy their favorite beverage.",
+    "menu": "Menu"
   }
 }

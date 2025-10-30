@@ -3,7 +3,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
-import Header from "../components/header-component/Header";
+import Header from "../components/header/Header";
 
 type Props = {
   children: React.ReactNode;

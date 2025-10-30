@@ -32,9 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
-        className={`${inter.variable} ${notoSansGeorgian.className} antialiased`}
+        className={`${inter.variable} ${notoSansGeorgian.variable} antialiased overflow-x-hidden`}
       >
-        <div className="mx-auto max-w-lg text-primary px-10 py-5">
+        <div className="mx-auto max-w-xl text-primary px-4 sm:px-10 py-5">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

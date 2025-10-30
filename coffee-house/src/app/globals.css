@@ -6,13 +6,12 @@
 @custom-variant dark (&:is(.dark *));
 
 html {
-  scroll-behavior: smooth;
+  font-family: var(--font-inter);
 }
 
 body {
   background: var(--background-primary);
   color: var(--text-primary);
-  font-family: var(--font-inter);
   font-size: 1rem;
 }
 
@@ -51,12 +50,14 @@ body {
   /* Screens */
   --screen-sm: 380px;
   --screen-md: 768px;
-  --screen-lg: 1440px;
+  --screen-lg: 1024px;
+  --screen-xl: 1440px;
 
   /* Max Width */
   --max-width-sm: 380px;
   --max-width-md: 768px;
-  --max-width-lg: 1440px;
+  --max-width-lg: 1024px;
+  --max-width-xl: 1440px;
 }
 
 @media (prefers-color-scheme: dark) {
