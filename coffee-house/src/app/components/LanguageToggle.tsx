@@ -13,17 +13,14 @@ export default function LanguageToggle() {
 
   const nextLang = currentLang === "en" ? "ka" : "en";
 
-  // Sync with localStorage AND current URL on mount
   useEffect(() => {
-    // First, check if there's a language in localStorage
     const savedLanguage = localStorage.getItem("language");
 
-    // Extract language from current pathname (e.g., "/en/about" -> "en")
+    // Extract language from current pathname
     const pathLang = pathname.split("/")[1];
     const validLangs = ["en", "ka"];
     const detectedLang = validLangs.includes(pathLang) ? pathLang : "en";
 
-    // Priority: localStorage > URL > default 'en'
     const finalLang =
       savedLanguage && validLangs.includes(savedLanguage)
         ? savedLanguage
@@ -41,7 +38,6 @@ export default function LanguageToggle() {
   const handleToggle = () => {
     const newLang = nextLang;
 
-    // Update localStorage immediately
     localStorage.setItem("language", newLang);
 
     startTransition(() => {
@@ -50,7 +46,6 @@ export default function LanguageToggle() {
       if (segments[1] === currentLang) {
         segments[1] = newLang;
       } else {
-        // If current path doesn't have language prefix, add it
         segments.splice(1, 0, newLang);
       }
 
@@ -62,7 +57,6 @@ export default function LanguageToggle() {
 
       router.push(fullPath);
 
-      // Update state after navigation
       setCurrentLang(newLang);
     });
   };
@@ -71,28 +65,38 @@ export default function LanguageToggle() {
     <button
       onClick={handleToggle}
       className={`
-    relative w-12 h-6 bg-inverse cursor-pointer rounded-full 
+    relative w-14.5 h-7 bg-button-hover cursor-pointer rounded-full
     overflow-hidden transition-all duration-300
     shadow-md hover:shadow-lg
     ${isPending && "opacity-70"}
   `}
       disabled={isPending}
     >
-      {/* Darker inner shadow */}
       <div className="absolute inset-0 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]" />
 
       <span
         className={`
-      absolute top-1/2 -translate-y-1/2 w-5 h-5 
+      absolute top-1/2 -translate-y-1/2 w-6 h-6 
       rounded-full transition-all duration-300 ease-out
       bg-cover bg-center shadow-md
       ${
         currentLang === "en"
           ? "bg-[url('/assets/ka-flag.png')] left-0.5"
-          : "bg-[url('/assets/en-flag.png')] left-full -translate-x-[21px]"
+          : "bg-[url('/assets/en-flag.png')] left-full -translate-x-6.5"
       }
     `}
       />
+
+      <span
+        className={`
+      absolute top-1/2 -translate-y-1/2 w-6 h-6
+      rounded-full transition-all duration-300 ease-out text-xs flex items-center justify-center
+      bg-cover bg-center
+      ${currentLang === "en" ? "left-full -translate-x-6.5" : "left-0.5"}
+    `}
+      >
+        {currentLang === "en" ? "KA" : "EN"}
+      </span>
     </button>
   );
 }

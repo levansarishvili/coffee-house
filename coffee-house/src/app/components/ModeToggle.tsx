@@ -1,50 +1,67 @@
 "use client";
 
 import * as React from "react";
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
-
 import { useTheme } from "next-themes";
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useTranslations } from "next-intl";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+
+const THEMES = {
+  DARK: "dark",
+  LIGHT: "light",
+};
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
-  const t = useTranslations("ModeToggle");
+  const { theme, setTheme } = useTheme();
+  const [isPending, startTransition] = React.useTransition();
+
+  const nextTheme = theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
+
+  function handleModeToggle() {
+    startTransition(() => {
+      setTheme(nextTheme);
+    });
+  }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className="border-none outline-none hover:bg-button-hover cursor-pointer p-0 shadow-none"
+    <>
+      <button
+        onClick={handleModeToggle}
+        className={`
+    relative w-14.5 h-7 bg-button-hover cursor-pointer rounded-full
+    overflow-hidden transition-all duration-300
+    shadow-md hover:shadow-lg
+    ${isPending && "opacity-70"}
+  `}
+        disabled={isPending}
+      >
+        <div className="absolute inset-0 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]" />
+
+        <span
+          className={`
+      absolute top-1/2 -translate-y-1/2 left-0.5 w-6 h-6 flex items-center justify-center 
+      rounded-full transition-all duration-300 ease-out ${
+        theme === THEMES.DARK
+          ? "opacity-50"
+          : "bg-inverse text-primary shadow opacity-100"
+      }
+    `}
         >
-          <SunIcon className="h-5 w-5 stroke-1.5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <MoonIcon className="absolute h-5 w-5 stroke-1.5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-background">
-        <DropdownMenuItem
-          onClick={() => setTheme("light")}
-          className="focus:bg-button-hover"
+          <SunIcon className="w-4" />
+        </span>
+
+        <span
+          className={`
+      absolute top-1/2 -translate-y-1/2 right-0.5 w-6 h-6
+      rounded-full transition-all duration-300 ease-out text-xs flex items-center justify-center ${
+        theme === THEMES.DARK
+          ? "bg-inverse text-primary shadow opacity-100"
+          : "opacity-50"
+      }
+    `}
         >
-          {t("light")}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          {t("dark")}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          {t("system")}
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          <MoonIcon className="w-4" />
+        </span>
+      </button>
+    </>
   );
 }
