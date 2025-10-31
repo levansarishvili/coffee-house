@@ -26,6 +26,12 @@
     "headerPart-2": "the perfect and cozy place",
     "headerPart-3": "where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done."
   },
+  "MobileApp": {
+    "headerPart-1": "Download",
+    "headerPart-2": "our apps to start ordering",
+    "desc": "Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are",
+    "available": "Available on the"
+  },
   "Footer": {
     "headerPart-1": "Sip, Savor, Smile.",
     "headerPart-2": "It's coffee time!",
