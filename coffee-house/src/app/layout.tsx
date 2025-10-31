@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
-        className={`${inter.variable} ${notoSansGeorgian.variable} antialiased overflow-x-hidden`}
+        className={`${inter.className} ${notoSansGeorgian.variable} antialiased overflow-x-hidden`}
       >
         <div className="mx-auto max-w-xl text-primary px-4 sm:px-10 py-5">
           <ThemeProvider
