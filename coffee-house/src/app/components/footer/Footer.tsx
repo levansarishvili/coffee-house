@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="flex flex-col lg:flex-row gap-10 lg:gap-[100px] mt-[100px] items-start lg:items-center px-4 py-15 sm:px-15 sm:py-[100px] lg:p-[100px] w-full rounded-[40px] overflow-hidden text-[#E1D4C9] bg-[#665f55]"
+      className="flex flex-col lg:flex-row gap-10 lg:gap-[100px] mt-[100px] items-start lg:items-center px-4 py-15 sm:px-15 sm:py-[100px] lg:p-[100px] w-full rounded-[40px] overflow-hidden text-[#E1D4C9] bg-[#665f55] dark:bg-[#4d4743]"
       id="contact"
     >
       <div className="flex flex-col gap-10 w-full lg:w-1/2">

@@ -21,6 +21,11 @@
     "desc": "With its inviting atmosphere and delicious coffee options, the CoffeeHouse Resource is a popular destination for coffee lovers and thoseseeking a warm and inviting space to enjoy their favorite beverage.",
     "menu": "Menu"
   },
+  "Slider": {
+    "headerPart-1": "Choose your",
+    "headerPart-2": "favorite",
+    "headerPart-3": "coffee"
+  },
   "About": {
     "headerPart-1": "Resource is",
     "headerPart-2": "the perfect and cozy place",

@@ -19,7 +19,7 @@ export default function MobileApp() {
         <p className="text-base leading-[150%] font-normal">{t("desc")}</p>
         <div className="flex flex-col md:flex-row justify-start items-start md:items-center gap-5">
           <Link
-            className="flex justify-center items-center gap-2 rounded-[100px] overflow-hidden w-[200px] h-16 border hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300"
+            className="flex justify-center items-center gap-2 rounded-[100px] overflow-hidden w-[200px] h-16 border border-border-dark hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300"
             href="https://www.apple.com/app-store/"
             target="_blank"
           >
@@ -31,7 +31,7 @@ export default function MobileApp() {
           </Link>
 
           <Link
-            className="flex justify-center items-center gap-2 rounded-[100px] overflow-hidden w-[200px] h-16 border hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300"
+            className="flex justify-center items-center gap-2 rounded-[100px] overflow-hidden w-[200px] h-16 border border-border-dark hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300"
             href="https://play.google.com/store/games?device=windows&pli=1"
             target="_blank"
           >
