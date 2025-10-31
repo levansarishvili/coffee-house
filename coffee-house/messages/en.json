@@ -25,5 +25,11 @@
     "headerPart-1": "Resource is",
     "headerPart-2": "the perfect and cozy place",
     "headerPart-3": "where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done."
+  },
+  "Footer": {
+    "headerPart-1": "Sip, Savor, Smile.",
+    "headerPart-2": "It's coffee time!",
+    "contact": "Contact us",
+    "workDays": "Mon-Sat:"
   }
 }
