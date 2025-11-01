@@ -13,15 +13,11 @@ export default function HomePage({ params }) {
   setRequestLocale(locale);
 
   return (
-    <>
-      <main className="flex flex-col gap-[100px]">
-        <Hero />
-        <Slider />
-        <About />
-        <MobileApp />
-      </main>
-
-      <Footer />
-    </>
+    <main className="flex flex-col gap-[100px]">
+      <Hero />
+      <Slider />
+      <About />
+      <MobileApp />
+    </main>
   );
 }

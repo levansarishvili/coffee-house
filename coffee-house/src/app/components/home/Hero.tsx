@@ -14,7 +14,7 @@ export default function Hero() {
         loop
         id="enjoyVideo"
       >
-        <source src="./assets/enjoy-video.mp4" type="video/mp4" />
+        <source src="/assets/enjoy-video.mp4" type="video/mp4" />
       </video>
       <div className="flex flex-col gap-10 relative z-10 max-w-[540px] w-full">
         <h1 className="leading-[1.1] text-4xl md:text-[64px] tracking-[2] font-semibold text-[#e1d4c9]">

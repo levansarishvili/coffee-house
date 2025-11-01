@@ -19,7 +19,7 @@ export default function NavLinks({ setIsOpen }: NavLinksProps) {
       {NAV_LINKS.map((link) => (
         <li key={link}>
           <Link
-            href={`#${link}`}
+            href={`${link === "contact" ? "" : "/"}#${link}`}
             className="hover:text-primary transition-all duration-400 relative group"
             onClick={handleClick}
           >
