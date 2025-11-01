@@ -43,5 +43,14 @@
     "headerPart-2": "ყავის დროა!",
     "contact": "კონტაქტი",
     "workDays": "ორშ-შაბ:"
+  },
+  "MenuPage": {
+    "headerPart-1": "ჩვენი ყოველი ჭიქის უკან იმალება ",
+    "headerPart-2": "საოცარი სიურპრიზი",
+    "Category": {
+      "coffee": "ყავა",
+      "tea": "ჩაი",
+      "dessert": "დესერტი"
+    }
   }
 }

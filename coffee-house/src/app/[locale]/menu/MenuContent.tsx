@@ -7,17 +7,19 @@ import { useState } from "react";
 import { CATEGORIES } from "@/app/constants/constants";
 import Loading from "./Loading";
 import ErrorMessaege from "@/app/components/ErrorMessaege";
+import { useTranslations } from "next-intl";
 
 export default function MenuContent() {
+  const t = useTranslations("MenuPage");
   const [category, setCategory] = useState(CATEGORIES.COFFEE);
   const { products, loading, error } = useProducts(category);
   console.log(products);
 
   return (
     <main className="flex flex-col gap-10 items-center justify-center">
-      <h1 className="text-4xl md:text-6xl text-center mt-5 max-w-[800px] font-semibold leading-[120%]">
-        Behind each of our cups hides an
-        <span className="text-accent italic">amazing surprise</span>
+      <h1 className="text-[32px] md:text-6xl text-center mt-5 max-w-[860px] font-semibold leading-[120%]">
+        {t("headerPart-1")}
+        <span className="text-accent italic">{t("headerPart-2")}</span>
       </h1>
 
       <CategorySwitch category={category} setCategory={setCategory} />
@@ -29,7 +31,7 @@ export default function MenuContent() {
       {error && <ErrorMessaege message={error} />}
 
       {!error && !loading && (
-        <div className="">
+        <div className="flex gap-10 flex-wrap justify-center">
           {products?.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}

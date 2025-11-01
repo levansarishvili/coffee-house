@@ -15,7 +15,7 @@ export default function CategorySwitch({
   const categories = Object.values(CATEGORIES);
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-2 md:gap-4">
       {categories.map((categoryItem) => (
         <button
           key={categoryItem}
@@ -23,7 +23,7 @@ export default function CategorySwitch({
           className={`${
             category === categoryItem
               ? "bg-[#665f55] border-[#665f55]"
-              : "border-[#c1b6ad]"
+              : "border-[#c1b6ad] dark:border-border-dark"
           } flex gap-2 justify-center items-center h-[46px] py-2 pr-4 pl-2 rounded-[100px] cursor-pointer border group hover:bg-[#665f55] hover:border-[#665f55] transition-all duration-300`}
         >
           <div

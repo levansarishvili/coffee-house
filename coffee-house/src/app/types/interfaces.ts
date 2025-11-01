@@ -9,11 +9,3 @@ export interface Product {
   image_url: string;
   created_at: string;
 }
-
-// Error
-export interface Error {
-  code: string;
-  details: string | null;
-  hint: string;
-  message: string;
-}

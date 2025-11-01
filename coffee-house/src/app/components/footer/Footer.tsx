@@ -13,7 +13,7 @@ export default function Footer() {
       id="contact"
     >
       <div className="flex flex-col gap-10 w-full lg:w-1/2">
-        <h2 className="text-3xl md:text-[56px] font-semibold">
+        <h2 className="text-[32px] md:text-6xl font-semibold">
           {t("headerPart-1")}
           <span className="text-accent italic"> {t("headerPart-2")}</span>
         </h2>

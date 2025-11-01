@@ -12,7 +12,7 @@ export default function MobileApp() {
       id="mobile"
     >
       <div className="flex flex-col gap-10 flex-1">
-        <h2 className="text-3xl md:text-[56px] font-semibold leading-[120%]">
+        <h2 className="text-[32px] md:text-6xl font-semibold leading-[120%]">
           <span className="text-accent italic">{t("headerPart-1")}</span>{" "}
           {t("headerPart-2")}
         </h2>

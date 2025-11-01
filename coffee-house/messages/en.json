@@ -42,5 +42,14 @@
     "headerPart-2": "It's coffee time!",
     "contact": "Contact us",
     "workDays": "Mon-Sat:"
+  },
+  "MenuPage": {
+    "headerPart-1": "Behind each of our cups hides an",
+    "headerPart-2": "amazing surprise",
+    "Category": {
+      "coffee": "coffee",
+      "tea": "tea",
+      "dessert": "dessert"
+    }
   }
 }

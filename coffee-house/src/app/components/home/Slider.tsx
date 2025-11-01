@@ -55,7 +55,7 @@ export default function Slider() {
       className="flex items-center justify-center tracking-[2] flex-col gap-10 w-full"
       id="favorite"
     >
-      <h2 className="text-3xl md:text-[56px] text-center font-semibold leading-[120%]">
+      <h2 className="text-[32px] md:text-6xl text-center font-semibold leading-[120%]">
         {t("headerPart-1")}{" "}
         <span className="text-accent italic">{t("headerPart-2")}</span>{" "}
         {t("headerPart-3")}
