@@ -23,8 +23,8 @@ export default function Navigation({ isOpen, setIsOpen }: NavigationProps) {
       </div>
 
       <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-6 lg:mt-0 lg:flex-1 lg:justify-end">
-        <CartLink />
-        <MenuLink />
+        <CartLink setIsOpen={setIsOpen} />
+        <MenuLink setIsOpen={setIsOpen} />
       </div>
     </nav>
   );

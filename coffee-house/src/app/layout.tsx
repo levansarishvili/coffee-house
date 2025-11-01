@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   title: "Coffee House",
   description:
     "Welcome to Coffee House, where every cup is brewed with love and care.",
+  icons: {
+    icon: "/assets/favicon.svg",
+  },
 };
 
 export default function RootLayout({

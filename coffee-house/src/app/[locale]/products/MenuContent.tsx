@@ -5,7 +5,7 @@ import CategorySwitch from "./CategorySwitch";
 import ProductCard from "./ProductCard";
 import { useState } from "react";
 import { CATEGORIES } from "@/app/constants/constants";
-import Loading from "./Loading";
+import Loading from "../../../Loading";
 import ErrorMessaege from "@/app/components/ErrorMessaege";
 import { useTranslations } from "next-intl";
 

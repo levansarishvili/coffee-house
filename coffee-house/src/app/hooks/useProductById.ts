@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Product } from "../types/interfaces";
+import { ProductDetails } from "../types/interfaces";
 import { supabase } from "@/lib/supabaseClient";
 
-function useProducts(category: string) {
-  const [products, setProducts] = useState<Product[]>([]);
+function useProductById(id: string) {
+  const [product, setProduct] = useState<ProductDetails>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -13,9 +13,15 @@ function useProducts(category: string) {
         setLoading(true);
         const { data, error } = await supabase
           .from("products")
-          .select("*")
-          .eq("category", category)
-          .order("id");
+          .select(
+            `
+      *,
+      product_sizes (*),
+      product_additives (*)
+    `
+          )
+          .eq("id", id)
+          .single();
 
         if (error) {
           console.error("Error:", error);
@@ -23,18 +29,18 @@ function useProducts(category: string) {
           return;
         }
 
-        setProducts(data || []);
+        setProduct(data);
       } catch (err) {
         console.error("Unexpected error:", err);
-        setError("Failed to fetch products");
+        setError("Failed to fetch product details");
       } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
-  }, [category]);
-  return { products, loading, error };
+  }, [id]);
+  return { product, loading, error };
 }
 
-export default useProducts;
+export default useProductById;

@@ -4,7 +4,7 @@
     "about": "About",
     "mobile": "Mobile app",
     "contact": "Contact us",
-    "menu": "Menu"
+    "products": "Products"
   },
   "ModeToggle": {
     "light": "Light",
@@ -19,7 +19,7 @@
     "enjoy": "Enjoy",
     "header": "premium coffee at our charming cafe",
     "desc": "With its inviting atmosphere and delicious coffee options, the CoffeeHouse Resource is a popular destination for coffee lovers and thoseseeking a warm and inviting space to enjoy their favorite beverage.",
-    "menu": "Menu"
+    "products": "Products"
   },
   "Slider": {
     "headerPart-1": "Choose your",
@@ -45,7 +45,7 @@
   },
   "MenuPage": {
     "headerPart-1": "Behind each of our cups hides an",
-    "headerPart-2": "amazing surprise",
+    "headerPart-2": " amazing surprise",
     "Category": {
       "coffee": "coffee",
       "tea": "tea",

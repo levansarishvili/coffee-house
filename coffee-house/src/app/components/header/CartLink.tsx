@@ -1,11 +1,20 @@
 import { ShoppingBagIcon } from "@/utils/CustomIcons";
 import Link from "next/link";
 
-export default function CartLink() {
+interface CartLinkProps {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function CartLink({ setIsOpen }: CartLinkProps) {
+  function handleClick() {
+    setIsOpen(false);
+  }
+
   return (
     <Link
       href="/cart"
       className="flex items-center order-2 lg:order-1 gap-2 hover:text-primary transition-all duration-400 relative group"
+      onClick={handleClick}
     >
       <ShoppingBagIcon className="w-10 h-10 lg:w-5 lg:h-5" />
       <span className="cart-items-quantity">12</span>
