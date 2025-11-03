@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState } from "react";
 import SizeSelect from "./SizeSelect";
 import AdditiveSelect from "./AdditiveSelect";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 interface ProductDetailsProps {
   id: string;
@@ -26,7 +27,7 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
       {error && <ErrorMessaege message={error} />}
 
       {product && !loading && !error && (
-        <div className="flex justify-between w-full gap-[100px]">
+        <div className="flex justify-center w-full gap-[100px]">
           <div className="max-w-[400px] rounded-[40px] overflow-hidden">
             <Image
               src={product?.image_url}
@@ -60,8 +61,9 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
               <span className="font-semibold text-2xl">$22.00</span>
             </div>
 
-            <button className="border py-2.5 px-[78px] border-[#665f55] hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300 rounded-[100px] cursor-pointer font-semibold">
-              Add to cart
+            <button className="flex gap-4 justify-center items-center border py-2.5 px-[78px] border-[#665f55] hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300 rounded-[100px] cursor-pointer font-semibold">
+              <ShoppingCartIcon className="w-7 h-7" />
+              <span>Add to cart</span>
             </button>
           </div>
         </div>

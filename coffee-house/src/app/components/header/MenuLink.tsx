@@ -16,11 +16,11 @@ export default function MenuLink({ setIsOpen }: MenuLinkProps) {
 
   return (
     <Link
-      href="/products"
+      href="/menu"
       className="flex items-center order-1 lg:order-2 gap-2 hover:text-primary transition-all duration-400 relative group"
       onClick={handleClick}
     >
-      <span>{t("products")}</span>
+      <span>{t("menu")}</span>
       <CoffeeIcon className="w-10 h-10 lg:w-5 lg:h-5" />
       <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-primary scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
     </Link>

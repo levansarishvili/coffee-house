@@ -23,11 +23,11 @@ export default function Hero() {
         </h1>
         <p className="text-[#e1d4c9] font-normal text-base">{t("desc")}</p>
         <Link
-          href="/products"
+          href="/menu"
           className="relative flex items-center font-semibold justify-center gap-4 text-[#403f3d] rounded-[100px] w-50 h-16 bg-[#e1d4c9] group overflow-hidden hover:pr-6 transition-all duration-300"
         >
-          {t("products")}
-          <CoffeeIcon className="absolute right-12 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+          {t("menu")}
+          <CoffeeIcon className="absolute right-16 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
         </Link>
       </div>
     </section>
