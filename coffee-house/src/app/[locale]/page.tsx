@@ -11,10 +11,10 @@ interface ProductProps {
 }
 
 export default function HomePage({ params }: ProductProps) {
-  const { locale } = params;
+  // const { locale } = params;
 
-  // Enable static rendering
-  setRequestLocale(locale);
+  // // Enable static rendering
+  // setRequestLocale(locale);
 
   return (
     <main className="flex flex-col gap-[100px]">
