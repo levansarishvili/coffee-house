@@ -44,3 +44,26 @@ export interface ProductDetails extends Product {
   product_sizes: SizeOption[];
   product_additives: Additive[];
 }
+
+// Login form data
+export interface LoginFormData {
+  email: string;
+  password: string;
+}
+// Register form data
+export interface RegisterFormData {
+  avatar: FileList | null;
+  email: string;
+  password: string;
+  confirm_password: string;
+  city: string;
+  street: string;
+  house_number: string;
+  pay_by: string;
+}
+
+// Cities
+export interface City {
+  city: string;
+  streets: string[];
+}

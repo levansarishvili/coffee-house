@@ -9,7 +9,6 @@ export async function GET(request: Request) {
 
   const supabase = await createClient();
 
-  // Step 1: Exchange the auth code for a session
   if (code) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (error) {
@@ -18,6 +17,5 @@ export async function GET(request: Request) {
     }
   }
 
-  // Step 3: Redirect user to the intended destination
   return NextResponse.redirect(`${origin}${redirectTo}`);
 }

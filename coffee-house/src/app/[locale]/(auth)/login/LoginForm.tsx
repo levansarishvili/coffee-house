@@ -5,11 +5,10 @@ import { createClient } from "@/utils/supabase/component";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
-interface LoginFormData {
-  email: string;
-  password: string;
-}
+import GitHubSignIn from "./GitHubSignIn";
+import GoogleSignIn from "./GoogleSignIn";
+import Link from "next/link";
+import { LoginFormData } from "@/app/types/interfaces";
 
 export default function LoginForm() {
   const {
@@ -25,17 +24,17 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   // Handle user login
-  // async function handleLogin(formData: LoginFormData) {
-  //   const { email, password } = formData;
-  //   const { error } = await supabase.auth.signInWithPassword({
-  //     email,
-  //     password,
-  //   });
-  //   if (error) {
-  //     console.error(error);
-  //   }
-  //   router.push("/");
-  // }
+  async function handleLogin(formData: LoginFormData) {
+    const { email, password } = formData;
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (error) {
+      console.error(error);
+    }
+    router.push("/");
+  }
   // async function handleRegister(formData: LoginFormData) {
   //   const { email, password } = formData;
 
@@ -46,76 +45,18 @@ export default function LoginForm() {
   //   router.push("/");
   // }
 
-  // Google
-  const handleGoogleLogin = async () => {
-    try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          queryParams: {
-            access_type: "offline",
-            prompt: "consent",
-          },
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-
-      if (error) {
-        console.error("Google OAuth error:", error);
-      }
-    } catch (error) {
-      console.error("Google login failed:", error);
-    }
-  };
-
-  const handleGitHubLogin = async () => {
-    try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "github",
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-
-      if (error) {
-        console.error("GitHub OAuth error:", error);
-      }
-    } catch (error) {
-      console.error("GitHub login failed:", error);
-    }
-  };
-
-  const getUserData = async () => {
-    const userData = await supabase.auth.getUser();
-    console.log(userData.data.user);
-  };
+  // const getUserData = async () => {
+  //   const userData = await supabase.auth.getUser();
+  //   console.log(userData.data.user);
+  // };
 
   return (
-    <>
-      <button
-        onClick={handleGoogleLogin}
-        className="bg-red-500 text-white rounded-lg p-2 cursor-pointer"
-      >
-        Sign in with Google
-      </button>
-      <button
-        onClick={handleGitHubLogin}
-        className="bg-gray-900 text-white rounded-lg p-2 cursor-pointer"
-      >
-        Sign in with Github
-      </button>
-      <button
-        onClick={getUserData}
-        className="bg-gray-900 text-white rounded-lg p-2 cursor-pointer"
-      >
-        Log user data
-      </button>
-
+    <section className="flex flex-col justify-between items-center gap-5 w-full md:w-auto">
       <form
-        // onSubmit={handleSubmit(handleLogin)}
-        className="flex flex-col items-center justify-center gap-6 max-w-[400px] w-full"
+        onSubmit={handleSubmit(handleLogin)}
+        className="flex flex-col items-center justify-center gap-6 w-full"
       >
-        <div className="flex flex-col w-full relative">
+        <div className="flex flex-col w-full relative ">
           <div className="w-full flex flex-col gap-1.5">
             <label htmlFor="email">Email</label>
             <input
@@ -202,6 +143,18 @@ export default function LoginForm() {
           Sign in
         </button>
       </form>
-    </>
+
+      <p className="opacity-80">
+        Don&apos;t have an account?{" "}
+        <Link className="text-accent font-semibold" href="/register">
+          Sign up
+        </Link>
+      </p>
+
+      <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+        <GitHubSignIn />
+        <GoogleSignIn />
+      </div>
+    </section>
   );
 }
