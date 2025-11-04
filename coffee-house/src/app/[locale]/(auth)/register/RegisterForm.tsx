@@ -16,6 +16,11 @@ import {
 import { CITIES } from "@/app/constants/constants";
 import Image from "next/image";
 import { CameraIcon } from "@heroicons/react/24/outline";
+import { registerUser } from "@/utils/register";
+import ErrorMessaege from "@/app/components/ErrorMessaege";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function RegisterForm() {
   const {
@@ -41,11 +46,13 @@ export default function RegisterForm() {
     required: "Please select a street",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isCitySelected, setIsCitySelected] = useState(false);
   const [isStreetSelected, setIsStreetSelected] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  const router = useRouter();
 
   const selectedCity = watch("city");
 
@@ -64,8 +71,22 @@ export default function RegisterForm() {
     setValue("street", "");
   }, [selectedCity, setValue]);
 
-  function handleRegister(formData: RegisterFormData) {
-    console.log(formData);
+  async function handleRegister(formData: RegisterFormData) {
+    try {
+      setIsLoading(true);
+      const result = await registerUser(formData);
+      toast.success(result.message);
+      reset();
+      router.push("/");
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -438,16 +459,23 @@ export default function RegisterForm() {
         </div>
 
         <button
-          disabled={isValid ? false : true}
+          disabled={isLoading || !isValid ? true : false}
           type="submit"
           className={`${
             isValid
               ? "hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all cursor-pointer"
               : "cursor-not-allowed"
-          } flex mt-2 justify-center items-center border font-semibold 
+          } flex gap-4 mt-2 justify-center items-center border font-semibold 
           border-[#665f55] w-auto h-11 py-2.5 px-[78px] rounded-[100px]`}
         >
-          Registration
+          {isLoading ? (
+            <>
+              <Spinner />
+              Registering...
+            </>
+          ) : (
+            <>Registration</>
+          )}
         </button>
       </form>
     </section>

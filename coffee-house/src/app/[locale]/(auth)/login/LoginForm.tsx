@@ -35,15 +35,6 @@ export default function LoginForm() {
     }
     router.push("/");
   }
-  // async function handleRegister(formData: LoginFormData) {
-  //   const { email, password } = formData;
-
-  //   const { error } = await supabase.auth.signUp({ email, password });
-  //   if (error) {
-  //     console.error(error);
-  //   }
-  //   router.push("/");
-  // }
 
   // const getUserData = async () => {
   //   const userData = await supabase.auth.getUser();
