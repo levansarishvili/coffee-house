@@ -28,13 +28,6 @@ export async function POST(request: NextRequest) {
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: email.toLowerCase(),
       password,
-      options: {
-        data: {
-          city,
-          street,
-          house_number,
-        },
-      },
     });
 
     if (authError) {

@@ -17,7 +17,6 @@ import { CITIES } from "@/app/constants/constants";
 import Image from "next/image";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import { registerUser } from "@/utils/register";
-import ErrorMessaege from "@/app/components/ErrorMessaege";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
@@ -459,7 +458,6 @@ export default function RegisterForm() {
         </div>
 
         <button
-          disabled={isLoading || !isValid ? true : false}
           type="submit"
           className={`${
             isValid
@@ -467,6 +465,7 @@ export default function RegisterForm() {
               : "cursor-not-allowed"
           } flex gap-4 mt-2 justify-center items-center border font-semibold 
           border-[#665f55] w-auto h-11 py-2.5 px-[78px] rounded-[100px]`}
+          disabled={isLoading || !isValid ? true : false}
         >
           {isLoading ? (
             <>

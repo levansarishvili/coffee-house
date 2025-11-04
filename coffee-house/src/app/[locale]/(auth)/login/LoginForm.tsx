@@ -9,37 +9,41 @@ import GitHubSignIn from "./GitHubSignIn";
 import GoogleSignIn from "./GoogleSignIn";
 import Link from "next/link";
 import { LoginFormData } from "@/app/types/interfaces";
+import { login } from "@/utils/login";
+import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    watch,
+    formState: { errors, isValid, touchedFields },
   } = useForm<LoginFormData>({
     mode: "all",
   });
 
   const router = useRouter();
-  const supabase = createClient();
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Handle user login
-  async function handleLogin(formData: LoginFormData) {
-    const { email, password } = formData;
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) {
-      console.error(error);
+  const handleLogin = async (formData: LoginFormData) => {
+    try {
+      setIsLoading(true);
+      const { data } = await login(formData);
+      console.log(data);
+      // router.push("/");
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    } finally {
+      setIsLoading(false);
     }
-    router.push("/");
-  }
-
-  // const getUserData = async () => {
-  //   const userData = await supabase.auth.getUser();
-  //   console.log(userData.data.user);
-  // };
+  };
 
   return (
     <section className="flex flex-col justify-between items-center gap-5 w-full md:w-auto">
@@ -47,6 +51,7 @@ export default function LoginForm() {
         onSubmit={handleSubmit(handleLogin)}
         className="flex flex-col items-center justify-center gap-6 w-full"
       >
+        {/* Email */}
         <div className="flex flex-col w-full relative ">
           <div className="w-full flex flex-col gap-1.5">
             <label htmlFor="email">Email</label>
@@ -55,7 +60,11 @@ export default function LoginForm() {
               id="email"
               placeholder="Placeholder"
               className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                errors.email ? "border-error focus:outline-error" : ""
+                errors.email
+                  ? "border-error focus:outline-error"
+                  : touchedFields.email && watch("email") && !errors.email
+                  ? "border-success focus:outline-success"
+                  : "border-[#665f55] focus:outline-[#665f55]"
               }`}
               {...register("email", {
                 required: "Email is required.",
@@ -83,6 +92,7 @@ export default function LoginForm() {
           )}
         </div>
 
+        {/* Password */}
         <div className="flex flex-col w-full relative">
           <div className="w-full flex flex-col gap-1.5 relative">
             <label htmlFor="password">Password</label>
@@ -91,7 +101,13 @@ export default function LoginForm() {
               id="password"
               placeholder="Password"
               className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                errors.password ? "border-error focus:outline-error" : ""
+                errors.password
+                  ? "border-error focus:outline-error"
+                  : touchedFields.password &&
+                    watch("password") &&
+                    !errors.password
+                  ? "border-success focus:outline-success"
+                  : "border-[#665f55] focus:outline-[#665f55]"
               }`}
               {...register("password", {
                 required: "Password is required.",
@@ -129,16 +145,28 @@ export default function LoginForm() {
 
         <button
           type="submit"
-          className="flex mt-2 justify-center items-center border font-semibold cursor-pointer border-[#665f55] w-auto h-11 py-2.5 px-[78px] rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
+          className="flex gap-4 w-[200px] mt-2 justify-center items-center border font-semibold cursor-pointer border-[#665f55] h-11 rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
+          disabled={isLoading || !isValid ? true : false}
         >
-          Sign in
+          {isLoading ? (
+            <>
+              <Spinner />
+              Logging in...
+            </>
+          ) : (
+            <>Sign in</>
+          )}
         </button>
       </form>
 
       <p className="opacity-80">
         Don&apos;t have an account?{" "}
-        <Link className="text-accent font-semibold" href="/register">
+        <Link
+          className="text-accent font-semibold relative group"
+          href="/register"
+        >
           Sign up
+          <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-accent scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
         </Link>
       </p>
 
