@@ -21,9 +21,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getStreetsByCity } from "@/utils/getStreetsByCity";
+import { toast } from "sonner";
+import { updateProfile } from "@/utils/updateProfile";
 
 export default function ProfileForm() {
-  const { user, userProfile, loading: authLoading } = useAuth();
+  const {
+    user,
+    userProfile,
+    loading: authLoading,
+    refreshUserProfile,
+  } = useAuth();
 
   const {
     register,
@@ -65,12 +72,29 @@ export default function ProfileForm() {
     }
   }, [userProfile, user, authLoading, reset]);
 
+  // Watch the avatar field to track changes
+  const avatarState = watch("avatar");
+  const hasAvatarChanged = avatarState === null || avatarState?.length > 0;
+
   // Get streets for selected city
   const availableStreets = getStreetsByCity(selectedCity);
 
   // Handle form submission
   const handleUpdateProfile = async (formData: UpdateProfileData) => {
-    console.log(formData);
+    try {
+      setIsLoading(true);
+      const result = await updateProfile(formData, hasAvatarChanged);
+      toast.success(result.message);
+      refreshUserProfile();
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
