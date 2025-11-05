@@ -20,6 +20,7 @@ import { registerUser } from "@/utils/register";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
+import Link from "next/link";
 
 export default function RegisterForm() {
   const {
@@ -98,7 +99,7 @@ export default function RegisterForm() {
         <div className="flex flex-col gap-3">
           <div className="w-full flex gap-4">
             <label className="cursor-pointer flex gap-4 items-center">
-              <div className="flex items-center justify-center border border-[#665f55] w-24 h-24 rounded-full cursor-pointer overflow-hidden">
+              <div className="flex items-center justify-center border border-[#665f55] w-16 h-16 md:w-24 md:h-24 rounded-full cursor-pointer overflow-hidden">
                 <input
                   type="file"
                   className="hidden"
@@ -142,7 +143,7 @@ export default function RegisterForm() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <CameraIcon className="w-7 h-7" />
+                  <CameraIcon className="w-5 h-5 md:w-7 md:h-7" />
                 )}
               </div>
 
@@ -181,7 +182,7 @@ export default function RegisterForm() {
                   type="text"
                   id="email"
                   placeholder="Placeholder"
-                  className={`w-full h-11 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                     errors.email
                       ? "border-error focus:outline-error"
                       : touchedFields.email && watch("email") && !errors.email
@@ -222,7 +223,7 @@ export default function RegisterForm() {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   placeholder="Placeholder"
-                  className={`w-full h-11 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                     errors.password
                       ? "border-error focus:outline-error"
                       : touchedFields.password &&
@@ -273,7 +274,7 @@ export default function RegisterForm() {
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirm_password"
                   placeholder="Placeholder"
-                  className={`w-full h-11 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                     errors.confirm_password
                       ? "border-error focus:outline-error"
                       : touchedFields.confirm_password &&
@@ -326,7 +327,7 @@ export default function RegisterForm() {
                   }}
                 >
                   <SelectTrigger
-                    className={`w-full h-11 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                    className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                       errors.city
                         ? "border-error focus:outline-error"
                         : isCitySelected && watch("city") && !errors.city
@@ -376,7 +377,7 @@ export default function RegisterForm() {
                   }}
                 >
                   <SelectTrigger
-                    className={`w-full h-11 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                    className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                       errors.street
                         ? "border-error focus:outline-error"
                         : isStreetSelected && watch("street") && !errors.street
@@ -418,7 +419,7 @@ export default function RegisterForm() {
                   type="number"
                   id="house_number"
                   placeholder="Placeholder"
-                  className={`w-full h-11 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                     errors.house_number
                       ? "border-error focus:outline-error"
                       : touchedFields.house_number &&
@@ -456,6 +457,17 @@ export default function RegisterForm() {
             </div>
           </div>
         </div>
+
+        <p className="opacity-80">
+          Have already an account?
+          <Link
+            className="ml-2 text-accent font-semibold relative group"
+            href="/login"
+          >
+            Sign in
+            <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-accent scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
+          </Link>
+        </p>
 
         <button
           type="submit"

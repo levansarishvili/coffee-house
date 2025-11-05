@@ -7,9 +7,20 @@ import LanguageToggle from "../LanguageToggle";
 import BurgerMenu from "./BurgerMenu";
 import Logo from "./Logo";
 import Avatar from "./Avatar";
+import { useAuth } from "@/app/context/useAuth";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const {
+    user,
+    userProfile,
+    loading,
+    error,
+    refreshUser,
+    refreshUserProfile,
+    signOut,
+  } = useAuth();
+  console.log(userProfile);
 
   return (
     <header className="flex justify-between items-center h-15 mb-5">
@@ -20,7 +31,7 @@ export default function Header() {
       <div className="flex items-center gap-4">
         <ModeToggle />
         <LanguageToggle />
-        <Avatar />
+        <Avatar avatar_url={userProfile?.avatar_url} loading={loading} />
         <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </header>

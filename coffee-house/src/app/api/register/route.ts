@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
           city,
           street,
           house_number,
-          avatar: avatarUrl,
+          avatar_url: avatarUrl,
         },
       ])
       .select()

@@ -67,3 +67,34 @@ export interface City {
   city: string;
   streets: string[];
 }
+
+// User profile type
+export type UserProfile = {
+  user_id: string;
+  created_at: string;
+  email: string;
+  city?: string;
+  street?: string;
+  house_number?: string;
+  avatar_url?: string;
+} | null;
+
+// Auth user type
+export type AuthUser = {
+  id: string;
+  email?: string;
+  user_metadata?: {
+    provider: string;
+  };
+} | null;
+
+// AuthContextType
+export interface AuthContextType {
+  user: AuthUser;
+  userProfile: UserProfile;
+  loading: boolean;
+  error: string | null;
+  refreshUser: () => Promise<void>;
+  refreshUserProfile: () => Promise<void>;
+  signOut: () => Promise<void>;
+}

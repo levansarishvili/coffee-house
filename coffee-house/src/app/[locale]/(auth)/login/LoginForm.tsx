@@ -33,10 +33,8 @@ export default function LoginForm() {
       setIsLoading(true);
       const { data } = await login(formData);
       console.log(data);
-      // router.push("/");
-      setIsLoading(false);
+      router.push("/");
     } catch (error) {
-      setIsLoading(false);
       if (error instanceof Error) {
         toast.error(error.message);
       }
@@ -160,9 +158,9 @@ export default function LoginForm() {
       </form>
 
       <p className="opacity-80">
-        Don&apos;t have an account?{" "}
+        Don&apos;t have an account?
         <Link
-          className="text-accent font-semibold relative group"
+          className="ml-2 text-accent font-semibold relative group"
           href="/register"
         >
           Sign up
