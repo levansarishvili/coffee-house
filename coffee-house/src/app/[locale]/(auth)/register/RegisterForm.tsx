@@ -13,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CITIES } from "@/app/constants/constants";
 import Image from "next/image";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import { registerUser } from "@/utils/register";
@@ -21,6 +20,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
 import Link from "next/link";
+import { getStreetsByCity } from "@/utils/getStreetsByCity";
 
 export default function RegisterForm() {
   const {
@@ -57,13 +57,6 @@ export default function RegisterForm() {
   const selectedCity = watch("city");
 
   // Get streets for selected city
-  const getStreetsByCity = (cityName: string) => {
-    const city = CITIES.find(
-      (c) => c.city.toLowerCase() === cityName.toLowerCase()
-    );
-    return city ? city.streets : [];
-  };
-
   const availableStreets = getStreetsByCity(selectedCity);
 
   // Clear street when city changes
@@ -77,7 +70,7 @@ export default function RegisterForm() {
       const result = await registerUser(formData);
       toast.success(result.message);
       reset();
-      router.push("/");
+      router.push("/login");
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message);
@@ -147,7 +140,7 @@ export default function RegisterForm() {
                 )}
               </div>
 
-              <span className="text-sm text-lightBlue">
+              <span className="text-sm">
                 {preview ? "Upload new" : "Upload Image"}
               </span>
             </label>
@@ -155,7 +148,7 @@ export default function RegisterForm() {
             {preview && (
               <button
                 type="button"
-                className="text-sm text-lightBlue cursor-pointer"
+                className="text-sm cursor-pointer"
                 onClick={() => {
                   setPreview(null);
                   setValue("avatar", null);
@@ -174,6 +167,95 @@ export default function RegisterForm() {
 
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-16 w-full justify-center">
           <div className="flex flex-col gap-4 md:gap-6 max-w-[400px] w-full">
+            {/* Fullname */}
+            <div className="flex flex-col w-full relative">
+              <div className="w-full flex flex-col gap-1.5">
+                <label htmlFor="full_name">Full Name</label>
+                <input
+                  type="text"
+                  id="full_name"
+                  placeholder="Placeholder"
+                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                    errors.full_name
+                      ? "border-error focus:outline-error"
+                      : touchedFields.full_name &&
+                        watch("full_name") &&
+                        !errors.full_name
+                      ? "border-success focus:outline-success"
+                      : "border-[#665f55] focus:outline-[#665f55]"
+                  } `}
+                  {...register("full_name", {
+                    required: "Full Name is required.",
+                    minLength: {
+                      value: 3,
+                      message: "Full Name must be at least 3 characters.",
+                    },
+                    maxLength: {
+                      value: 50,
+                      message: "Full name must be less than 50 characters",
+                    },
+                    pattern: {
+                      value: /^[A-Za-z\s.'-]+$/,
+                      message: "Only English letters are allowed",
+                    },
+                  })}
+                />
+              </div>
+
+              {/* Error message */}
+              {errors.full_name?.message && (
+                <p
+                  className={`${
+                    errors.full_name.message ? "absolute -bottom-4.5" : "hidden"
+                  } font-normal text-error text-xs mt-1`}
+                >
+                  {errors.full_name.message.toString()}
+                </p>
+              )}
+            </div>
+
+            {/* Username */}
+            <div className="flex flex-col w-full relative">
+              <div className="w-full flex flex-col gap-1.5">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="Placeholder"
+                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                    errors.username
+                      ? "border-error focus:outline-error"
+                      : touchedFields.username &&
+                        watch("username") &&
+                        !errors.username
+                      ? "border-success focus:outline-success"
+                      : "border-[#665f55] focus:outline-[#665f55]"
+                  } `}
+                  {...register("username", {
+                    required: "Username is required.",
+                    minLength: {
+                      value: 3,
+                      message: "Username must be at least 3 characters.",
+                    },
+                    maxLength: {
+                      value: 30,
+                      message: "Username must be less than 30 characters",
+                    },
+                  })}
+                />
+              </div>
+
+              {/* Error message */}
+              {errors.username?.message && (
+                <p
+                  className={`${
+                    errors.username.message ? "absolute -bottom-4.5" : "hidden"
+                  } font-normal text-error text-xs mt-1`}
+                >
+                  {errors.username.message.toString()}
+                </p>
+              )}
+            </div>
             {/* Email */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5">
@@ -265,7 +347,9 @@ export default function RegisterForm() {
                 </p>
               )}
             </div>
+          </div>
 
+          <div className="flex flex-col gap-4 md:gap-6 max-w-[400px] w-full">
             {/* Confirm password */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5 relative">
@@ -312,9 +396,6 @@ export default function RegisterForm() {
                 </p>
               )}
             </div>
-          </div>
-
-          <div className="flex flex-col gap-4 md:gap-6 max-w-[400px] w-full">
             {/* City */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5 relative">

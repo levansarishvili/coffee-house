@@ -53,13 +53,24 @@ export interface LoginFormData {
 // Register form data
 export interface RegisterFormData {
   avatar: FileList | null;
+  full_name: string;
+  username: string;
   email: string;
   password: string;
   confirm_password: string;
   city: string;
   street: string;
   house_number: string;
-  pay_by: string;
+}
+// Update user profile
+export interface UpdateProfileData {
+  avatar: FileList | null;
+  full_name: string;
+  username: string;
+  email: string;
+  city: string;
+  street: string;
+  house_number: string;
 }
 
 // Cities
@@ -72,6 +83,8 @@ export interface City {
 export type UserProfile = {
   user_id: string;
   created_at: string;
+  full_name: string;
+  username: string;
   email: string;
   city?: string;
   street?: string;
@@ -83,8 +96,11 @@ export type UserProfile = {
 export type AuthUser = {
   id: string;
   email?: string;
-  user_metadata?: {
+  app_metadata?: {
     provider: string;
+  };
+  user_metadata?: {
+    avatar_url?: string;
   };
 } | null;
 
@@ -93,6 +109,7 @@ export interface AuthContextType {
   user: AuthUser;
   userProfile: UserProfile;
   loading: boolean;
+  signOutLoading: boolean;
   error: string | null;
   refreshUser: () => Promise<void>;
   refreshUserProfile: () => Promise<void>;

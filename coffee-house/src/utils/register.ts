@@ -3,6 +3,8 @@ import { RegisterFormData } from "@/app/types/interfaces";
 export const registerUser = async (data: RegisterFormData) => {
   const formData = new FormData();
 
+  formData.append("full_name", data.full_name);
+  formData.append("username", data.username);
   formData.append("email", data.email);
   formData.append("password", data.password);
   formData.append("city", data.city);

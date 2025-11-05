@@ -15,6 +15,7 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   userProfile: null,
   loading: true,
+  signOutLoading: false,
   error: null,
   refreshUser: async () => {},
   refreshUserProfile: async () => {},
@@ -35,10 +36,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<AuthUser>(null);
   const [userProfile, setUserProfile] = useState<UserProfile>(null);
   const [loading, setLoading] = useState(true);
+  const [signOutLoading, setSignOutLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const supabase = createClient();
 
+  // Function to get auth user data
   // Function to get auth user data
   const getAuthUser = useCallback(async (): Promise<AuthUser> => {
     try {
@@ -46,11 +49,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         data: { user },
         error,
       } = await supabase.auth.getUser();
-      if (error) throw error;
+
+      if (error) {
+        if (error.message.includes("JWT") || error.message.includes("token")) {
+          console.error("Auth token error:", error);
+        }
+        throw error;
+      }
+
       return user as AuthUser;
     } catch (error) {
-      console.error("Error fetching auth user:", error);
-      setError(error instanceof Error ? error.message : "An error occurred");
+      if (error instanceof Error) {
+        if (
+          !error.message.includes("Not logged in") &&
+          !error.message.includes("No user") &&
+          !error.message.includes("JWT")
+        ) {
+          setError(error.message);
+        }
+      }
       return null;
     }
   }, [supabase]);
@@ -118,7 +135,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Function to sign out
   const signOut = async () => {
-    setLoading(true);
+    setSignOutLoading(true);
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
@@ -130,7 +147,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.error("Error signing out:", error);
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
-      setLoading(false);
+      setSignOutLoading(false);
     }
   };
 
@@ -172,39 +189,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     initializeAuth();
 
     // Set up auth state change listener
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event) => {
-      if (!mounted) return;
+    // Auth state listener
+    // const {
+    //   data: { subscription },
+    // } = supabase.auth.onAuthStateChange(async (event, session) => {
+    //   if (!mounted) return;
 
-      if (
-        event === "SIGNED_IN" ||
-        event === "TOKEN_REFRESHED" ||
-        event === "USER_UPDATED"
-      ) {
-        const authUser = await getAuthUser();
-        if (!mounted) return;
-
-        setUser(authUser);
-
-        if (authUser?.id) {
-          const profile = await getUserProfile(authUser.id);
-          if (mounted) {
-            setUserProfile(profile);
-          }
-        }
-      } else if (event === "SIGNED_OUT") {
-        setUser(null);
-        setUserProfile(null);
-      }
-
-      setLoading(false);
-    });
+    //   if (event === "SIGNED_IN" && session) {
+    //     setUser(session.user as AuthUser);
+    //     if (session.user.id) {
+    //       const profile = await getUserProfile(session.user.id);
+    //       if (mounted) setUserProfile(profile);
+    //     }
+    //     setLoading(false);
+    //   } else if (event === "SIGNED_OUT") {
+    //     setUser(null);
+    //     setUserProfile(null);
+    //     setLoading(false);
+    //   } else if (event === "USER_UPDATED" && session) {
+    //     setUser(session.user as AuthUser);
+    //   }
+    // });
 
     // Cleanup function
     return () => {
       mounted = false;
-      subscription.unsubscribe();
+      // subscription.unsubscribe();
     };
   }, [supabase, getAuthUser, getUserProfile]);
 
@@ -212,6 +222,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     user,
     userProfile,
     loading,
+    signOutLoading,
     error,
     refreshUser,
     refreshUserProfile,

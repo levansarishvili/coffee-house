@@ -20,7 +20,6 @@ export default function Header() {
     refreshUserProfile,
     signOut,
   } = useAuth();
-  console.log(userProfile);
 
   return (
     <header className="flex justify-between items-center h-15 mb-5">

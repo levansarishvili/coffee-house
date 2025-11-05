@@ -8,13 +8,23 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
 
     const avatar = formData.get("avatar") as File | null;
+    const full_name = formData.get("full_name") as string;
+    const username = formData.get("username") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const city = formData.get("city") as string;
     const street = formData.get("street") as string;
     const house_number = formData.get("house_number") as string;
 
-    if (!email || !password || !city || !street || !house_number) {
+    if (
+      !full_name ||
+      !username ||
+      !email ||
+      !password ||
+      !city ||
+      !street ||
+      !house_number
+    ) {
       return NextResponse.json(
         { error: "Some fields are missing" },
         { status: 400 }
@@ -92,6 +102,8 @@ export async function POST(request: NextRequest) {
           street,
           house_number,
           avatar_url: avatarUrl,
+          full_name,
+          username,
         },
       ])
       .select()
