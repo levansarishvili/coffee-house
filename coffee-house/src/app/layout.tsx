@@ -3,6 +3,7 @@ import { Inter, Noto_Sans_Georgian } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { AuthProvider } from "./context/useAuth";
+import { CartProvider } from "./context/useCart";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,16 +40,18 @@ export default function RootLayout({
         className={`${inter.className} ${notoSansGeorgian.variable} antialiased overflow-x-hidden`}
       >
         <AuthProvider>
-          <div className="mx-auto max-w-xl text-primary px-4 sm:px-10 py-5">
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </div>
+          <CartProvider>
+            <div className="mx-auto max-w-xl text-primary px-4 sm:px-10 py-5">
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                {children}
+              </ThemeProvider>
+            </div>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

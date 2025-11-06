@@ -13,6 +13,7 @@ import { addToCart } from "@/utils/addToCart";
 import { CartItemType } from "@/app/types/interfaces";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { useCart } from "@/app/context/useCart";
 
 interface ProductDetailsProps {
   id: string;
@@ -21,6 +22,7 @@ interface ProductDetailsProps {
 
 export default function ProductDetails({ id, locale }: ProductDetailsProps) {
   const { user } = useAuth();
+  const { refreshCart } = useCart();
   const { product, loading, error } = useProductById(id);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedSize, setSelectedSize] = useState("s");
@@ -110,6 +112,8 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
         } else {
           toast.success("Product added to cart successfully!");
         }
+
+        refreshCart();
       } catch (error) {
         if (error instanceof Error) {
           toast.success(error.message);
