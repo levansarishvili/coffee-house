@@ -483,7 +483,7 @@ export default function ProfileForm() {
             ? "hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all cursor-pointer"
             : "cursor-not-allowed"
         } flex gap-4 mt-2 justify-center items-center border font-semibold 
-          border-[#665f55] w-auto h-11 py-2.5 px-[78px] rounded-[100px]`}
+          border-[#665f55] w-[200px] h-11 rounded-[100px]`}
         disabled={isLoading || !isValid ? true : false}
       >
         {isLoading ? (
