@@ -78,7 +78,7 @@ export default function ProfileAuthenticatedView() {
                 className="border border-[#665f55] rounded-xl cursor-pointer bg-transparent hover:bg-[#665f55] hover:text-[#e1d4c9]"
                 onClick={handleSignOut}
               >
-                Logout
+                Sign out
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
