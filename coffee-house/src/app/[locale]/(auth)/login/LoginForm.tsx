@@ -1,7 +1,6 @@
 "use client";
 
 import TogglePasswordVisibility from "@/app/components/TogglePasswordVisibility";
-import { createClient } from "@/utils/supabase/component";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -12,6 +11,7 @@ import { LoginFormData } from "@/app/types/interfaces";
 import { login } from "@/utils/login";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { migrateTemporaryCartToUserCart } from "@/utils/cartMigration.ts";
 
 export default function LoginForm() {
   const {
@@ -32,8 +32,12 @@ export default function LoginForm() {
     try {
       setIsLoading(true);
       const { data } = await login(formData);
+
+      // Migrate cart items from temporary_cart to user cart
+      await migrateTemporaryCartToUserCart(data.user.id);
+
       console.log(data);
-      router.push("/");
+      // router.push("/");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);

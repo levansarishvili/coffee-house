@@ -91,6 +91,7 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
 
       const cartItemData: CartItemType = {
         product_id: product.id,
+        name: product.name,
         price: totalPrice as number,
         discount_price: discountedPrice as number,
         size,
@@ -102,7 +103,7 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
       // Add to the supabase temporary_cart table
       try {
         setIsLoading(true);
-        const result = await addToCart(cartItemData);
+        const result = await addToCart(isAuthenticated, cartItemData);
         console.log(result);
         if (result.action === "updated") {
           toast.success("Product quantity updated in cart!");

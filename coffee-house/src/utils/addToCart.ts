@@ -1,14 +1,20 @@
 import { CartItemType } from "@/app/types/interfaces";
 
-export const addToCart = async (cartItemData: CartItemType) => {
+export const addToCart = async (
+  isAuthenticated: boolean,
+  cartItemData: CartItemType
+) => {
   try {
-    const response = await fetch("/api/add-to-cart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cartItemData),
-    });
+    const response = await fetch(
+      `/api/add-to-${isAuthenticated ? "cart" : "temporary-cart"}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cartItemData),
+      }
+    );
 
     const result = await response.json();
 

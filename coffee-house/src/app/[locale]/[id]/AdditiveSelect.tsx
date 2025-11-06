@@ -75,7 +75,7 @@ export default function AdditiveSelect({
                 </button>
               </TooltipTrigger>
 
-              <TooltipContent className="bg-button-hover">
+              <TooltipContent className="bg-[#665f55]">
                 {isAuthenticated && additive.discount_price ? (
                   <div className="flex gap-2">
                     <p className="text-[#e1d4c9] opacity-70 line-through">

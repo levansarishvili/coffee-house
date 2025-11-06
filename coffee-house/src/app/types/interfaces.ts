@@ -119,6 +119,7 @@ export interface AuthContextType {
 export interface CartItemType {
   product_id: number;
   price: number;
+  name: string;
   discount_price: number;
   size: string;
   additives: string[];

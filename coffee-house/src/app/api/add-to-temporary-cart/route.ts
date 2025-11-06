@@ -4,10 +4,6 @@ import { createClient } from "@/utils/supabase/api";
 export async function POST(request: NextRequest) {
   const supabase = await createClient();
 
-  // Check user authentication
-  const { data: userData, error: userError } = await supabase.auth.getUser();
-  const user_id = userData?.user?.id;
-
   try {
     const cartItemData = await request.json();
     const {
@@ -23,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     // Check if product is already exist in the cart with same size and additives
     const { data: existingItems, error: checkError } = await supabase
-      .from("cart_items")
+      .from("temporary_cart")
       .select("*")
       .eq("product_id", product_id)
       .eq("size", size);
@@ -48,7 +44,7 @@ export async function POST(request: NextRequest) {
     if (existingItem && !checkError) {
       // Item exists - update quantity
       const { data: updatedItem, error: updateError } = await supabase
-        .from("cart_items")
+        .from("temporary_cart")
         .update({
           quantity: existingItem.quantity + quantity,
           updated_at: new Date().toISOString(),
@@ -74,19 +70,16 @@ export async function POST(request: NextRequest) {
     } else {
       // Item doesn't exist - insert new item
       const { data: newItem, error: insertError } = await supabase
-        .from("cart_items")
+        .from("temporary_cart")
         .insert({
-          user_id,
           product_id,
           quantity,
           size,
           additives,
-          name,
           price,
+          name,
           discount_price,
           image_url,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
         })
         .select()
         .single();

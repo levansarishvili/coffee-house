@@ -35,7 +35,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<AuthUser>(null);
   const [userProfile, setUserProfile] = useState<UserProfile>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [signOutLoading, setSignOutLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
