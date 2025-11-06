@@ -11,7 +11,7 @@ import { LoginFormData } from "@/app/types/interfaces";
 import { login } from "@/utils/login";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
-import { migrateTemporaryCartToUserCart } from "@/utils/cartMigration.ts";
+import { migrateTemporaryCartToUserCart } from "@/utils/cartMigrationClient.ts";
 
 export default function LoginForm() {
   const {
@@ -37,7 +37,7 @@ export default function LoginForm() {
       await migrateTemporaryCartToUserCart(data.user.id);
 
       console.log(data);
-      // router.push("/");
+      router.push("/");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);

@@ -1,3 +1,4 @@
+import { migrateTemporaryCartToUserCart } from "@/utils/cartMigrationServer.ts";
 import { createClient } from "../../../../utils/supabase/api";
 import { NextResponse } from "next/server";
 
@@ -26,6 +27,16 @@ export async function GET(request: Request) {
   if (userError) {
     console.error("Error getting user:", userError);
     return NextResponse.redirect(`${origin}${redirectTo}`);
+  }
+
+  // Migrate cart items using server-side function
+  if (user) {
+    try {
+      await migrateTemporaryCartToUserCart(user.id);
+      console.log("Cart migration completed successfully");
+    } catch (error) {
+      console.error("Cart migration failed:", error);
+    }
   }
 
   if (user) {

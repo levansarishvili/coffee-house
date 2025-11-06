@@ -1,11 +1,12 @@
-// utils/cartMigration.ts
-import { createClient } from "@/utils/supabase/component";
+"use server";
 
-const supabase = createClient();
+import { createClient } from "@/utils/supabase/api";
 
 export const migrateTemporaryCartToUserCart = async (
   userId: string
 ): Promise<void> => {
+  const supabase = await createClient();
+
   try {
     // Fetch all items from temporary_cart
     const { data: tempCartItems, error: fetchError } = await supabase
@@ -23,6 +24,7 @@ export const migrateTemporaryCartToUserCart = async (
       product_id: item.product_id,
       quantity: item.quantity,
       size: item.size,
+      name: item.name,
       additives: item.additives,
       price: item.price,
       discount_price: item.discount_price,
