@@ -7,12 +7,14 @@ import {
 } from "@/components/ui/tooltip";
 
 interface SizeSelectProps {
+  isAuthenticated: boolean;
   product_sizes: SizeOption[];
   selectedSize: string;
   setSelectedSize: (selectedSize: string) => void;
 }
 
 export default function SizeSelect({
+  isAuthenticated,
   product_sizes,
   selectedSize,
   setSelectedSize,
@@ -60,7 +62,18 @@ export default function SizeSelect({
               </TooltipTrigger>
 
               <TooltipContent className="bg-[#665f55]">
-                <p className="text-[#e1d4c9]">{size.price}</p>
+                {isAuthenticated && size.discount_price ? (
+                  <div className="flex gap-2">
+                    <p className="text-[#e1d4c9] opacity-70 line-through">
+                      ${size.price.toFixed(2)}
+                    </p>
+                    <p className="text-[#e1d4c9]">
+                      ${size.discount_price.toFixed(2)}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-[#e1d4c9]">${size.price.toFixed(2)}</p>
+                )}
               </TooltipContent>
             </Tooltip>
           ))}

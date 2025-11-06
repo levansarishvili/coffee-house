@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabaseClient";
 
 function useProducts(category: string) {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

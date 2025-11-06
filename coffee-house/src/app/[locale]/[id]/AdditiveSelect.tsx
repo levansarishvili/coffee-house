@@ -7,12 +7,14 @@ import {
 } from "@/components/ui/tooltip";
 
 interface AdditiveSelectProps {
+  isAuthenticated: boolean;
   product_additives: Additive[];
   selectedAdditives: number[];
   setSelectedAdditives: (selectedAdditives: number[]) => void;
 }
 
 export default function AdditiveSelect({
+  isAuthenticated,
   product_additives,
   selectedAdditives,
   setSelectedAdditives,
@@ -73,8 +75,19 @@ export default function AdditiveSelect({
                 </button>
               </TooltipTrigger>
 
-              <TooltipContent className="bg-[#665f55]">
-                <p className="text-[#e1d4c9]">{additive.price}</p>
+              <TooltipContent className="bg-button-hover">
+                {isAuthenticated && additive.discount_price ? (
+                  <div className="flex gap-2">
+                    <p className="text-[#e1d4c9] opacity-70 line-through">
+                      ${additive.price.toFixed(2)}
+                    </p>
+                    <p className="text-[#e1d4c9]">
+                      ${additive.discount_price.toFixed(2)}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-[#e1d4c9]">${additive.price.toFixed(2)}</p>
+                )}
               </TooltipContent>
             </Tooltip>
           ))}

@@ -115,3 +115,13 @@ export interface AuthContextType {
   refreshUserProfile: () => Promise<void>;
   signOut: () => Promise<void>;
 }
+
+export interface CartItemType {
+  product_id: number;
+  price: number;
+  discount_price: number;
+  size: string;
+  additives: string[];
+  image_url: string;
+  quantity: number;
+}
