@@ -55,45 +55,67 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const fetchUserAndCart = async () => {
       setLoading(true);
+
+      // 🔹 Get current user
       const {
         data: { user },
       } = await supabase.auth.getUser();
       setUser(user);
 
-      const table = user ? "cart_items" : "temporary_cart";
+      let data, error;
 
       if (user) {
-        const { data, error } = await supabase
-          .from(table)
+        ({ data, error } = await supabase
+          .from("cart_items")
           .select("*")
-          .eq("user_id", user.id);
-        if (!error && data) {
-          setCartItems(data);
-        }
+          .eq("user_id", user.id));
+      } else {
+        ({ data, error } = await supabase.from("temporary_cart").select("*"));
       }
+
+      if (!error && data) {
+        setCartItems(data);
+      } else {
+        console.error("Error loading cart:", error);
+      }
+
       setLoading(false);
     };
 
     fetchUserAndCart();
   }, []);
 
-  // Refresh cart
   const refreshCart = useCallback(async () => {
-    if (user) {
-      const { data } = await supabase
-        .from("cart_items")
-        .select("*")
-        .eq("user_id", user.id);
+    try {
+      let data = null;
+      let error = null;
+
+      // Wait for Supabase user check
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        ({ data, error } = await supabase
+          .from("cart_items")
+          .select("*")
+          .eq("user_id", user.id));
+      } else {
+        ({ data, error } = await supabase.from("temporary_cart").select("*"));
+      }
+
+      if (error) {
+        console.error("Error refreshing cart:", error);
+        return;
+      }
+
       if (data) {
         setCartItems(data);
       }
-    } else {
-      const { data } = await supabase.from("temporary_cart").select("*");
-      if (data) {
-        setCartItems(data);
-      }
+    } catch (err) {
+      console.error("Unexpected error refreshing cart:", err);
     }
-  }, [user]);
+  }, []);
 
   // Update cart items quantity
   const updateQuantity = useCallback(

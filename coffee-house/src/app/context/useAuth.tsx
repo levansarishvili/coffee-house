@@ -35,13 +35,12 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<AuthUser>(null);
   const [userProfile, setUserProfile] = useState<UserProfile>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [signOutLoading, setSignOutLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const supabase = createClient();
 
-  // Function to get auth user data
   // Function to get auth user data
   const getAuthUser = useCallback(async (): Promise<AuthUser> => {
     try {

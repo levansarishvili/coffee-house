@@ -11,15 +11,12 @@ import { useAuth } from "@/app/context/useAuth";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const {
-    user,
-    userProfile,
-    loading,
-    error,
-    refreshUser,
-    refreshUserProfile,
-    signOut,
-  } = useAuth();
+  const { user, userProfile, loading } = useAuth();
+
+  let isAuthenticated = false;
+  if (user) {
+    isAuthenticated = true;
+  }
 
   return (
     <header className="flex justify-between items-center h-15 mb-5">
@@ -30,7 +27,11 @@ export default function Header() {
       <div className="flex items-center gap-4">
         <ModeToggle />
         <LanguageToggle />
-        <Avatar avatar_url={userProfile?.avatar_url} loading={loading} />
+        <Avatar
+          isAuthenticated={isAuthenticated}
+          avatar_url={userProfile?.avatar_url}
+          loading={loading}
+        />
         <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </header>

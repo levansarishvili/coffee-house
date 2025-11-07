@@ -6,7 +6,7 @@ import Loading from "@/Loading";
 import { useAuth } from "@/app/context/useAuth";
 
 export default function ProfilePage() {
-  const { user, userProfile, loading, signOut, signOutLoading } = useAuth();
+  const { user, loading } = useAuth();
 
   return (
     <main className="flex  justify-center items-center w-full">
