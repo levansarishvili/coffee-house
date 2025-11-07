@@ -195,7 +195,7 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
                 </>
               ) : (
                 <>
-                  <ShoppingCartIcon className="w-7 h-7" />
+                  <ShoppingCartIcon className="w-6 h-6" />
                   <span>Add to cart</span>
                 </>
               )}

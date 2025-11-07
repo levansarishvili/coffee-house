@@ -115,7 +115,7 @@ export interface AuthContextType {
   refreshUserProfile: () => Promise<void>;
   signOut: () => Promise<void>;
 }
-
+// Cart item type
 export interface CartItemType {
   id?: number;
   product_id: number;
@@ -126,4 +126,26 @@ export interface CartItemType {
   additives: string[];
   image_url: string;
   quantity: number;
+}
+
+// OrderData Type
+export interface OrderDataType {
+  id?: number;
+  user_id: string;
+  total_price: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+// Order Items Data type
+export interface OrderItemsDataType {
+  id?: number;
+  user_id: string;
+  product_id: number;
+  total_price: number;
+  price: number;
+  quantity: number;
+  image_url: string;
+  created_at?: string;
+  updated_at?: string;
 }
