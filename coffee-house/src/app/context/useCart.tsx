@@ -13,7 +13,7 @@ import { CartItemType } from "../types/interfaces";
 
 interface CartContextType {
   cartItems: CartItemType[];
-  cartItemsLength: number;
+  cartItemsQuantity: number;
   loading: boolean;
   updateQuantity: (itemId: number, quantity: number) => Promise<void>;
   removeFromCart: (itemId: number) => Promise<void>;
@@ -35,8 +35,21 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
+  const [cartItemsQuantity, setCartItemsQuantity] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
-  const cartItemsLength = cartItems.length;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Calculate cart items quantity
+  useEffect(() => {
+    const quantity = cartItems.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+    setCartItemsQuantity(quantity);
+  }, [cartItems]);
 
   // Fetch user and cart data
   useEffect(() => {
@@ -47,19 +60,16 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       } = await supabase.auth.getUser();
       setUser(user);
 
+      const table = user ? "cart_items" : "temporary_cart";
+
       if (user) {
-        // Logged-in → use cart_items
         const { data, error } = await supabase
-          .from("cart_items")
+          .from(table)
           .select("*")
           .eq("user_id", user.id);
-        if (!error && data) setCartItems(data);
-      } else {
-        // Guest → use temporary_cart
-        const { data, error } = await supabase
-          .from("temporary_cart")
-          .select("*");
-        if (!error && data) setCartItems(data);
+        if (!error && data) {
+          setCartItems(data);
+        }
       }
       setLoading(false);
     };
@@ -74,10 +84,14 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         .from("cart_items")
         .select("*")
         .eq("user_id", user.id);
-      if (data) setCartItems(data);
+      if (data) {
+        setCartItems(data);
+      }
     } else {
       const { data } = await supabase.from("temporary_cart").select("*");
-      if (data) setCartItems(data);
+      if (data) {
+        setCartItems(data);
+      }
     }
   }, [user]);
 
@@ -118,32 +132,52 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     [user, refreshCart, cartItems]
   );
 
-  // Remove cart item from cart
+  // Remove cart item from cart with optimistic UI update
   const removeFromCart = useCallback(
     async (itemId: number) => {
-      if (user) {
-        await supabase.from("cart_items").delete().eq("id", itemId);
-      } else {
-        await supabase.from("temporary_cart").delete().eq("id", itemId);
+      // Store the previous state for rollback
+      const previousCartItems = [...cartItems];
+
+      // Update the UI immediately
+      setCartItems((prev) => prev.filter((item) => item.id !== itemId));
+
+      try {
+        // Update database in background
+        const table = user ? "cart_items" : "temporary_cart";
+
+        let query = supabase.from(table).delete().eq("id", itemId);
+
+        if (user) {
+          query = query.eq("user_id", user.id);
+        }
+
+        const { error } = await query;
+        if (error) {
+          throw error;
+        }
+      } catch (error) {
+        console.error("Failed to remove item from cart:", error);
+        setCartItems(previousCartItems);
+        await refreshCart();
       }
-      await refreshCart();
     },
-    [user, refreshCart]
+    [user, refreshCart, cartItems]
   );
 
   // Clear cart
   const clearCart = useCallback(async () => {
+    const table = user ? "cart_items" : "temporary_cart";
     if (user) {
-      await supabase.from("cart_items").delete().eq("user_id", user.id);
+      await supabase.from(table).delete().eq("user_id", user.id);
     } else {
-      await supabase.from("temporary_cart").delete();
+      await supabase.from(table).delete();
     }
     setCartItems([]);
   }, [user]);
 
   const value: CartContextType = {
     cartItems,
-    cartItemsLength,
+    cartItemsQuantity,
     loading,
     updateQuantity,
     removeFromCart,
@@ -151,5 +185,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     refreshCart,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={value}>
+      {" "}
+      {mounted ? children : null}
+    </CartContext.Provider>
+  );
 };

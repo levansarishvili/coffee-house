@@ -11,7 +11,9 @@ import { LoginFormData } from "@/app/types/interfaces";
 import { login } from "@/utils/login";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
-import { migrateTemporaryCartToUserCart } from "@/utils/cartMigrationClient.ts";
+import { migrateTemporaryCartToUserCart } from "@/utils/cartMigrationClient";
+import { useAuth } from "@/app/context/useAuth";
+import { useCart } from "@/app/context/useCart";
 
 export default function LoginForm() {
   const {
@@ -26,6 +28,8 @@ export default function LoginForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { refreshUser, refreshUserProfile } = useAuth();
+  const { refreshCart } = useCart();
 
   // Handle user login
   const handleLogin = async (formData: LoginFormData) => {
@@ -37,6 +41,9 @@ export default function LoginForm() {
       await migrateTemporaryCartToUserCart(data.user.id);
 
       console.log(data);
+      refreshUser();
+      refreshUserProfile();
+      refreshCart();
       router.push("/");
     } catch (error) {
       if (error instanceof Error) {

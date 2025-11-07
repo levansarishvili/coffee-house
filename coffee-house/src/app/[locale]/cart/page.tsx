@@ -1,4 +1,4 @@
-import CartItems from "./CartItems";
+import CartContent from "./CartContent";
 
 export default function CartPage() {
   return (
@@ -7,7 +7,7 @@ export default function CartPage() {
         Cart
       </h1>
 
-      <CartItems />
+      <CartContent />
     </main>
   );
 }

@@ -15,12 +15,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useCart } from "@/app/context/useCart";
 
 export default function ProfileAuthenticatedView() {
   const { userProfile, signOut, signOutLoading } = useAuth();
+  const { refreshCart } = useCart();
 
   const handleSignOut = async () => {
     await signOut();
+    refreshCart();
   };
 
   const handleDeleteUser = async () => {};
