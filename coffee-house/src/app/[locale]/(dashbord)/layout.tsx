@@ -2,19 +2,19 @@
 
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../../../context/useAuth";
-import Loading from "../../../../Loading";
+import { useAuth } from "@/app/context/useAuth";
+import Loading from "@/Loading";
 
-interface LoginLayoutProps {
+interface DashboardLayoutProps {
   children: ReactNode;
 }
 
-export default function LoginLayout({ children }: LoginLayoutProps) {
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && user) {
+    if (!loading && !user) {
       router.replace("/");
     }
   }, [user, loading, router]);
@@ -28,8 +28,8 @@ export default function LoginLayout({ children }: LoginLayoutProps) {
     );
   }
 
-  // If user is logged in, don't render children
-  if (user) {
+  // If user is not logged in, don't render children
+  if (!user) {
     return (
       <main className="flex justify-center items-center w-full h-screen">
         <Loading />
