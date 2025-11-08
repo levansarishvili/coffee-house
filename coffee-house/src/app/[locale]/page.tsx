@@ -17,7 +17,7 @@ export default function HomePage({ params }: ProductProps) {
   // setRequestLocale(locale);
 
   return (
-    <main className="flex flex-col gap-[100px]">
+    <main className="flex flex-col">
       <Hero />
       <Slider />
       <About />

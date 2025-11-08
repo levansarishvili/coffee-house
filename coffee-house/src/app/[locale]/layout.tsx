@@ -41,8 +41,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           }}
         />
         <Header />
-        {children}
-        <Footer />
+        <div className="mx-auto max-w-xl text-primary px-4 sm:px-10 py-5">
+          {children}
+          <Footer />
+        </div>
       </NextIntlClientProvider>
     </>
   );

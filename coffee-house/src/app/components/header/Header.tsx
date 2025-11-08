@@ -19,20 +19,26 @@ export default function Header() {
   }
 
   return (
-    <header className="flex justify-between items-center h-15 mb-5">
-      <Logo />
+    <header className="w-full sticky bg-background top-0 z-100 shadow-md">
+      <div className="flew w-full max-w-xl mx-auto text-primary px-4 sm:px-10 py-5 flex justify-between items-center h-20">
+        <Logo isOpen={isOpen} setIsOpen={setIsOpen} />
 
-      <Navigation isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Navigation isOpen={isOpen} setIsOpen={setIsOpen} />
 
-      <div className="flex items-center gap-4">
-        <ModeToggle />
-        <LanguageToggle />
-        <Avatar
-          isAuthenticated={isAuthenticated}
-          avatar_url={userProfile?.avatar_url}
-          loading={loading}
-        />
-        <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+        <div className="flex items-center gap-4">
+          <div className="flex gap-2">
+            <ModeToggle />
+            <LanguageToggle />
+          </div>
+          <Avatar
+            isAuthenticated={isAuthenticated}
+            avatar_url={userProfile?.avatar_url}
+            loading={loading}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
+          <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+        </div>
       </div>
     </header>
   );

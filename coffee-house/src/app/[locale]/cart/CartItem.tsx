@@ -10,7 +10,6 @@ interface CartItemProps {
 export default function CartItem({ id, isAuthenticated }: CartItemProps) {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
   const cartItem = cartItems.find((item) => item.id === id);
-  console.log(cartItem);
 
   function handleRemoveFromCart() {
     removeFromCart(id);

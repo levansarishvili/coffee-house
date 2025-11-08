@@ -6,7 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-export default function Logo() {
+interface LogoProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Logo({ isOpen, setIsOpen }: LogoProps) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -15,17 +20,23 @@ export default function Logo() {
     setMounted(true);
   }, []);
 
+  // Handle burger menu close if it is open
+  function handleBurgerMenuClose() {
+    if (isOpen) setIsOpen(false);
+  }
+
   if (!mounted) {
-    // Render nothing or fallback during SSR
     return (
       <div>
         <Link href="/">
-          <Image
-            src={`/assets/logo.svg`}
-            width={100}
-            height={60}
-            alt="Coffee House logo"
-          />
+          <div className="overflow-hidden w-20 h-12 md:w-25 md:h-15">
+            <Image
+              src={`/assets/logo.svg`}
+              width={100}
+              height={60}
+              alt="Coffee House logo"
+            />
+          </div>
         </Link>
       </div>
     );
@@ -33,13 +44,15 @@ export default function Logo() {
 
   return (
     <div>
-      <Link href="/">
-        <Image
-          src={`/assets/logo${theme === THEMES.DARK ? "-dark" : ""}.svg`}
-          width={100}
-          height={60}
-          alt="Coffee House logo"
-        />
+      <Link href="/" onClick={handleBurgerMenuClose}>
+        <div className="overflow-hidden w-20 h-12 md:w-25 md:h-15">
+          <Image
+            src={`/assets/logo${theme === THEMES.DARK ? "-dark" : ""}.svg`}
+            width={100}
+            height={60}
+            alt="Coffee House logo"
+          />
+        </div>
       </Link>
     </div>
   );

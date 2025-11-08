@@ -41,16 +41,14 @@ export default function RootLayout({
       >
         <AuthProvider>
           <CartProvider>
-            <div className="mx-auto max-w-xl text-primary px-4 sm:px-10 py-5">
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
-                {children}
-              </ThemeProvider>
-            </div>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
           </CartProvider>
         </AuthProvider>
       </body>

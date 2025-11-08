@@ -1,3 +1,4 @@
+import { useAuth } from "@/app/context/useAuth";
 import { Product } from "@/app/types/interfaces";
 import { StarIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
@@ -10,6 +11,14 @@ interface ProductProps {
 }
 
 export default function ProductCard({ product }: ProductProps) {
+  const { user } = useAuth();
+
+  let isAuthenticated = false;
+  if (user) {
+    isAuthenticated = true;
+  }
+  const showDiscountedPrice = isAuthenticated && product?.discount_price;
+  console.log(product);
   return (
     <Link
       href={`/${product.id}`}
@@ -47,9 +56,22 @@ export default function ProductCard({ product }: ProductProps) {
             {product.description}
           </p>
         </div>
-        <span className="font-semibold text-2xl leading-[125%]">
-          ${product.price.toFixed(2)}
-        </span>
+        <div className="flex gap-4">
+          {showDiscountedPrice ? (
+            <>
+              <span className="font-semibold text-2xl opacity-60 line-through">
+                ${product.price.toFixed(2)}
+              </span>
+              <span className="font-semibold text-2xl">
+                ${product.discount_price?.toFixed(2)}
+              </span>
+            </>
+          ) : (
+            <span className="font-semibold text-2xl">
+              ${product.price?.toFixed(2)}
+            </span>
+          )}
+        </div>
       </div>
     </Link>
   );

@@ -132,8 +132,11 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
       {error && <ErrorMessaege message={error} />}
 
       {product && !loading && !error && (
-        <div className="flex justify-center w-full gap-[100px]">
-          <div className="max-w-[400px] rounded-[40px] overflow-hidden">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-12 lg:gap-25">
+          <div
+            className="md:self-start max-w-64 max-h-64 md:max-w-80 md:max-h-80 lg:max-w-[400px] lg:max-h-[400px] rounded-[40px] 
+          overflow-hidden border border-[#665f55]"
+          >
             <Image
               src={product?.image_url}
               alt={product.name}
@@ -164,42 +167,45 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
             />
 
             <div className="flex justify-between">
-              <span className="font-semibold text-2xl">Total:</span>
+              <span className="font-semibold text-xl md:text-2xl">Total:</span>
               <div className="flex gap-5 justify-center items-center">
                 {showDiscountedPrice ? (
                   <>
-                    <span className="font-semibold text-2xl opacity-60 line-through">
+                    <span className="font-semibold text-xl md:text-2xl opacity-60 line-through">
                       ${totalPrice?.toFixed(2)}
                     </span>
-                    <span className="font-semibold text-2xl">
+                    <span className="font-semibold text-xl md:text-2xl">
                       ${discountedPrice?.toFixed(2)}
                     </span>
                   </>
                 ) : (
-                  <span className="font-semibold text-2xl">
+                  <span className="font-semibold text-xl md:text-2xl">
                     ${totalPrice?.toFixed(2)}
                   </span>
                 )}
               </div>
             </div>
 
-            <button
-              onClick={handleAddToCart}
-              className="flex gap-4 justify-center items-center border py-2.5 px-[78px] border-[#665f55] hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300 rounded-[100px] cursor-pointer font-semibold"
-              disabled={isLoading ? true : false}
-            >
-              {isLoading ? (
-                <>
-                  <Spinner />
-                  Adding to cart...
-                </>
-              ) : (
-                <>
-                  <ShoppingCartIcon className="w-6 h-6" />
-                  <span>Add to cart</span>
-                </>
-              )}
-            </button>
+            <div className="flex justify-center w-full">
+              <button
+                onClick={handleAddToCart}
+                className="flex gap-4 justify-center items-center border max-w-64 w-full h-11 border-[#665f55] hover:bg-[#665f55] 
+              hover:text-[#e1d4c9] transition-all duration-300 rounded-[100px] cursor-pointer font-semibold"
+                disabled={isLoading ? true : false}
+              >
+                {isLoading ? (
+                  <>
+                    <Spinner />
+                    Adding to cart...
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCartIcon className="w-6 h-6" />
+                    <span>Add to cart</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       )}

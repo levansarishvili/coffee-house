@@ -64,39 +64,53 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={handleToggle}
-      className={`
-    relative w-14.5 h-7 bg-button-hover cursor-pointer rounded-full
-    overflow-hidden transition-all duration-300
-    shadow-md hover:shadow-lg
-    ${isPending && "opacity-70"}
-  `}
       disabled={isPending}
+      className={`
+    relative cursor-pointer transition-all duration-300
+    ${isPending ? "opacity-70" : ""}
+  `}
     >
-      <div className="absolute inset-0 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]" />
+      {/*cMobile view */}
+      <span className="flex md:hidden text-sm items-center justify-center w-8 h-8 rounded-full hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300 font-semibold">
+        {currentLang === "en" ? (
+          <span className="flex items-center gap-1">KA</span>
+        ) : (
+          <span className="flex items-center gap-1">EN</span>
+        )}
+      </span>
 
-      <span
+      {/* Desktop view (full toggle) */}
+      <div
         className={`
-      absolute top-1/2 -translate-y-1/2 w-6 h-6 
-      rounded-full transition-all duration-300 ease-out
-      bg-cover bg-center shadow-md
+      hidden md:block relative w-14.5 h-7 bg-button-hover rounded-full overflow-hidden 
+      shadow-md hover:shadow-lg transition-all duration-300
+    `}
+      >
+        <div className="absolute inset-0 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]" />
+
+        {/* 🇬🇪 KA flag */}
+        <span
+          className={`absolute top-1/2 -translate-y-1/2 w-6 h-6 
+      rounded-full bg-cover bg-center shadow-md transition-all duration-300 ease-out
       ${
         currentLang === "en"
           ? "bg-[url('/assets/ka-flag.png')] left-0.5"
           : "bg-[url('/assets/en-flag.png')] left-full -translate-x-6.5"
       }
     `}
-      />
+        />
 
-      <span
-        className={`
-      absolute top-1/2 -translate-y-1/2 w-6 h-6
+        {/* Text indicator */}
+        <span
+          className={`absolute top-1/2 -translate-y-1/2 w-6 h-6
       rounded-full transition-all duration-300 ease-out text-xs flex items-center justify-center
       bg-cover bg-center
       ${currentLang === "en" ? "left-full -translate-x-6.5" : "left-0.5"}
     `}
-      >
-        {currentLang === "en" ? "KA" : "EN"}
-      </span>
+        >
+          {currentLang === "en" ? "KA" : "EN"}
+        </span>
+      </div>
     </button>
   );
 }

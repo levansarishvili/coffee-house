@@ -16,7 +16,6 @@ export default function CartContent() {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [totalDiscountedPrice, setTotalDiscountedPrice] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const hasAddress =
     userProfile?.city && userProfile?.street && userProfile?.house_number;
 
@@ -59,20 +58,17 @@ export default function CartContent() {
         image_url: item.image_url,
       }));
 
-      console.log("OrderData:", orderData, "OrderItems:", orderItemsData);
-
       try {
         setIsLoading(true);
-        setError(null);
 
-        const result = await confirmOrder(orderData, orderItemsData);
+        await confirmOrder(orderData, orderItemsData);
         // Clear cart after successful confirmation
         clearCart();
-        console.log(result);
-        toast.success("Order confirmed");
+        toast.success("Order placed successfully!");
       } catch (error) {
-        console.log(error);
-        toast.error("Something went wrong");
+        if (error instanceof Error) {
+          toast.error(error.message);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -149,7 +145,7 @@ export default function CartContent() {
           )}
         </div>
       ) : (
-        <div className="flex justify-center flex-col md:flex-row gap-4 mt-8 w-full">
+        <div className="flex justify-center items-center flex-col md:flex-row gap-8 mt-8 w-full">
           <Link
             href="/login"
             className="flex justify-center items-center border font-semibold cursor-pointer border-[#665f55] w-50 h-11 py-2.5 px-[78px] rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"

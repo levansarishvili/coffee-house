@@ -8,7 +8,7 @@ export default function MobileApp() {
 
   return (
     <section
-      className="w-full flex flex-col lg:flex-row gap-10 md:gap-[100px] items-center"
+      className="w-full flex flex-col lg:flex-row gap-10 md:gap-[100px] items-center pt-25"
       id="mobile"
     >
       <div className="flex flex-col gap-10 flex-1">

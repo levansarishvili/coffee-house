@@ -5,7 +5,7 @@ export default function About() {
   const t = useTranslations("About");
 
   return (
-    <section className="w-full flex flex-col gap-10" id="about">
+    <section className="w-full flex flex-col gap-10 pt-25" id="about">
       <h2 className="text-[32px] md:text-[56px] font-semibold leading-[120%]">
         {t("headerPart-1")}
         <span className="text-accent italic"> {t("headerPart-2")} </span>

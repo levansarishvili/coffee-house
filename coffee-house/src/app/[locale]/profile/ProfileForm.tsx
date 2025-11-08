@@ -23,6 +23,7 @@ import {
 import { getStreetsByCity } from "@/utils/getStreetsByCity";
 import { toast } from "sonner";
 import { updateProfile } from "@/utils/updateProfile";
+import LogoutButton from "./LogoutButton";
 
 export default function ProfileForm() {
   const {
@@ -475,26 +476,31 @@ export default function ProfileForm() {
         </div>
       </div>
 
-      {/* Submit Button */}
-      <button
-        type="submit"
-        className={`${
-          isValid
-            ? "hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all cursor-pointer"
-            : "cursor-not-allowed"
-        } flex gap-4 mt-2 justify-center items-center border font-semibold 
+      <div className="w-fill flex flex-col md:flex-row justify-center items-center gap-8 mt-4">
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className={`${
+            isValid
+              ? "hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all cursor-pointer"
+              : "cursor-not-allowed"
+          } flex gap-4 justify-center items-center border font-semibold 
           border-[#665f55] w-[200px] h-11 rounded-[100px]`}
-        disabled={isLoading || !isValid ? true : false}
-      >
-        {isLoading ? (
-          <>
-            <Spinner />
-            Updating...
-          </>
-        ) : (
-          <>Save changes</>
-        )}
-      </button>
+          disabled={isLoading || !isValid ? true : false}
+        >
+          {isLoading ? (
+            <>
+              <Spinner />
+              Updating...
+            </>
+          ) : (
+            <>Save changes</>
+          )}
+        </button>
+
+        {/* Logout button */}
+        <LogoutButton />
+      </div>
     </form>
   );
 }

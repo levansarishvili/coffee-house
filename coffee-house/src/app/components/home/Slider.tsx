@@ -52,7 +52,7 @@ export default function Slider() {
 
   return (
     <section
-      className="flex items-center justify-center tracking-[2] flex-col gap-10 w-full"
+      className="flex items-center justify-center tracking-[2] flex-col gap-10 w-full pt-25"
       id="favorite"
     >
       <h2 className="text-[32px] md:text-6xl text-center font-semibold leading-[120%]">
