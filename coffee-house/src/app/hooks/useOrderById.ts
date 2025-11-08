@@ -1,19 +1,16 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import { OrderDataType } from "../types/interfaces";
+import { OrderItemsDataType } from "../types/interfaces";
 import { createClient } from "@/utils/supabase/component";
 
-function useOrders() {
-  const [orders, setOrders] = useState<OrderDataType[]>([]);
-  const [loading, setLoading] = useState(false);
+function useOrderById(id: number) {
+  const [order, setOrder] = useState<OrderItemsDataType[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const supabase = createClient();
 
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchOrder = async () => {
       try {
-        setLoading(true);
         // Get the current user
         const {
           data: { user },
@@ -26,10 +23,12 @@ function useOrders() {
           return;
         }
 
+        setLoading(true);
         const { data, error } = await supabase
-          .from("orders")
+          .from("order_items")
           .select("*")
-          .eq("user_id", user?.id);
+          .eq("user_id", user?.id)
+          .eq("order_id", id);
 
         if (error) {
           console.error("Error:", error);
@@ -37,18 +36,18 @@ function useOrders() {
           return;
         }
 
-        setOrders(data || []);
+        setOrder(data);
       } catch (err) {
         console.error("Unexpected error:", err);
-        setError("Failed to fetch orders");
+        setError("Failed to fetch order details");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchOrders();
-  }, []);
-  return { orders, loading, error };
+    fetchOrder();
+  }, [id]);
+  return { order, loading, error };
 }
 
-export default useOrders;
+export default useOrderById;

@@ -142,6 +142,7 @@ export interface OrderItemsDataType {
   id?: number;
   user_id: string;
   product_id: number;
+  product_name: string;
   total_price: number;
   price: number;
   quantity: number;

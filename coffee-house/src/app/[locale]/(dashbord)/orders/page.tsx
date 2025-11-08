@@ -56,7 +56,7 @@ export default function OrdersPage() {
                       className="relative group hover:text-accent transition-all duration-300"
                       href={`/orders/${order.id}`}
                     >
-                      <span className="">View</span>
+                      <span className="text-accent">View</span>
                       <span className="absolute -bottom-1 rounded-2xl left-0 w-full h-0.5 bg-accent scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
                     </Link>
                   </TableCell>

@@ -7,8 +7,8 @@ interface ProductPageProps {
   };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const { locale, id } = params;
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { locale, id } = await params;
 
   return (
     <main className="flex flex-col gap-10 justify-center items-center">
