@@ -14,15 +14,18 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Spinner } from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {
   const { signOut, signOutLoading } = useAuth();
   const { refreshCart } = useCart();
+  const router = useRouter();
 
   // Handle logout
   const handleSignOut = async () => {
     await signOut();
     refreshCart();
+    router.replace("/");
   };
 
   return (

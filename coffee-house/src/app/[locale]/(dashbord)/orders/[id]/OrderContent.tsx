@@ -19,7 +19,7 @@ export default function OrderContent({ id }: OrderContentProps) {
         <div className="flex flex-wrap gap-6 w-full justify-center">
           {order.map((item) => (
             <div
-              className="flex max-w-[600px] gap-3 md:gap-5 items-center w-full border border-[#665f55] rounded-2xl py-2 px-3 md:py-3 md:px-4"
+              className="flex max-w-[600px] gap-3 md:gap-5 items-center w-full border border-[#c1b6ad] dark:border-[#665f55] rounded-2xl py-2 px-3 md:py-3 md:px-4"
               key={item.id}
             >
               <div className="overflow-hidden w-full max-w-20 max-h-20 md:max-w-24 md:max-h-24 rounded-[20px]">

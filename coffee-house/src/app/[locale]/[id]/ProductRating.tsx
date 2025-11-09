@@ -10,10 +10,14 @@ import { addReview } from "@/utils/addReview";
 import { toast } from "sonner";
 
 interface ProductRating {
+  isAuthenticated: boolean;
   productId: number;
 }
 
-export default function ProductRating({ productId }: ProductRating) {
+export default function ProductRating({
+  isAuthenticated,
+  productId,
+}: ProductRating) {
   const {
     register,
     handleSubmit,
@@ -55,77 +59,92 @@ export default function ProductRating({ productId }: ProductRating) {
   }
 
   return (
-    <div className="flex items-center flex-col gap-5 w-full">
-      <h2 className="font-semibold text-xl md:text-2xl">Reviews</h2>
+    <div className="flex flex-col gap-10 items-center w-full">
+      <h2 className="font-semibold text-xl md:text-2xl">Product Reviews</h2>
 
-      <form
-        onSubmit={handleSubmit(handleReview)}
-        className="flex flex-col items-center gap-8 w-full p-5"
+      <div
+        className={`${
+          isAuthenticated
+            ? "grid grid-cols-1 lg:grid-cols-2"
+            : "flex justify-center"
+        }  gap-16 w-full`}
       >
-        <div className="flex flex-col w-full relative">
-          <div className="w-full flex flex-col gap-1.5">
-            <label htmlFor="comment">Your Comment</label>
-            <textarea
-              id="comment"
-              placeholder="Share your experience with this product..."
-              className={`w-full h-20 border border-[#665f55] p-3 rounded-xl focus:outline-none placeholder:font-normal placeholder:text-sm ${
-                errors.comment
-                  ? "border-error focus:outline-error"
-                  : touchedFields.comment && watch("comment") && !errors.comment
-                  ? "border-success focus:outline-success"
-                  : "border-[#665f55] focus:outline-[#665f55]"
-              }`}
-              {...register("comment", {
-                required: "Please write your comment.",
-                minLength: {
-                  value: 10,
-                  message: "Comment must be at least 10 characters.",
-                },
-                maxLength: {
-                  value: 500,
-                  message: "Comment must be less than 500 characters",
-                },
-              })}
-            />
-          </div>
-
-          {/* Error message */}
-          {errors.comment && (
-            <p
-              className={`${
-                errors.comment.message ? "absolute -bottom-5" : "hidden"
-              } font-normal text-error text-xs mt-1`}
+        {/* Render review form if user is authenticated */}
+        {isAuthenticated && (
+          <section className="w-full items-center flex flex-col gap-5">
+            <form
+              onSubmit={handleSubmit(handleReview)}
+              className="flex flex-col items-center gap-8 w-full"
             >
-              {errors.comment.message?.toString()}
-            </p>
-          )}
-        </div>
+              <div className="flex flex-col w-full relative">
+                <div className="w-full flex flex-col gap-1.5">
+                  <label htmlFor="comment">Your Comment</label>
+                  <textarea
+                    id="comment"
+                    placeholder="Share your experience with this product..."
+                    className={`w-full h-20 border border-[#665f55] p-3 rounded-xl focus:outline-none placeholder:font-normal placeholder:text-sm ${
+                      errors.comment
+                        ? "border-error focus:outline-error"
+                        : touchedFields.comment &&
+                          watch("comment") &&
+                          !errors.comment
+                        ? "border-success focus:outline-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    }`}
+                    {...register("comment", {
+                      required: "Please write your comment.",
+                      minLength: {
+                        value: 10,
+                        message: "Comment must be at least 10 characters.",
+                      },
+                      maxLength: {
+                        value: 500,
+                        message: "Comment must be less than 500 characters",
+                      },
+                    })}
+                  />
+                </div>
 
-        <div className="flex flex-col gap-1.5 w-full">
-          <p>Your Rating</p>
-          <StarRating rating={rating} setRating={setRating} />
-        </div>
+                {/* Error message */}
+                {errors.comment && (
+                  <p
+                    className={`${
+                      errors.comment.message ? "absolute -bottom-5" : "hidden"
+                    } font-normal text-error text-xs mt-1`}
+                  >
+                    {errors.comment.message?.toString()}
+                  </p>
+                )}
+              </div>
 
-        <button
-          className="flex items-center gap-3 justify-center max-w-50 w-full border border-[#665f55] hover:bg-[#665f55] 
+              <div className="flex flex-col gap-1.5 w-full">
+                <p>Your Rating</p>
+                <StarRating rating={rating} setRating={setRating} />
+              </div>
+
+              <button
+                className="flex items-center gap-3 justify-center max-w-50 w-full border border-[#665f55] hover:bg-[#665f55] 
           hover:text-[#e1d4c9] transition-all duration-300 
           rounded-[100px] h-11 font-semibold cursor-pointer"
-          type="submit"
-          disabled={isLoading || !isValid ? true : false}
-        >
-          {isLoading ? (
-            <>
-              <Spinner />
-              Submitting...
-            </>
-          ) : (
-            <>Submit Review</>
-          )}
-        </button>
-      </form>
+                type="submit"
+                disabled={isLoading || !isValid ? true : false}
+              >
+                {isLoading ? (
+                  <>
+                    <Spinner />
+                    Submitting...
+                  </>
+                ) : (
+                  <>Submit Review</>
+                )}
+              </button>
+            </form>
+          </section>
+        )}
 
-      {/* Customer reviews */}
-      <CustomerReviews product_id={productId} refreshKey={refreshKey} />
+        {/* Customer reviews */}
+        <CustomerReviews product_id={productId} refreshKey={refreshKey} />
+      </div>
     </div>
   );
 }

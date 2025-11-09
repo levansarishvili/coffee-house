@@ -42,6 +42,39 @@ export async function POST(request: NextRequest) {
 
     const ratingNumber = parseInt(rating);
 
+    // Check if user purchased this product
+    const { data: orderItems, error: orderItemsError } = await supabase
+      .from("order_items")
+      .select("id")
+      .eq("user_id", user.id)
+      .eq("product_id", product_id)
+      .single();
+
+    if (orderItemsError) {
+      console.error("Error checking purchase status:", orderItemsError);
+    }
+
+    const purchased_status = !!orderItems;
+
+    // Check if user already added review on this product
+    const { data: existingReviews, error: checkError } = await supabase
+      .from("reviews")
+      .select("id")
+      .eq("user_id", user.id)
+      .eq("product_id", product_id);
+
+    if (checkError) {
+      console.error("Error checking existing reviews:", checkError);
+    }
+
+    // If review already exists, return error
+    if (existingReviews && existingReviews.length > 0) {
+      return NextResponse.json(
+        { error: "You have already reviewed this product!" },
+        { status: 409 }
+      );
+    }
+
     // Insert review into Supabase
     const { data, error } = await supabase
       .from("reviews")
@@ -57,6 +90,7 @@ export async function POST(request: NextRequest) {
             "Anonymous",
           rating: ratingNumber,
           comment: comment.trim(),
+          purchased_status,
         },
       ])
       .select()

@@ -7,7 +7,7 @@ export default function GitHubSignIn() {
 
   const handleGitHubLogin = async () => {
     try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
+      const { error } = await supabase.auth.signInWithOAuth({
         provider: "github",
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
@@ -25,7 +25,8 @@ export default function GitHubSignIn() {
   return (
     <button
       onClick={handleGitHubLogin}
-      className="flex justify-center text-sm gap-2 items-center rounded-[100px] cursor-pointer px-2 h-11 border border-[#665f55] group hover:text-[#e1d4c9] 
+      className="flex justify-center text-sm gap-2 items-center rounded-[100px] cursor-pointer px-2 h-11 border border-[#665f55] 
+      group hover:text-[#e1d4c9] 
       hover:bg-[#665f55] transition-all duration-300"
     >
       <svg

@@ -161,4 +161,5 @@ export interface ReviewFormDataType {
   comment: string;
   product_id: number;
   created_at: string;
+  purchased_status: boolean;
 }

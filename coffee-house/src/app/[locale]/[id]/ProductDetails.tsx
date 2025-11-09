@@ -139,7 +139,7 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
           <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-12 lg:gap-25">
             <div
               className="md:self-start max-w-64 max-h-64 md:max-w-80 md:max-h-80 lg:max-w-[400px] lg:max-h-[400px] rounded-[40px] 
-          overflow-hidden border border-[#665f55]"
+          overflow-hidden border border-[#c1b6ad] dark:border-[#665f55]"
             >
               <Image
                 src={product?.image_url}
@@ -205,7 +205,7 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
                 </div>
               </div>
 
-              <div className="flex justify-center w-full">
+              <div className="flex justify-center md:justify-start w-full">
                 <button
                   onClick={handleAddToCart}
                   className="flex gap-4 justify-center items-center border max-w-64 w-full h-11 border-[#665f55] hover:bg-[#665f55] 
@@ -229,7 +229,10 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
           </div>
 
           {/* Product rating */}
-          <ProductRating productId={product.id} />
+          <ProductRating
+            isAuthenticated={isAuthenticated}
+            productId={product.id}
+          />
         </div>
       )}
     </section>

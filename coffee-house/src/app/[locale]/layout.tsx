@@ -30,7 +30,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <Toaster
           position="top-center"
           toastOptions={{
-            duration: 4000,
+            duration: 2000,
             style: {
               background: "#665f55",
               border: "1px solid #665f55",

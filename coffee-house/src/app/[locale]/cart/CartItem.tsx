@@ -47,7 +47,7 @@ export default function CartItem({ id, isAuthenticated }: CartItemProps) {
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 items-center w-full gap-4 sm:gap-6 p-3 border-b border-[#665f55]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 items-center w-full gap-4 sm:gap-6 p-3 border-b border-[#c1b6ad] dark:border-[#665f55]">
             {/* Product Info */}
             <div className="flex flex-col gap-1 ">
               <h3 className="text-lg md:text-2xl font-semibold">

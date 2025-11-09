@@ -108,7 +108,7 @@ export default function ProfileForm() {
         <div className="relative group">
           <label className="cursor-pointer">
             <div
-              className="flex items-center justify-center border-2 border-[#665f55] w-20 h-20 md:w-24 md:h-24 
+              className="flex items-center justify-center border-2 border-[#665f55] dark:border-[#c1b6ad] w-20 h-20 md:w-24 md:h-24 
              rounded-full cursor-pointer overflow-hidden bg-background hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all 
             duration-300"
             >
@@ -205,14 +205,14 @@ export default function ProfileForm() {
                 type="text"
                 id="full_name"
                 placeholder="Placeholder"
-                className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                   errors.full_name
                     ? "border-error focus:outline-error"
                     : touchedFields.full_name &&
                       watch("full_name") &&
                       !errors.full_name
-                    ? "border-success focus:outline-success"
-                    : "border-[#665f55] focus:outline-[#665f55]"
+                    ? "border-success"
+                    : "border-[#c1b6ad] dark:border-[#665f55]"
                 } `}
                 {...register("full_name", {
                   required: "Full Name is required.",
@@ -252,14 +252,14 @@ export default function ProfileForm() {
                 type="text"
                 id="username"
                 placeholder="Placeholder"
-                className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                   errors.username
                     ? "border-error focus:outline-error"
                     : touchedFields.username &&
                       watch("username") &&
                       !errors.username
-                    ? "border-success focus:outline-success"
-                    : "border-[#665f55] focus:outline-[#665f55]"
+                    ? "border-success"
+                    : "border-[#c1b6ad] dark:border-[#665f55]"
                 } `}
                 {...register("username", {
                   required: "Username is required.",
@@ -296,12 +296,12 @@ export default function ProfileForm() {
                 type="text"
                 id="email"
                 placeholder="Placeholder"
-                className={`opacity-80 w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                className={`opacity-80 w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                   errors.email
                     ? "border-error focus:outline-error"
                     : touchedFields.email && watch("email") && !errors.email
-                    ? "border-success focus:outline-success"
-                    : "border-[#665f55] focus:outline-[#665f55]"
+                    ? "border-success"
+                    : "border-[#c1b6ad] dark:border-[#665f55]"
                 } `}
                 {...register("email", {
                   required: "Email is required.",
@@ -343,17 +343,18 @@ export default function ProfileForm() {
                 }}
               >
                 <SelectTrigger
-                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                    errors.city
-                      ? "border-error focus:outline-error"
-                      : isCitySelected && watch("city") && !errors.city
-                      ? "border-success focus:outline-success"
-                      : "border-[#665f55] focus:outline-[#665f55]"
-                  }`}
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 shadow-none 
+                    rounded-xl focus:outline-none placeholder:font-normal ${
+                      errors.city
+                        ? "border-error focus:outline-error"
+                        : isCitySelected && watch("city") && !errors.city
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    }`}
                 >
                   <SelectValue placeholder="Select a city" />
                 </SelectTrigger>
-                <SelectContent className="bg-background border-[#665f55] rounded-xl">
+                <SelectContent className="bg-background border-[#c1b6ad] dark:border-[#665f55] rounded-xl">
                   <SelectGroup>
                     <SelectLabel>Cities</SelectLabel>
                     <SelectItem
@@ -394,17 +395,18 @@ export default function ProfileForm() {
                 }}
               >
                 <SelectTrigger
-                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                    errors.street
-                      ? "border-error focus:outline-error"
-                      : isStreetSelected && watch("street") && !errors.street
-                      ? "border-success focus:outline-success"
-                      : "border-[#665f55] focus:outline-[#665f55]"
-                  }`}
+                  className={`w-full h-13 border border-[#c1b6ad] shadow-none dark:border-[#665f55] px-3 rounded-xl focus:outline-none 
+                    placeholder:font-normal ${
+                      errors.street
+                        ? "border-error focus:outline-error"
+                        : isStreetSelected && watch("street") && !errors.street
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    }`}
                 >
                   <SelectValue placeholder="Select a street" />
                 </SelectTrigger>
-                <SelectContent className="bg-background border-[#665f55] rounded-xl">
+                <SelectContent className="bg-background border-[#c1b6ad] dark:border-[#665f55] rounded-xl">
                   <SelectGroup>
                     <SelectLabel>Streets</SelectLabel>
                     {availableStreets.map((street) => (
@@ -437,14 +439,14 @@ export default function ProfileForm() {
                 type="number"
                 id="house_number"
                 placeholder="Placeholder"
-                className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                   errors.house_number
                     ? "border-error focus:outline-error"
                     : touchedFields.house_number &&
                       watch("house_number") &&
                       !errors.house_number
-                    ? "border-success focus:outline-success"
-                    : "border-[#665f55] focus:outline-[#665f55]"
+                    ? "border-success"
+                    : "border-[#c1b6ad] dark:border-[#665f55]"
                 }`}
                 {...register("house_number", {
                   required: "House number is required.",

@@ -60,6 +60,27 @@ export async function POST(request: Request) {
       );
     }
 
+    // After successful purchase, update reviews for all products in this order
+    // Get all unique product IDs from the order
+    const productIds = [
+      ...new Set(
+        orderItemsData.map((item: OrderItemsDataType) => item.product_id)
+      ),
+    ];
+    console.log(productIds, "😍");
+
+    if (productIds.length > 0) {
+      const { error: updateError } = await supabase
+        .from("reviews")
+        .update({ purchased_status: true })
+        .eq("user_id", user.id)
+        .in("product_id", productIds);
+
+      if (updateError) {
+        console.error("Error updating review purchase status:", updateError);
+      }
+    }
+
     return NextResponse.json({
       success: true,
       orderId: order.id,

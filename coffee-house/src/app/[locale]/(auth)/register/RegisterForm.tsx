@@ -92,7 +92,7 @@ export default function RegisterForm() {
         <div className="flex flex-col gap-3">
           <div className="w-full flex gap-4">
             <label className="cursor-pointer flex gap-4 items-center">
-              <div className="flex items-center justify-center border border-[#665f55] w-16 h-16 md:w-24 md:h-24 rounded-full cursor-pointer overflow-hidden">
+              <div className="flex items-center justify-center border border-[#c1b6ad] dark:border-[#665f55] w-16 h-16 md:w-24 md:h-24 rounded-full cursor-pointer overflow-hidden">
                 <input
                   type="file"
                   className="hidden"
@@ -175,14 +175,14 @@ export default function RegisterForm() {
                   type="text"
                   id="full_name"
                   placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                     errors.full_name
                       ? "border-error focus:outline-error"
                       : touchedFields.full_name &&
                         watch("full_name") &&
                         !errors.full_name
-                      ? "border-success focus:outline-success"
-                      : "border-[#665f55] focus:outline-[#665f55]"
+                      ? "border-success"
+                      : "border-[#c1b6ad] dark:border-[#665f55]"
                   } `}
                   {...register("full_name", {
                     required: "Full Name is required.",
@@ -222,14 +222,14 @@ export default function RegisterForm() {
                   type="text"
                   id="username"
                   placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                     errors.username
                       ? "border-error focus:outline-error"
                       : touchedFields.username &&
                         watch("username") &&
                         !errors.username
-                      ? "border-success focus:outline-success"
-                      : "border-[#665f55] focus:outline-[#665f55]"
+                      ? "border-success"
+                      : "border-[#c1b6ad] dark:border-[#665f55]"
                   } `}
                   {...register("username", {
                     required: "Username is required.",
@@ -264,12 +264,12 @@ export default function RegisterForm() {
                   type="text"
                   id="email"
                   placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                     errors.email
                       ? "border-error focus:outline-error"
                       : touchedFields.email && watch("email") && !errors.email
-                      ? "border-success focus:outline-success"
-                      : "border-[#665f55] focus:outline-[#665f55]"
+                      ? "border-success"
+                      : "border-[#c1b6ad] dark:border-[#665f55]"
                   } `}
                   {...register("email", {
                     required: "Email is required.",
@@ -305,14 +305,14 @@ export default function RegisterForm() {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                     errors.password
                       ? "border-error focus:outline-error"
                       : touchedFields.password &&
                         watch("password") &&
                         !errors.password
-                      ? "border-success focus:outline-success"
-                      : "border-[#665f55] focus:outline-[#665f55]"
+                      ? "border-success"
+                      : "border-[#c1b6ad] dark:border-[#665f55]"
                   }`}
                   {...register("password", {
                     required: "Password is required.",
@@ -358,14 +358,14 @@ export default function RegisterForm() {
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirm_password"
                   placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                     errors.confirm_password
                       ? "border-error focus:outline-error"
                       : touchedFields.confirm_password &&
                         watch("confirm_password") &&
                         !errors.confirm_password
-                      ? "border-success focus:outline-success"
-                      : "border-[#665f55] focus:outline-[#665f55]"
+                      ? "border-success"
+                      : "border-[#c1b6ad] dark:border-[#665f55]"
                   }`}
                   {...register("confirm_password", {
                     required: "Please confirm your password.",
@@ -408,17 +408,17 @@ export default function RegisterForm() {
                   }}
                 >
                   <SelectTrigger
-                    className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                    className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                       errors.city
                         ? "border-error focus:outline-error"
                         : isCitySelected && watch("city") && !errors.city
-                        ? "border-success focus:outline-success"
-                        : "border-[#665f55] focus:outline-[#665f55]"
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
                     }`}
                   >
                     <SelectValue placeholder="Select a city" />
                   </SelectTrigger>
-                  <SelectContent className="bg-background border-[#665f55] rounded-xl">
+                  <SelectContent className="bg-background border-[#c1b6ad] dark:border-[#665f55] rounded-xl">
                     <SelectGroup>
                       <SelectLabel>Cities</SelectLabel>
                       <SelectItem
@@ -458,17 +458,17 @@ export default function RegisterForm() {
                   }}
                 >
                   <SelectTrigger
-                    className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+                    className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                       errors.street
                         ? "border-error focus:outline-error"
                         : isStreetSelected && watch("street") && !errors.street
-                        ? "border-success focus:outline-success"
-                        : "border-[#665f55] focus:outline-[#665f55]"
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
                     }`}
                   >
                     <SelectValue placeholder="Select a street" />
                   </SelectTrigger>
-                  <SelectContent className="bg-background border-[#665f55] rounded-xl">
+                  <SelectContent className="bg-background border-[#c1b6ad] dark:border-[#665f55] rounded-xl">
                     <SelectGroup>
                       <SelectLabel>Streets</SelectLabel>
                       {availableStreets.map((street) => (
@@ -500,14 +500,14 @@ export default function RegisterForm() {
                   type="number"
                   id="house_number"
                   placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                     errors.house_number
                       ? "border-error focus:outline-error"
                       : touchedFields.house_number &&
                         watch("house_number") &&
                         !errors.house_number
-                      ? "border-success focus:outline-success"
-                      : "border-[#665f55] focus:outline-[#665f55]"
+                      ? "border-success"
+                      : "border-[#c1b6ad] dark:border-[#665f55]"
                   }`}
                   {...register("house_number", {
                     required: "House number is required.",

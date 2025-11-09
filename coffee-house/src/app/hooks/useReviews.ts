@@ -18,7 +18,8 @@ function useReviews(product_id: number, refreshKey: number) {
         const { data, error } = await supabase
           .from("reviews")
           .select("*")
-          .eq("product_id", product_id);
+          .eq("product_id", product_id)
+          .order("id", { ascending: false });
 
         if (error) {
           console.error("Error:", error);

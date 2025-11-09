@@ -19,6 +19,7 @@ import {
 import { ShoppingBagIcon } from "@/utils/CustomIcons";
 import { useAuth } from "@/app/context/useAuth";
 import { useCart } from "@/app/context/useCart";
+import { useRouter } from "next/navigation";
 
 interface AvatarProps {
   isAuthenticated: boolean;
@@ -37,12 +38,14 @@ export default function Avatar({
 }: AvatarProps) {
   const { signOut } = useAuth();
   const { refreshCart } = useCart();
+  const router = useRouter();
 
   // Handle logout
   const handleSignOut = async () => {
     await signOut();
     refreshCart();
     handleBurgerMenuClose();
+    router.replace("/");
   };
 
   // Handle burger menu close if it is open
@@ -56,8 +59,8 @@ export default function Avatar({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
-              className="flex justify-center overflow-hidden items-center cursor-pointer w-10 h-10 border 
-            border-[#665f55] rounded-full hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300"
+              className="flex justify-center overflow-hidden items-center cursor-pointer w-10 h-10 border-2 
+            border-[#665f55] dark:border-[#c1b6ad] rounded-full hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300"
             >
               {loading ? (
                 <UserIcon className="w-6 h-6" />

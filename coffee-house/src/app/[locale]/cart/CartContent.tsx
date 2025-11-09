@@ -49,7 +49,7 @@ export default function CartContent() {
 
       const orderItemsData = cartItems.map((item) => ({
         user_id: user.id,
-        product_id: item.id as number,
+        product_id: item.product_id as number,
         product_name: item.name,
         total_price: item.discount_price
           ? item.discount_price * item.quantity

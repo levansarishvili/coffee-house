@@ -68,12 +68,12 @@ export default function LoginForm() {
               type="text"
               id="email"
               placeholder="Placeholder"
-              className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+              className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                 errors.email
                   ? "border-error focus:outline-error"
                   : touchedFields.email && watch("email") && !errors.email
-                  ? "border-success focus:outline-success"
-                  : "border-[#665f55] focus:outline-[#665f55]"
+                  ? "border-success"
+                  : "border-[#c1b6ad] dark:border-[#665f55]"
               }`}
               {...register("email", {
                 required: "Email is required.",
@@ -109,14 +109,14 @@ export default function LoginForm() {
               type={showPassword ? "text" : "password"}
               id="password"
               placeholder="Password"
-              className={`w-full h-13 border border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+              className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
                 errors.password
                   ? "border-error focus:outline-error"
                   : touchedFields.password &&
                     watch("password") &&
                     !errors.password
-                  ? "border-success focus:outline-success"
-                  : "border-[#665f55] focus:outline-[#665f55]"
+                  ? "border-success"
+                  : "border-[#c1b6ad] dark:border-[#665f55]"
               }`}
               {...register("password", {
                 required: "Password is required.",
