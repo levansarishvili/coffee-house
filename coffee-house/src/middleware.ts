@@ -1,8 +1,17 @@
+// middleware.ts
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 
 export default createMiddleware(routing);
 
 export const config = {
-  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+  // Match all pathnames except for:
+  // - API routes
+  // - Static files (images, etc.)
+  // - Next.js internals
+  matcher: [
+    "/((?!api|_next|_vercel|.*\\..*).*)",
+    "/",
+    "/(en|ka)/:path*", // Explicitly include your locales
+  ],
 };
