@@ -12,11 +12,13 @@ import { toast } from "sonner";
 interface ProductRating {
   isAuthenticated: boolean;
   productId: number;
+  onReviewAdded: (newRating: number) => void;
 }
 
 export default function ProductRating({
   isAuthenticated,
   productId,
+  onReviewAdded,
 }: ProductRating) {
   const {
     register,
@@ -45,9 +47,11 @@ export default function ProductRating({
       await addReview(updatedFormData);
 
       toast.success("Review added successfully!");
-      reset();
       setRating(0);
       setRefreshKey((prev) => prev + 1);
+      // Pass the new rating to parent before resetting
+      onReviewAdded(rating);
+      reset();
     } catch (error) {
       if (error instanceof Error) {
         toast.success(error.message);

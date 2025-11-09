@@ -47,8 +47,7 @@ export async function POST(request: NextRequest) {
       .from("order_items")
       .select("id")
       .eq("user_id", user.id)
-      .eq("product_id", product_id)
-      .single();
+      .eq("product_id", product_id);
 
     if (orderItemsError) {
       console.error("Error checking purchase status:", orderItemsError);

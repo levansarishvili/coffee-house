@@ -40,6 +40,7 @@ function useProductById(id: string) {
 
     fetchProducts();
   }, [id]);
+
   return { product, loading, error };
 }
 

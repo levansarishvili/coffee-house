@@ -17,6 +17,7 @@ import { useCart } from "@/app/context/useCart";
 import ProductRating from "./ProductRating";
 import { StarIcon } from "lucide-react";
 import { RATING_STARS } from "@/app/constants/constants";
+import useReviews from "@/app/hooks/useReviews";
 
 interface ProductDetailsProps {
   id: string;
@@ -27,11 +28,34 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
   const { user } = useAuth();
   const { refreshCart } = useCart();
   const { product, loading, error } = useProductById(id);
+
+  const { reviews, loading: reviewsLoading } = useReviews(product?.id ?? null);
+  const [ratings, setRatings] = useState<number[]>([]);
+  const [averageRating, setAverageRating] = useState(5);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedSize, setSelectedSize] = useState("s");
   const [selectedAdditives, setSelectedAdditives] = useState<number[]>([]);
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
+
+  // Calculate average rating
+  useEffect(() => {
+    if (reviews && reviews.length > 0) {
+      // Extract all ratings from reviews
+      const allRatings = reviews.map((review) => review.rating);
+
+      // Update ratings state
+      setRatings(allRatings);
+
+      const avg =
+        reviews.reduce((acc, review) => acc + review.rating, 0) /
+        reviews.length;
+
+      setAverageRating(avg);
+    } else {
+      setAverageRating(5);
+    }
+  }, [reviews]);
 
   let isAuthenticated = false;
   if (user) {
@@ -75,6 +99,18 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
       }
     }
   }, [product, selectedSize, selectedAdditives]);
+
+  // Function to handle when a new review is added
+  const handleReviewAdded = (newRating: number) => {
+    // Optionally, you can also optimistically update the ratings
+    setRatings((prev) => [...prev, newRating]);
+
+    // Recalculate average optimistically (optional)
+    const newRatings = [...ratings, newRating];
+    const newAverage =
+      newRatings.reduce((acc, rating) => acc + rating, 0) / newRatings.length;
+    setAverageRating(newAverage);
+  };
 
   const showDiscountedPrice =
     totalPrice &&
@@ -128,11 +164,11 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
 
   return (
     <section className="flex flex-col gap-[100px] w-full">
-      {loading && <Loading />}
+      {(loading || reviewsLoading) && <Loading />}
 
       {error && <ErrorMessaege message={error} />}
 
-      {product && !loading && !error && (
+      {product && !loading && !reviewsLoading && !error && (
         <div className="flex flex-col justify-center items-center gap-20">
           <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-12 lg:gap-25">
             <div
@@ -158,7 +194,7 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
                   <StarIcon
                     key={index}
                     className={`w-5 h-5 ${
-                      product.rating > index
+                      averageRating > index
                         ? "opacity-100 text-yellow-600 fill-yellow-600"
                         : "opacity-30 fill-primary"
                     }`}
@@ -230,6 +266,7 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
           <ProductRating
             isAuthenticated={isAuthenticated}
             productId={product.id}
+            onReviewAdded={handleReviewAdded}
           />
         </div>
       )}

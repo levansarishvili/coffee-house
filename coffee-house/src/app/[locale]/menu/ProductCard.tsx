@@ -1,5 +1,6 @@
 import { RATING_STARS } from "@/app/constants/constants";
 import { useAuth } from "@/app/context/useAuth";
+import useReviews from "@/app/hooks/useReviews";
 import { Product } from "@/app/types/interfaces";
 import { StarIcon } from "lucide-react";
 import Image from "next/image";
@@ -11,6 +12,14 @@ interface ProductProps {
 
 export default function ProductCard({ product }: ProductProps) {
   const { user } = useAuth();
+  const { reviews } = useReviews(product.id);
+
+  // Calculate average rating
+  const averageRating =
+    (reviews &&
+      reviews.reduce((acc, review) => acc + review.rating, 0) /
+        reviews.length) ||
+    5;
 
   let isAuthenticated = false;
   if (user) {
@@ -43,7 +52,7 @@ export default function ProductCard({ product }: ProductProps) {
               <StarIcon
                 key={index}
                 className={`w-5 h-5 ${
-                  product.rating > index
+                  averageRating > index
                     ? "opacity-100 text-yellow-600 fill-yellow-600"
                     : "opacity-30 fill-primary"
                 }`}
