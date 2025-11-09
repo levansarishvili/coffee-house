@@ -1,13 +1,9 @@
 "use client";
 
-import { useAuth } from "@/app/context/useAuth";
 import Image from "next/image";
 import ProfileForm from "./ProfileForm";
 
 export default function ProfileAuthenticatedView() {
-  const { userProfile } = useAuth();
-
-  console.log(userProfile);
   return (
     <section className="flex flex-col justify-center items-center w-full">
       <div className="w-full rounded-[40px] relative">

@@ -19,7 +19,7 @@ function useProducts(category: string) {
 
         if (error) {
           console.error("Error:", error);
-          setError(error.message);
+          setError("Something went wrong, please try again!");
           return;
         }
 

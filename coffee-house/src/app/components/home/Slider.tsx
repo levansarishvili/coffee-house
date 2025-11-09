@@ -1,5 +1,6 @@
 "use client";
 
+import useProducts from "@/app/hooks/useProducts";
 import {
   Carousel,
   CarouselContent,
@@ -7,40 +8,25 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Loading from "@/Loading";
 import Autoplay from "embla-carousel-autoplay";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useRef } from "react";
-
-const sliderData = [
-  {
-    id: 1,
-    sliderImage: "/assets/slider-1.png",
-    name: "S’mores Frappuccino",
-    description:
-      "This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.",
-    price: "$5.50",
-  },
-  {
-    id: 2,
-    sliderImage: "/assets/slider-2.png",
-    name: "Caramel Macchiato",
-    description:
-      "Fragrant and unique classic espresso with rich caramel-peanut syrup, with cream under whipped thick foam.",
-    price: "$5.00",
-  },
-  {
-    id: 3,
-    sliderImage: "/assets/slider-3.png",
-    name: "Ice coffee",
-    description:
-      "A popular summer drink that tones and invigorates. Prepared from coffee, milk and ice.",
-    price: "$4.50",
-  },
-];
+import { useMemo, useRef } from "react";
+import ErrorMessaege from "../ErrorMessaege";
 
 export default function Slider() {
   const t = useTranslations("Slider");
+  const { products, loading, error } = useProducts("coffee");
+
+  // Get 3 random products after data loads
+  const randomProducts = useMemo(() => {
+    if (!products || products.length === 0) return [];
+
+    // Shuffle array and take first 3
+    const shuffled = [...products].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  }, [products]);
 
   const plugin = useRef(
     Autoplay({
@@ -61,45 +47,54 @@ export default function Slider() {
         {t("headerPart-3")}
       </h2>
 
-      <Carousel
-        className="w-full"
-        opts={{ loop: true, containScroll: "trimSnaps" }}
-        plugins={[plugin.current]}
-      >
-        <CarouselContent
-          onMouseEnter={() => plugin.current.stop()}
-          onMouseLeave={() => plugin.current.play()}
-        >
-          {sliderData.map((product) => (
-            <CarouselItem
-              key={product.id}
-              className="w-full flex items-center justify-center"
-            >
-              <div className="flex flex-col max-w-[348px] md:max-w-[480px] items-center gap-5 rounded-2xl bg-background">
-                <Image
-                  src={product.sliderImage}
-                  alt={product.name}
-                  width={480}
-                  height={480}
-                  className="rounded-xl"
-                />
-                <p className="text-2xl text-center font-semibold tracking-normal">
-                  {product.name}
-                </p>
-                <p className="text-center text-muted-foreground tracking-normal">
-                  {product.description}
-                </p>
-                <span className="text-2xl font-semibold tracking-normal ">
-                  {product.price}
-                </span>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
+      {error && !loading && <ErrorMessaege message={error} />}
 
-        <CarouselPrevious className="hidden md:flex" />
-        <CarouselNext className="hidden md:flex" />
-      </Carousel>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Carousel
+          className="w-full"
+          opts={{ loop: true, containScroll: "trimSnaps" }}
+          plugins={[plugin.current]}
+        >
+          <CarouselContent
+            onMouseEnter={() => plugin.current.stop()}
+            onMouseLeave={() => plugin.current.play()}
+          >
+            {randomProducts.map((product) => (
+              <CarouselItem
+                key={product.id}
+                className="w-full flex items-center justify-center"
+              >
+                <div
+                  className="flex flex-col max-w-[300px] sm:max-w-[348px] md:max-w-[400px] lg:max-w-[460px] items-center gap-5 rounded-[40px] 
+                overflow-hidden bg-background"
+                >
+                  <Image
+                    src={product.image_url}
+                    alt={product.name}
+                    width={480}
+                    height={480}
+                    className="rounded-[40px]"
+                  />
+                  <p className="text-2xl text-center font-semibold tracking-normal">
+                    {product.name}
+                  </p>
+                  <p className="text-center text-muted-foreground tracking-normal">
+                    {product.description}
+                  </p>
+                  <span className="text-2xl font-semibold tracking-normal ">
+                    ${product.price.toFixed(2)}
+                  </span>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
+      )}
     </section>
   );
 }

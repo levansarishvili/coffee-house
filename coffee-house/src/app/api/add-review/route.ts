@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get user profile including avatar
-    const { data: userProfile, error: profileError } = await supabase
+    const { data: userProfile } = await supabase
       .from("user_profiles")
       .select("avatar_url, username, full_name")
       .eq("user_id", user.id)

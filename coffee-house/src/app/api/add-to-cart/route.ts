@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   const supabase = await createClient();
 
   // Check user authentication
-  const { data: userData, error: userError } = await supabase.auth.getUser();
+  const { data: userData } = await supabase.auth.getUser();
   const user_id = userData?.user?.id;
 
   try {

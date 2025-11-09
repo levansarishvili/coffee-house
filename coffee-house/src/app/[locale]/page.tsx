@@ -11,11 +11,6 @@ interface ProductProps {
 }
 
 export default function HomePage({ params }: ProductProps) {
-  // const { locale } = params;
-
-  // // Enable static rendering
-  // setRequestLocale(locale);
-
   return (
     <main className="flex flex-col">
       <Hero />

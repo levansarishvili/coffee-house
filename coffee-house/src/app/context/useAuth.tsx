@@ -187,32 +187,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     initializeAuth();
 
-    // Set up auth state change listener
-    // const {
-    //   data: { subscription },
-    // } = supabase.auth.onAuthStateChange(async (event, session) => {
-    //   if (!mounted) return;
-
-    //   if (event === "SIGNED_IN" && session) {
-    //     setUser(session.user as AuthUser);
-    //     if (session.user.id) {
-    //       const profile = await getUserProfile(session.user.id);
-    //       if (mounted) setUserProfile(profile);
-    //     }
-    //     setLoading(false);
-    //   } else if (event === "SIGNED_OUT") {
-    //     setUser(null);
-    //     setUserProfile(null);
-    //     setLoading(false);
-    //   } else if (event === "USER_UPDATED" && session) {
-    //     setUser(session.user as AuthUser);
-    //   }
-    // });
-
     // Cleanup function
     return () => {
       mounted = false;
-      // subscription.unsubscribe();
     };
   }, [supabase, getAuthUser, getUserProfile]);
 

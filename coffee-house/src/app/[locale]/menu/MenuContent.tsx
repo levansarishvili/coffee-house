@@ -13,7 +13,6 @@ export default function MenuContent() {
   const t = useTranslations("MenuPage");
   const [category, setCategory] = useState(CATEGORIES.COFFEE);
   const { products, loading, error } = useProducts(category);
-  console.log(products);
 
   return (
     <main className="flex flex-col gap-10 items-center justify-center">

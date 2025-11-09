@@ -17,7 +17,6 @@ export default function GoogleSignIn() {
           redirectTo: `${window.location.origin}/auth/callback`,
         },
       });
-      console.log(data);
 
       if (error) {
         console.error("Google OAuth error:", error);

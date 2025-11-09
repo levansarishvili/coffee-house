@@ -67,7 +67,6 @@ export async function POST(request: Request) {
         orderItemsData.map((item: OrderItemsDataType) => item.product_id)
       ),
     ];
-    console.log(productIds, "😍");
 
     if (productIds.length > 0) {
       const { error: updateError } = await supabase

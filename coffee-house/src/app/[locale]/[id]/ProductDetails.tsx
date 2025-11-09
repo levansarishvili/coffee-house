@@ -33,8 +33,6 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
 
-  console.log(product);
-
   let isAuthenticated = false;
   if (user) {
     isAuthenticated = true;
@@ -109,7 +107,7 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
       try {
         setIsLoading(true);
         const result = await addToCart(isAuthenticated, cartItemData);
-        console.log(result);
+
         if (result.action === "updated") {
           toast.success("Product quantity updated in cart!");
         } else {

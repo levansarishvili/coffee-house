@@ -84,7 +84,6 @@ export async function POST(request: NextRequest) {
         }
       } catch (avatarError) {
         console.error("Avatar processing error:", avatarError);
-        // Continue registration without avatar
       }
     } else {
       console.log("No avatar file provided or file is empty");

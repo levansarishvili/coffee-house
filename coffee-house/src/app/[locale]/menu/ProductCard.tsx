@@ -17,7 +17,7 @@ export default function ProductCard({ product }: ProductProps) {
     isAuthenticated = true;
   }
   const showDiscountedPrice = isAuthenticated && product?.discount_price;
-  console.log(product);
+
   return (
     <Link
       href={`/${product.id}`}

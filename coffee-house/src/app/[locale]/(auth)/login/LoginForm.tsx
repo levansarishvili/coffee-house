@@ -40,7 +40,6 @@ export default function LoginForm() {
       // Migrate cart items from temporary_cart to user cart
       await migrateTemporaryCartToUserCart(data.user.id);
 
-      console.log(data);
       refreshUser();
       refreshUserProfile();
       refreshCart();

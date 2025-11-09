@@ -42,10 +42,6 @@ export const migrateTemporaryCartToUserCart = async (
       .gte("created_at", "1970-01-01");
 
     if (deleteError) throw deleteError;
-
-    console.log(
-      `Successfully migrated ${tempCartItems.length} cart items to user cart`
-    );
   } catch (error) {
     console.error("Error migrating cart data:", error);
     throw error;

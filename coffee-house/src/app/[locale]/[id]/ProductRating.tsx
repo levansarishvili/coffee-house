@@ -43,7 +43,6 @@ export default function ProductRating({
     try {
       setIsLoading(true);
       const result = await addReview(updatedFormData);
-      console.log(result);
 
       toast.success("Review added successfully!");
       reset();

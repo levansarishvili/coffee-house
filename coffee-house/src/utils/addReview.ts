@@ -1,5 +1,3 @@
-import { ReviewFormDataType } from "@/app/types/interfaces";
-
 export const addReview = async (data: FormData) => {
   const response = await fetch("/api/add-review", {
     method: "POST",
