@@ -1,10 +1,9 @@
+import { RATING_STARS } from "@/app/constants/constants";
 import { useAuth } from "@/app/context/useAuth";
 import { Product } from "@/app/types/interfaces";
-import { StarIcon } from "@heroicons/react/16/solid";
+import { StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-const RATING_STARS = 5;
 
 interface ProductProps {
   product: Product;
@@ -45,8 +44,8 @@ export default function ProductCard({ product }: ProductProps) {
                 key={index}
                 className={`w-5 h-5 ${
                   product.rating > index
-                    ? "opacity-100 text-yellow-600"
-                    : "opacity-30"
+                    ? "opacity-100 text-yellow-600 fill-yellow-600"
+                    : "opacity-30 fill-primary"
                 }`}
               />
             ))}

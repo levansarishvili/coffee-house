@@ -150,3 +150,15 @@ export interface OrderItemsDataType {
   created_at?: string;
   updated_at?: string;
 }
+
+// Review form data
+export interface ReviewFormDataType {
+  id: number;
+  user_id: string;
+  user_name: string;
+  user_avatar_url?: string;
+  rating: number;
+  comment: string;
+  product_id: number;
+  created_at: string;
+}

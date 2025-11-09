@@ -58,3 +58,5 @@ export const CITIES: City[] = [
     ],
   },
 ];
+
+export const RATING_STARS = 5;

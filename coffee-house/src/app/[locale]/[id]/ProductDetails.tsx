@@ -14,6 +14,9 @@ import { CartItemType } from "@/app/types/interfaces";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { useCart } from "@/app/context/useCart";
+import ProductRating from "./ProductRating";
+import { StarIcon } from "lucide-react";
+import { RATING_STARS } from "@/app/constants/constants";
 
 interface ProductDetailsProps {
   id: string;
@@ -132,81 +135,101 @@ export default function ProductDetails({ id, locale }: ProductDetailsProps) {
       {error && <ErrorMessaege message={error} />}
 
       {product && !loading && !error && (
-        <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-12 lg:gap-25">
-          <div
-            className="md:self-start max-w-64 max-h-64 md:max-w-80 md:max-h-80 lg:max-w-[400px] lg:max-h-[400px] rounded-[40px] 
+        <div className="flex flex-col justify-center items-center gap-20">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-12 lg:gap-25">
+            <div
+              className="md:self-start max-w-64 max-h-64 md:max-w-80 md:max-h-80 lg:max-w-[400px] lg:max-h-[400px] rounded-[40px] 
           overflow-hidden border border-[#665f55]"
-          >
-            <Image
-              src={product?.image_url}
-              alt={product.name}
-              width={800}
-              height={800}
-              className="object-cover"
-            />
-          </div>
+            >
+              <Image
+                src={product?.image_url}
+                alt={product.name}
+                width={800}
+                height={800}
+                className="object-cover"
+              />
+            </div>
 
-          <div className="flex flex-col gap-5">
-            <h2 className="font-semibold text-2xl md:text-3xl">
-              {product.name}
-            </h2>
-            <p className="">{product.description}</p>
+            {/* Product parameters */}
+            <div className="flex flex-col gap-5">
+              <h2 className="font-semibold text-2xl md:text-3xl">
+                {product.name}
+              </h2>
+              <div className="flex gap-1">
+                {Array.from({ length: RATING_STARS }, (_, index) => (
+                  <StarIcon
+                    key={index}
+                    className={`w-5 h-5 ${
+                      product.rating > index
+                        ? "opacity-100 text-yellow-600 fill-yellow-600"
+                        : "opacity-30 fill-primary"
+                    }`}
+                  />
+                ))}
+              </div>
+              <p className="">{product.description}</p>
 
-            <SizeSelect
-              isAuthenticated={isAuthenticated}
-              product_sizes={product.product_sizes}
-              selectedSize={selectedSize}
-              setSelectedSize={setSelectedSize}
-            />
+              <SizeSelect
+                isAuthenticated={isAuthenticated}
+                product_sizes={product.product_sizes}
+                selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
+              />
 
-            <AdditiveSelect
-              isAuthenticated={isAuthenticated}
-              product_additives={product.product_additives}
-              selectedAdditives={selectedAdditives}
-              setSelectedAdditives={setSelectedAdditives}
-            />
+              <AdditiveSelect
+                isAuthenticated={isAuthenticated}
+                product_additives={product.product_additives}
+                selectedAdditives={selectedAdditives}
+                setSelectedAdditives={setSelectedAdditives}
+              />
 
-            <div className="flex justify-between">
-              <span className="font-semibold text-xl md:text-2xl">Total:</span>
-              <div className="flex gap-5 justify-center items-center">
-                {showDiscountedPrice ? (
-                  <>
-                    <span className="font-semibold text-xl md:text-2xl opacity-60 line-through">
+              <div className="flex justify-between">
+                <span className="font-semibold text-xl md:text-2xl">
+                  Total:
+                </span>
+                <div className="flex gap-5 justify-center items-center">
+                  {showDiscountedPrice ? (
+                    <>
+                      <span className="font-semibold text-xl md:text-2xl opacity-60 line-through">
+                        ${totalPrice?.toFixed(2)}
+                      </span>
+                      <span className="font-semibold text-xl md:text-2xl">
+                        ${discountedPrice?.toFixed(2)}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="font-semibold text-xl md:text-2xl">
                       ${totalPrice?.toFixed(2)}
                     </span>
-                    <span className="font-semibold text-xl md:text-2xl">
-                      ${discountedPrice?.toFixed(2)}
-                    </span>
-                  </>
-                ) : (
-                  <span className="font-semibold text-xl md:text-2xl">
-                    ${totalPrice?.toFixed(2)}
-                  </span>
-                )}
+                  )}
+                </div>
+              </div>
+
+              <div className="flex justify-center w-full">
+                <button
+                  onClick={handleAddToCart}
+                  className="flex gap-4 justify-center items-center border max-w-64 w-full h-11 border-[#665f55] hover:bg-[#665f55] 
+              hover:text-[#e1d4c9] transition-all duration-300 rounded-[100px] cursor-pointer font-semibold"
+                  disabled={isLoading ? true : false}
+                >
+                  {isLoading ? (
+                    <>
+                      <Spinner />
+                      Adding to cart...
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCartIcon className="w-6 h-6" />
+                      <span>Add to cart</span>
+                    </>
+                  )}
+                </button>
               </div>
             </div>
-
-            <div className="flex justify-center w-full">
-              <button
-                onClick={handleAddToCart}
-                className="flex gap-4 justify-center items-center border max-w-64 w-full h-11 border-[#665f55] hover:bg-[#665f55] 
-              hover:text-[#e1d4c9] transition-all duration-300 rounded-[100px] cursor-pointer font-semibold"
-                disabled={isLoading ? true : false}
-              >
-                {isLoading ? (
-                  <>
-                    <Spinner />
-                    Adding to cart...
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCartIcon className="w-6 h-6" />
-                    <span>Add to cart</span>
-                  </>
-                )}
-              </button>
-            </div>
           </div>
+
+          {/* Product rating */}
+          <ProductRating productId={product.id} />
         </div>
       )}
     </section>
