@@ -121,7 +121,7 @@ export default function Avatar({
       ) : (
         <Link
           onClick={handleBurgerMenuClose}
-          href="/profile"
+          href="/login"
           className="flex justify-center overflow-hidden items-center cursor-pointer w-11 h-11 border border-[#665f55] rounded-full hover:bg-[#665f55] hover:text-[#e1d4c9] transition-all duration-300"
         >
           {loading ? (

@@ -37,7 +37,7 @@ function useReviews(product_id: number, refreshKey: number) {
     };
 
     fetchReviews();
-  }, [product_id, refreshKey]);
+  }, [product_id, refreshKey, supabase]);
   return { reviews, loading, error };
 }
 

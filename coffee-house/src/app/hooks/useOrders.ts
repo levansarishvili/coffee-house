@@ -47,7 +47,7 @@ function useOrders() {
     };
 
     fetchOrders();
-  }, []);
+  }, [supabase]);
   return { orders, loading, error };
 }
 

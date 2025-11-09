@@ -23,7 +23,7 @@ interface ProductDetailsProps {
   locale: string;
 }
 
-export default function ProductDetails({ id, locale }: ProductDetailsProps) {
+export default function ProductDetails({ id }: ProductDetailsProps) {
   const { user } = useAuth();
   const { refreshCart } = useCart();
   const { product, loading, error } = useProductById(id);

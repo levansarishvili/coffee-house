@@ -9,7 +9,7 @@ interface OrderDetailsPageProps {
 export default async function OrderDetailsPage({
   params,
 }: OrderDetailsPageProps) {
-  const { locale, id } = await params;
+  const { id } = await params;
 
   return (
     <main className="flex flex-col gap-10 justify-center items-center">

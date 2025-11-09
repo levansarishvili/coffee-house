@@ -42,7 +42,7 @@ export async function GET(request: Request) {
   if (user) {
     try {
       // Check if user already exists in user_profiles table
-      const { data: existingProfile, error: checkError } = await supabase
+      const { error: checkError } = await supabase
         .from("user_profiles")
         .select("user_id")
         .eq("user_id", user.id)

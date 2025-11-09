@@ -46,7 +46,7 @@ function useOrderById(id: number) {
     };
 
     fetchOrder();
-  }, [id]);
+  }, [id, supabase]);
   return { order, loading, error };
 }
 

@@ -83,7 +83,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     fetchUserAndCart();
-  }, []);
+  }, [supabase]);
 
   const refreshCart = useCallback(async () => {
     try {
@@ -115,7 +115,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     } catch (err) {
       console.error("Unexpected error refreshing cart:", err);
     }
-  }, []);
+  }, [supabase]);
 
   // Update cart items quantity
   const updateQuantity = useCallback(
@@ -151,7 +151,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         await refreshCart();
       }
     },
-    [user, refreshCart, cartItems]
+    [user, refreshCart, cartItems, supabase]
   );
 
   // Remove cart item from cart with optimistic UI update
@@ -183,7 +183,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         await refreshCart();
       }
     },
-    [user, refreshCart, cartItems]
+    [user, refreshCart, cartItems, supabase]
   );
 
   // Clear cart
@@ -195,7 +195,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       await supabase.from(table).delete();
     }
     setCartItems([]);
-  }, [user]);
+  }, [user, supabase]);
 
   const value: CartContextType = {
     cartItems,
