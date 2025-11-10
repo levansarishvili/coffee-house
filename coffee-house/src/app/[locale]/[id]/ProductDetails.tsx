@@ -28,7 +28,7 @@ interface ProductDetailsProps {
 export default function ProductDetails({ id }: ProductDetailsProps) {
   const t = useTranslations("ProductDetailsPage");
   const { user } = useAuth();
-  const { refreshCart, clearCart } = useCart();
+  const { refreshCart } = useCart();
   const { product, loading, error } = useProductById(id);
 
   const { reviews, loading: reviewsLoading } = useReviews(product?.id ?? null);
@@ -152,8 +152,8 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
           toast.success("Product added to cart successfully!");
         }
 
+        // clearCart();
         refreshCart();
-        clearCart();
       } catch (error) {
         if (error instanceof Error) {
           toast.success(error.message);

@@ -9,7 +9,7 @@ interface ProductPageProps {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { locale, id } = params;
+  const { locale, id } = await params;
   const t = await getTranslations("ProductDetailsPage");
 
   return (
