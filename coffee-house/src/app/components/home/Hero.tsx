@@ -1,6 +1,6 @@
+import { Link } from "@/i18n/navigation";
 import { CoffeeIcon } from "@/utils/CustomIcons";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 
 export default function Hero() {
   const t = useTranslations("Hero");

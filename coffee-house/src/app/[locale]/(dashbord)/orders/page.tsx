@@ -1,7 +1,6 @@
 "use client";
 
 import useOrders from "@/app/hooks/useOrders";
-import Link from "next/link";
 import {
   Table,
   TableBody,
@@ -11,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Link } from "@/i18n/navigation";
 import Loading from "@/Loading";
 
 export default function OrdersPage() {

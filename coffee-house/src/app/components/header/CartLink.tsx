@@ -1,8 +1,8 @@
 "use client";
 
 import { useCart } from "@/app/context/useCart";
+import { Link } from "@/i18n/navigation";
 import { ShoppingBagIcon } from "@/utils/CustomIcons";
-import Link from "next/link";
 
 interface CartLinkProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;

@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import GitHubSignIn from "./GitHubSignIn";
 import GoogleSignIn from "./GoogleSignIn";
-import Link from "next/link";
 import { LoginFormData } from "@/app/types/interfaces";
 import { login } from "@/utils/login";
 import { toast } from "sonner";
@@ -14,6 +13,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { migrateTemporaryCartToUserCart } from "@/utils/cartMigrationClient";
 import { useAuth } from "@/app/context/useAuth";
 import { useCart } from "@/app/context/useCart";
+import { Link } from "@/i18n/navigation";
 
 export default function LoginForm() {
   const {

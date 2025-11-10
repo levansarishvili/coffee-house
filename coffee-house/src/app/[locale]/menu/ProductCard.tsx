@@ -2,9 +2,9 @@ import { RATING_STARS } from "@/app/constants/constants";
 import { useAuth } from "@/app/context/useAuth";
 import useReviews from "@/app/hooks/useReviews";
 import { Product } from "@/app/types/interfaces";
+import { Link } from "@/i18n/navigation";
 import { StarIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 interface ProductProps {
   product: Product;

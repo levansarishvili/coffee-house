@@ -19,8 +19,8 @@ import { registerUser } from "@/utils/register";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
-import Link from "next/link";
 import { getStreetsByCity } from "@/utils/getStreetsByCity";
+import { Link } from "@/i18n/navigation";
 
 export default function RegisterForm() {
   const {

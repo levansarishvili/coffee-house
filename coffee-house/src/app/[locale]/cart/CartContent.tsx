@@ -5,10 +5,10 @@ import CartItem from "./CartItem";
 import Loading from "@/Loading";
 import { useAuth } from "@/app/context/useAuth";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { confirmOrder } from "@/utils/confirmOrder";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { Link } from "@/i18n/navigation";
 
 export default function CartContent() {
   const { cartItems, loading, clearCart } = useCart();

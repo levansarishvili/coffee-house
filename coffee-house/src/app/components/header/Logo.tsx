@@ -1,9 +1,9 @@
 "use client";
 
 import { THEMES } from "@/app/constants/constants";
+import { Link } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 
 interface LogoProps {

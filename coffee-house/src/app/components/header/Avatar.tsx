@@ -6,7 +6,6 @@ import {
   UserIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +19,7 @@ import { ShoppingBagIcon } from "@/utils/CustomIcons";
 import { useAuth } from "@/app/context/useAuth";
 import { useCart } from "@/app/context/useCart";
 import { useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
 
 interface AvatarProps {
   isAuthenticated: boolean;
