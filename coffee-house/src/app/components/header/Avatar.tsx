@@ -20,6 +20,7 @@ import { useAuth } from "@/app/context/useAuth";
 import { useCart } from "@/app/context/useCart";
 import { useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface AvatarProps {
   isAuthenticated: boolean;
@@ -39,6 +40,7 @@ export default function Avatar({
   const { signOut } = useAuth();
   const { refreshCart } = useCart();
   const router = useRouter();
+  const t = useTranslations("AvatarDropDown");
 
   // Handle logout
   const handleSignOut = async () => {
@@ -79,29 +81,29 @@ export default function Avatar({
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="relative z-200 w-44 bg-inverse border-[#665f55] rounded-xl"
+            className="relative z-200 w-44 bg-inverse border-[#c1b6ad] dark:border-[#665f55] rounded-xl"
             align="end"
           >
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{t("header")}</DropdownMenuLabel>
             <DropdownMenuGroup>
               <Link href="/profile" onClick={handleBurgerMenuClose}>
                 <DropdownMenuItem className="font-medium cursor-pointer rounded-lg focus:bg-button-hover">
                   <UserIcon className="w-4 h-4 stroke-[1.5]" />
-                  Profile
+                  {t("profile")}
                 </DropdownMenuItem>
               </Link>
 
               <Link href="/cart" onClick={handleBurgerMenuClose}>
                 <DropdownMenuItem className="font-medium cursor-pointer rounded-lg focus:bg-button-hover">
                   <ShoppingBagIcon className="w-4 h-4 stroke-[1.5]" />
-                  Cart
+                  {t("cart")}
                 </DropdownMenuItem>{" "}
               </Link>
 
               <Link href="/orders" onClick={handleBurgerMenuClose}>
                 <DropdownMenuItem className="font-medium cursor-pointer rounded-lg focus:bg-button-hover">
                   <CreditCardIcon className="w-4 h-4 stroke-[1.5]" />
-                  Orders
+                  {t("orders")}
                 </DropdownMenuItem>
               </Link>
             </DropdownMenuGroup>
@@ -113,7 +115,7 @@ export default function Avatar({
                 className="flex gap-2 items-center cursor-pointer"
               >
                 <ArrowLeftStartOnRectangleIcon className="w-4 h-4 stroke-[1.5]" />
-                Log out
+                {t("signOut")}
               </button>
             </DropdownMenuItem>
           </DropdownMenuContent>

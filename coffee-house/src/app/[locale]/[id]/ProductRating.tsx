@@ -8,6 +8,7 @@ import { ReviewFormDataType } from "@/app/types/interfaces";
 import { Spinner } from "@/components/ui/spinner";
 import { addReview } from "@/utils/addReview";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface ProductRating {
   isAuthenticated: boolean;
@@ -29,6 +30,7 @@ export default function ProductRating({
   } = useForm<ReviewFormDataType>({
     mode: "all",
   });
+  const t = useTranslations("ProductDetailsPage");
 
   const [rating, setRating] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +65,9 @@ export default function ProductRating({
 
   return (
     <div className="flex flex-col gap-10 items-center w-full">
-      <h2 className="font-semibold text-xl md:text-2xl">Product Reviews</h2>
+      <h2 className="font-semibold text-xl md:text-2xl">
+        {t("Reviews.header")}
+      </h2>
 
       <div
         className={`${
@@ -81,28 +85,35 @@ export default function ProductRating({
             >
               <div className="flex flex-col w-full relative">
                 <div className="w-full flex flex-col gap-1.5">
-                  <label htmlFor="comment">Your Comment</label>
+                  <label htmlFor="comment">{t("Reviews.commentLabel")}</label>
                   <textarea
                     id="comment"
-                    placeholder="Share your experience with this product..."
-                    className={`w-full h-20 border border-[#665f55] p-3 rounded-xl focus:outline-none placeholder:font-normal placeholder:text-sm ${
-                      errors.comment
-                        ? "border-error focus:outline-error"
-                        : touchedFields.comment &&
-                          watch("comment") &&
-                          !errors.comment
-                        ? "border-success focus:outline-success"
-                        : "border-[#c1b6ad] dark:border-[#665f55]"
-                    }`}
+                    placeholder={t("Reviews.commentPlaceholder")}
+                    className={`w-full h-20 border border-[#665f55] p-3 rounded-xl focus:outline-none 
+                      placeholder:font-normal placeholder:text-sm ${
+                        errors.comment
+                          ? "border-error focus:outline-error"
+                          : touchedFields.comment &&
+                            watch("comment") &&
+                            !errors.comment
+                          ? "border-success focus:outline-success"
+                          : "border-[#c1b6ad] dark:border-[#665f55]"
+                      }`}
                     {...register("comment", {
-                      required: "Please write your comment.",
+                      required: `${t(
+                        "Reviews.ErrorMessages.comment.required"
+                      )}`,
                       minLength: {
                         value: 10,
-                        message: "Comment must be at least 10 characters.",
+                        message: `${t(
+                          "Reviews.ErrorMessages.comment.minLength"
+                        )}`,
                       },
                       maxLength: {
                         value: 500,
-                        message: "Comment must be less than 500 characters",
+                        message: `${t(
+                          "Reviews.ErrorMessages.comment.maxLength"
+                        )}`,
                       },
                     })}
                   />
@@ -121,7 +132,7 @@ export default function ProductRating({
               </div>
 
               <div className="flex flex-col gap-1.5 w-full">
-                <p>Your Rating</p>
+                <p className="">{t("Reviews.ratingLabel")}</p>
                 <StarRating rating={rating} setRating={setRating} />
               </div>
 
@@ -135,10 +146,10 @@ export default function ProductRating({
                 {isLoading ? (
                   <>
                     <Spinner />
-                    Submitting...
+                    {t("Reviews.submitButtonLoading")}...
                   </>
                 ) : (
-                  <>Submit Review</>
+                  <>{t("Reviews.submitButton")}</>
                 )}
               </button>
             </form>

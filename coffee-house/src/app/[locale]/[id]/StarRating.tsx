@@ -1,5 +1,6 @@
 "use client";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
+import { useTranslations } from "next-intl";
 
 interface StarRatingProps {
   rating: number;
@@ -7,6 +8,8 @@ interface StarRatingProps {
 }
 
 const StarRating = ({ rating, setRating }: StarRatingProps) => {
+  const t = useTranslations("ProductDetailsPage.Reviews");
+
   return (
     <div className="w-full flex flex-col items-center gap-8 p-5 border border-[#c1b6ad] dark:border-[#665f55] rounded-xl">
       <div className="flex flex-col items-center gap-3">
@@ -16,7 +19,9 @@ const StarRating = ({ rating, setRating }: StarRatingProps) => {
           ))}
         </Rating>
         <div className="text-center">
-          <p className="text-sm font-medium">Rating: {rating}</p>
+          <p className="text-sm font-medium">
+            {t("ratingText")}: {rating}
+          </p>
         </div>
       </div>
     </div>

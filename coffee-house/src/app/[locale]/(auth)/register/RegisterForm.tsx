@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
 import { getStreetsByCity } from "@/utils/getStreetsByCity";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function RegisterForm() {
   const {
@@ -37,13 +38,14 @@ export default function RegisterForm() {
       street: "",
     },
   });
+  const t = useTranslations("RegistrationPage");
 
   // Register the field with validation
   register("city", {
-    required: "Please select a city",
+    required: `${t("ErrorMessages.city.required")}`,
   });
   register("street", {
-    required: "Please select a street",
+    required: `${t("ErrorMessages.street.required")}`,
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -104,14 +106,14 @@ export default function RegisterForm() {
                         const file = fileList[0];
                         return file?.type?.startsWith("image/")
                           ? true
-                          : "Only image files are allowed";
+                          : `${t("ErrorMessages.avatar.fileType")}`;
                       },
                       fileSize: (fileList: FileList | null) => {
                         if (!fileList || fileList.length === 0) return true;
                         const file = fileList[0];
                         return file?.size <= 1 * 1024 * 1024
                           ? true
-                          : "File size must be less than 1MB";
+                          : `${t("ErrorMessages.avatar.fileSize")}`;
                       },
                     },
                   })}
@@ -141,7 +143,9 @@ export default function RegisterForm() {
               </div>
 
               <span className="text-sm">
-                {preview ? "Upload new" : "Upload Image"}
+                {preview
+                  ? `${t("avatarButtons.uploadNew")}`
+                  : `${t("avatarButtons.uploadImage")}`}
               </span>
             </label>
 
@@ -154,7 +158,7 @@ export default function RegisterForm() {
                   setValue("avatar", null);
                 }}
               >
-                Remove image
+                {t("avatarButtons.removeImage")}
               </button>
             )}
           </div>
@@ -170,33 +174,34 @@ export default function RegisterForm() {
             {/* Fullname */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5">
-                <label htmlFor="full_name">Full Name</label>
+                <label htmlFor="full_name">{t("InputLabels.fullName")}</label>
                 <input
                   type="text"
                   id="full_name"
-                  placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                    errors.full_name
-                      ? "border-error focus:outline-error"
-                      : touchedFields.full_name &&
-                        watch("full_name") &&
-                        !errors.full_name
-                      ? "border-success"
-                      : "border-[#c1b6ad] dark:border-[#665f55]"
-                  } `}
+                  placeholder={t("InputPlaceholders.fullName")}
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none 
+                    placeholder:font-normal placeholder:text-sm ${
+                      errors.full_name
+                        ? "border-error focus:outline-error"
+                        : touchedFields.full_name &&
+                          watch("full_name") &&
+                          !errors.full_name
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    } `}
                   {...register("full_name", {
-                    required: "Full Name is required.",
+                    required: `${t("ErrorMessages.fullName.required")}`,
                     minLength: {
                       value: 3,
-                      message: "Full Name must be at least 3 characters.",
+                      message: `${t("ErrorMessages.fullName.minLength")}`,
                     },
                     maxLength: {
                       value: 50,
-                      message: "Full name must be less than 50 characters",
+                      message: `${t("ErrorMessages.fullName.maxLength")}`,
                     },
                     pattern: {
                       value: /^[A-Za-z\s.'-]+$/,
-                      message: "Only English letters are allowed",
+                      message: `${t("ErrorMessages.fullName.pattern")}`,
                     },
                   })}
                 />
@@ -217,29 +222,30 @@ export default function RegisterForm() {
             {/* Username */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">{t("InputLabels.username")}</label>
                 <input
                   type="text"
                   id="username"
-                  placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                    errors.username
-                      ? "border-error focus:outline-error"
-                      : touchedFields.username &&
-                        watch("username") &&
-                        !errors.username
-                      ? "border-success"
-                      : "border-[#c1b6ad] dark:border-[#665f55]"
-                  } `}
+                  placeholder={t("InputPlaceholders.username")}
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none 
+                    placeholder:font-normal placeholder:text-sm ${
+                      errors.username
+                        ? "border-error focus:outline-error"
+                        : touchedFields.username &&
+                          watch("username") &&
+                          !errors.username
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    } `}
                   {...register("username", {
-                    required: "Username is required.",
+                    required: `${t("ErrorMessages.username.required")}`,
                     minLength: {
                       value: 3,
-                      message: "Username must be at least 3 characters.",
+                      message: `${t("ErrorMessages.username.minLength")}`,
                     },
                     maxLength: {
                       value: 30,
-                      message: "Username must be less than 30 characters",
+                      message: `${t("ErrorMessages.username.maxLength")}`,
                     },
                   })}
                 />
@@ -259,27 +265,28 @@ export default function RegisterForm() {
             {/* Email */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("InputLabels.email")}</label>
                 <input
                   type="text"
                   id="email"
-                  placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                    errors.email
-                      ? "border-error focus:outline-error"
-                      : touchedFields.email && watch("email") && !errors.email
-                      ? "border-success"
-                      : "border-[#c1b6ad] dark:border-[#665f55]"
-                  } `}
+                  placeholder={t("InputPlaceholders.email")}
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none 
+                    placeholder:font-normal placeholder:text-sm ${
+                      errors.email
+                        ? "border-error focus:outline-error"
+                        : touchedFields.email && watch("email") && !errors.email
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    } `}
                   {...register("email", {
-                    required: "Email is required.",
+                    required: `${t("ErrorMessages.email.required")}`,
                     minLength: {
                       value: 3,
-                      message: "Email must be at least 3 characters.",
+                      message: `${t("ErrorMessages.email.minLength")}`,
                     },
                     pattern: {
                       value: /^\S+@\S+\.\S+$/,
-                      message: "Please enter a valid email",
+                      message: `${t("ErrorMessages.email.pattern")}`,
                     },
                   })}
                 />
@@ -300,29 +307,30 @@ export default function RegisterForm() {
             {/* Password */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5 relative">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">{t("InputLabels.password")}</label>
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                    errors.password
-                      ? "border-error focus:outline-error"
-                      : touchedFields.password &&
-                        watch("password") &&
-                        !errors.password
-                      ? "border-success"
-                      : "border-[#c1b6ad] dark:border-[#665f55]"
-                  }`}
+                  placeholder={t("InputPlaceholders.password")}
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none 
+                    placeholder:font-normal placeholder:text-sm ${
+                      errors.password
+                        ? "border-error focus:outline-error"
+                        : touchedFields.password &&
+                          watch("password") &&
+                          !errors.password
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    }`}
                   {...register("password", {
-                    required: "Password is required.",
+                    required: `${t("ErrorMessages.password.required")}`,
                     minLength: {
                       value: 6,
-                      message: "Password must be at least 6 characters.",
+                      message: `${t("ErrorMessages.password.minLength")}`,
                     },
                     pattern: {
                       value: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
-                      message: "Must contain at least 1 special character.",
+                      message: `${t("ErrorMessages.password.pattern")}`,
                     },
                   })}
                 />
@@ -353,24 +361,30 @@ export default function RegisterForm() {
             {/* Confirm password */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5 relative">
-                <label htmlFor="confirm_password">Confirm Password</label>
+                <label htmlFor="confirm_password">
+                  {t("InputLabels.confirmPassword")}
+                </label>
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirm_password"
-                  placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
-                    errors.confirm_password
-                      ? "border-error focus:outline-error"
-                      : touchedFields.confirm_password &&
-                        watch("confirm_password") &&
-                        !errors.confirm_password
-                      ? "border-success"
-                      : "border-[#c1b6ad] dark:border-[#665f55]"
-                  }`}
+                  placeholder={t("InputPlaceholders.confirmPassword")}
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none 
+                    placeholder:font-normal placeholder:text-sm ${
+                      errors.confirm_password
+                        ? "border-error focus:outline-error"
+                        : touchedFields.confirm_password &&
+                          watch("confirm_password") &&
+                          !errors.confirm_password
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    }`}
                   {...register("confirm_password", {
-                    required: "Please confirm your password.",
+                    required: `${t("ErrorMessages.confirmPassword.required")}`,
                     validate: (value) =>
-                      value === watch("password") || "Passwords do not match",
+                      value === watch("password") ||
+                      `${t(
+                        "ErrorMessages.confirmPassword.compareWithPassword"
+                      )}`,
                   })}
                 />
 
@@ -399,7 +413,7 @@ export default function RegisterForm() {
             {/* City */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5 relative">
-                <label htmlFor="city">City</label>
+                <label htmlFor="city">{t("InputLabels.city")}</label>
                 <Select
                   value={watch("city")}
                   onValueChange={(value) => {
@@ -416,7 +430,7 @@ export default function RegisterForm() {
                         : "border-[#c1b6ad] dark:border-[#665f55]"
                     }`}
                   >
-                    <SelectValue placeholder="Select a city" />
+                    <SelectValue placeholder={t("InputPlaceholders.city")} />
                   </SelectTrigger>
                   <SelectContent className="bg-background border-[#c1b6ad] dark:border-[#665f55] rounded-xl">
                     <SelectGroup>
@@ -448,7 +462,7 @@ export default function RegisterForm() {
             {/* Street */}
             <div className="flex flex-col w-full relative">
               <div className="w-full flex flex-col gap-1.5 relative">
-                <label htmlFor="street">Street</label>
+                <label htmlFor="street">{t("InputLabels.street")}</label>
                 <Select
                   disabled={!watch("city")}
                   value={watch("street")}
@@ -466,7 +480,7 @@ export default function RegisterForm() {
                         : "border-[#c1b6ad] dark:border-[#665f55]"
                     }`}
                   >
-                    <SelectValue placeholder="Select a street" />
+                    <SelectValue placeholder={t("InputPlaceholders.street")} />
                   </SelectTrigger>
                   <SelectContent className="bg-background border-[#c1b6ad] dark:border-[#665f55] rounded-xl">
                     <SelectGroup>
@@ -495,29 +509,32 @@ export default function RegisterForm() {
             {/* House number */}
             <div className="flex flex-col w-full relative ">
               <div className="w-full flex flex-col gap-1.5">
-                <label htmlFor="house_number">House number</label>
+                <label htmlFor="house_number">
+                  {t("InputLabels.houseNumber")}
+                </label>
                 <input
                   type="number"
                   id="house_number"
-                  placeholder="Placeholder"
-                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
-                    errors.house_number
-                      ? "border-error focus:outline-error"
-                      : touchedFields.house_number &&
-                        watch("house_number") &&
-                        !errors.house_number
-                      ? "border-success"
-                      : "border-[#c1b6ad] dark:border-[#665f55]"
-                  }`}
+                  placeholder={t("InputPlaceholders.houseNumber")}
+                  className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none 
+                    placeholder:font-normal placeholder:text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                      errors.house_number
+                        ? "border-error focus:outline-error"
+                        : touchedFields.house_number &&
+                          watch("house_number") &&
+                          !errors.house_number
+                        ? "border-success"
+                        : "border-[#c1b6ad] dark:border-[#665f55]"
+                    }`}
                   {...register("house_number", {
-                    required: "House number is required.",
+                    required: `${t("ErrorMessages.houseNumber.required")}`,
                     min: {
                       value: 1,
-                      message: "House number must be greater than 0",
+                      message: `${t("ErrorMessages.houseNumber.min")}`,
                     },
                     pattern: {
                       value: /^[1-9]\d*$/,
-                      message: "Please enter a valid house number (e.g., 123)",
+                      message: `${t("ErrorMessages.houseNumber.pattern")}`,
                     },
                   })}
                 />
@@ -540,12 +557,12 @@ export default function RegisterForm() {
         </div>
 
         <p className="opacity-80">
-          Have already an account?
+          {t("question")}
           <Link
             className="ml-2 text-accent font-semibold relative group"
             href="/login"
           >
-            Sign in
+            {t("signInLink")}
             <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-accent scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
           </Link>
         </p>
@@ -563,10 +580,10 @@ export default function RegisterForm() {
           {isLoading ? (
             <>
               <Spinner />
-              Registering...
+              {t("Buttons.registerLoading")}...
             </>
           ) : (
-            <>Registration</>
+            <>{t("Buttons.register")}</>
           )}
         </button>
       </form>

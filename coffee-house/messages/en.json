@@ -128,5 +128,135 @@
     },
     "question": "Don't have an account?",
     "registerLink": "Sign up"
+  },
+  "RegistrationPage": {
+    "header": "Registration",
+    "InputLabels": {
+      "fullName": "Full Name",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "city": "City",
+      "street": "Street",
+      "houseNumber": "House number"
+    },
+    "InputPlaceholders": {
+      "fullName": "Enter full name",
+      "username": "Enter username",
+      "email": "Enter email",
+      "password": "Enter password",
+      "confirmPassword": "Confirm Password",
+      "city": "Select city",
+      "street": "Select street",
+      "houseNumber": "Enter house number"
+    },
+    "avatarButtons": {
+      "uploadNew": "Upload new",
+      "uploadImage": "Upload Image",
+      "removeImage": "Remove image"
+    },
+    "ErrorMessages": {
+      "avatar": {
+        "fileType": "Only image files are allowed",
+        "fileSize": "File size must be less than 1MB"
+      },
+      "fullName": {
+        "required": "Full Name is required",
+        "minLength": "Full Name must be at least 3 characters",
+        "maxLength": "Full name must be less than 50 characters",
+        "pattern": "Only English letters are allowed"
+      },
+      "username": {
+        "required": "Username is required",
+        "minLength": "Username must be at least 3 characters",
+        "maxLength": "Username must be less than 30 characters"
+      },
+      "email": {
+        "required": "Email is required",
+        "minLength": "Email must be at least 3 characters",
+        "pattern": "Please enter a valid email"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must be at least 6 characters",
+        "pattern": "Must contain at least 1 special character"
+      },
+      "confirmPassword": {
+        "required": "Please confirm your password",
+        "compareWithPassword": "Passwords do not match"
+      },
+      "city": {
+        "required": "Please select a city"
+      },
+      "street": {
+        "required": "Please select a street"
+      },
+
+      "houseNumber": {
+        "required": "House number is required",
+        "min": "House number must be greater than 0",
+        "pattern": "Please enter a valid house number"
+      }
+    },
+    "Buttons": {
+      "register": "Registration",
+      "registerLoading": "Registering"
+    },
+    "question": "Have already an account?",
+    "signInLink": "Sign in"
+  },
+  "CartPage": {
+    "header": "Cart",
+    "Buttons": {
+      "signIn": "Sign in",
+      "register": "Register",
+      "confirm": "Confirm Order",
+      "confirmLoading": "Placing Order"
+    },
+    "total": "Total",
+    "address": "Address"
+  },
+  "AvatarDropDown": {
+    "header": "My Account",
+    "profile": "Profile",
+    "cart": "Cart",
+    "orders": "Orders",
+    "signOut": "Sign out"
+  },
+  "OrdersPage": {
+    "header": "Orders",
+    "total": "Total",
+    "TableHeaders": {
+      "date": "Date",
+      "details": "Details",
+      "amount": "Amount"
+    },
+    "view": "View"
+  },
+  "OrderItemsPage": {
+    "header": "Order Details"
+  },
+  "ProductDetailsPage": {
+    "headerPart1": "Discover the Story in ",
+    "headerPart2": "Your Cup",
+    "addToCartButton": "Add to cart",
+    "addToCartButtonLoading": "Adding to cart",
+    "Reviews": {
+      "header": "Reviews",
+      "commentLabel": "Your Comment",
+      "ratingLabel": "Your Rating",
+      "ratingText": "Rating",
+      "commentPlaceholder": "Share your experience with this product...",
+      "submitButton": "Submit Review",
+      "submitButtonLoading": "Submitting",
+      "ErrorMessages": {
+        "comment": {
+          "required": "Please write your comment",
+          "minLength": "Comment must be at least 10 characters",
+          "maxLength": "Comment must be less than 500 characters"
+        }
+      }
+    }
   }
 }

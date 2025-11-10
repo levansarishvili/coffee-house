@@ -9,6 +9,7 @@ import { confirmOrder } from "@/utils/confirmOrder";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function CartContent() {
   const { cartItems, loading, clearCart } = useCart();
@@ -18,6 +19,7 @@ export default function CartContent() {
   const [isLoading, setIsLoading] = useState(false);
   const hasAddress =
     userProfile?.city && userProfile?.street && userProfile?.house_number;
+  const t = useTranslations("CartPage");
 
   let isAuthenticated = false;
   if (user) {
@@ -92,7 +94,9 @@ export default function CartContent() {
 
       <div className="flex flex-col justify-between w-full gap-4">
         <div className="flex w-full justify-between">
-          <span className="font-semibold text-lg md:text-2xl">Total:</span>
+          <span className="font-semibold text-lg md:text-2xl">
+            {t("total")}:
+          </span>
 
           {/* Price Section */}
           <div className="flex flex-col sm:flex-row items-center justify-end gap-2 sm:gap-4">
@@ -114,7 +118,9 @@ export default function CartContent() {
         </div>
         {hasAddress && (
           <div className="flex w-full justify-between">
-            <span className="font-semibold text-lg md:text-2xl">Address:</span>
+            <span className="font-semibold text-lg md:text-2xl">
+              {t("address")}:
+            </span>
             <span className="font-semibold text-lg md:text-2xl">
               {userProfile.city
                 ? userProfile.city.charAt(0).toUpperCase() +
@@ -137,10 +143,10 @@ export default function CartContent() {
               {isLoading ? (
                 <>
                   <Spinner />
-                  Placing Order...
+                  {t("Buttons.confirmLoading")}...
                 </>
               ) : (
-                <>Confirm Order</>
+                <>{t("Buttons.confirm")}</>
               )}
             </button>
           )}
@@ -151,14 +157,14 @@ export default function CartContent() {
             href="/login"
             className="flex justify-center items-center border font-semibold cursor-pointer border-[#665f55] w-50 h-11 py-2.5 px-[78px] rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
           >
-            Login
+            {t("Buttons.signIn")}
           </Link>
 
           <Link
             href="/register"
             className="flex justify-center items-center border font-semibold cursor-pointer border-[#665f55] w-50 h-11 py-2.5 px-[78px] rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
           >
-            Register
+            {t("Buttons.register")}
           </Link>
         </div>
       )}

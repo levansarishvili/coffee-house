@@ -18,6 +18,7 @@ import ProductRating from "./ProductRating";
 import { StarIcon } from "lucide-react";
 import { RATING_STARS } from "@/app/constants/constants";
 import useReviews from "@/app/hooks/useReviews";
+import { useTranslations } from "next-intl";
 
 interface ProductDetailsProps {
   id: string;
@@ -25,6 +26,7 @@ interface ProductDetailsProps {
 }
 
 export default function ProductDetails({ id }: ProductDetailsProps) {
+  const t = useTranslations("ProductDetailsPage");
   const { user } = useAuth();
   const { refreshCart } = useCart();
   const { product, loading, error } = useProductById(id);
@@ -249,12 +251,12 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
                   {isLoading ? (
                     <>
                       <Spinner />
-                      Adding to cart...
+                      {t("addToCartButtonLoading")}...
                     </>
                   ) : (
                     <>
                       <ShoppingCartIcon className="w-6 h-6" />
-                      <span>Add to cart</span>
+                      <span>{t("addToCartButton")}</span>
                     </>
                   )}
                 </button>
