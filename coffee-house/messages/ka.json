@@ -52,5 +52,81 @@
       "tea": "ჩაი",
       "dessert": "დესერტი"
     }
+  },
+
+  "ProfilePage": {
+    "InputLabels": {
+      "fullName": "სრული სახელი",
+      "username": "მომხმარებელი",
+      "email": "ელფოსტა",
+      "city": "ქალაქი",
+      "street": "ქუჩა",
+      "houseNumber": "სახლის ნომერი"
+    },
+    "ErrorMessages": {
+      "avatar": {
+        "fileType": "მხოლოდ სურათის ატვირთვაა შესაძლებელი",
+        "fileSize": "ფაილის ზომა არ უნდა აღემატებოდეს 1MB-ს"
+      },
+      "fullName": {
+        "required": "სრული სახელი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "maxLength": "არ უნდა შეიცავდეს 50 სიმბოლოზე მეტს",
+        "pattern": "მხოლოდ ლათინური ასოებია დაშვებული"
+      },
+      "username": {
+        "required": "მომხმარებლის სახელი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "maxLength": "არ უნდა შეიცავდეს 30 სიმბოლოზე მეტს"
+      },
+      "email": {
+        "required": "ელფოსტა სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "pattern": "შეიყვანეთ ელფოსტა სწორი ფორმატით"
+      },
+
+      "houseNumber": {
+        "required": "სახლის ნომერი სავალდებულოა",
+        "min": "სახლის ნომერი უნდა იყოს 0-ზე მეტი",
+        "pattern": "შეიყვანეთ სახლის ნომერი სწორი ფორმატით"
+      }
+    },
+    "Buttons": {
+      "saveChanges": "შენახვა",
+      "saveChangesLoading": "განახლება",
+      "signOut": "გასვლა",
+      "signOutLoading": "გასვლა"
+    }
+  },
+  "LoginPage": {
+    "header": "ავტორიზაცია",
+    "InputLabels": {
+      "email": "ელფოსტა",
+      "password": "პაროლი"
+    },
+    "InputPlaceholders": {
+      "email": "შეიყვანეთ ელფოსტა",
+      "password": "შეიყვანეთ პაროლი"
+    },
+    "ErrorMessages": {
+      "email": {
+        "required": "ელფოსტა სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "pattern": "შეიყვანეთ ელფოსტა სწორი ფორმატით"
+      },
+      "password": {
+        "required": "პაროლი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს",
+        "pattern": "უნდა შეიცავდეს მინიმუმ 1 სპეციალურ სიმბოლოს"
+      }
+    },
+    "Buttons": {
+      "signIn": "შესვლა",
+      "signInLoading": "შესვლა",
+      "signInWithGithub": "Github-ით შესვლა",
+      "signInWithGoogle": "Google-ით შესვლა"
+    },
+    "question": "ჯერ არ გაქვთ პროფილი?",
+    "registerLink": "რეგისტრაცია"
   }
 }

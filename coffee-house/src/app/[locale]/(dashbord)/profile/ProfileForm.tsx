@@ -24,6 +24,7 @@ import { getStreetsByCity } from "@/utils/getStreetsByCity";
 import { toast } from "sonner";
 import { updateProfile } from "@/utils/updateProfile";
 import LogoutButton from "./LogoutButton";
+import { useTranslations } from "next-intl";
 
 export default function ProfileForm() {
   const {
@@ -47,6 +48,7 @@ export default function ProfileForm() {
       street: userProfile?.street,
     },
   });
+  const t = useTranslations("ProfilePage");
 
   const [isLoading, setIsLoading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
@@ -123,14 +125,14 @@ export default function ProfileForm() {
                       const file = fileList[0];
                       return file?.type?.startsWith("image/")
                         ? true
-                        : "Only image files are allowed";
+                        : `${t("ErrorMessages.avatar.fileType")}`;
                     },
                     fileSize: (fileList: FileList | null) => {
                       if (!fileList || fileList.length === 0) return true;
                       const file = fileList[0];
                       return file?.size <= 1 * 1024 * 1024
                         ? true
-                        : "File size must be less than 1MB";
+                        : `${t("ErrorMessages.avatar.fileSize")}`;
                     },
                   },
                 })}
@@ -170,22 +172,22 @@ export default function ProfileForm() {
               )}
             </div>
           </label>
-        </div>
 
-        {/* Remove button - only show when image is selected */}
-        {preview && (
-          <button
-            type="button"
-            className="absolute -right-1 flex justify-center items-center w-6 h-6 rounded-full border border-[#665f55] 
+          {/* Remove button - only show when image is selected */}
+          {preview && (
+            <button
+              type="button"
+              className="absolute -right-1 top-0 flex justify-center items-center w-6 h-6 rounded-full border border-[#665f55] 
             bg-[#665f55] text-[#e1d4c9] transition-all duration-300 cursor-pointer"
-            onClick={() => {
-              setPreview(null);
-              setValue("avatar", null);
-            }}
-          >
-            <XMarkIcon className="w-4 h-4" />
-          </button>
-        )}
+              onClick={() => {
+                setPreview(null);
+                setValue("avatar", null);
+              }}
+            >
+              <XMarkIcon className="w-4 h-4" />
+            </button>
+          )}
+        </div>
 
         {/* Display validation errors */}
         {errors.avatar && (
@@ -200,7 +202,7 @@ export default function ProfileForm() {
           {/* Fullname */}
           <div className="flex flex-col w-full relative">
             <div className="w-full flex flex-col gap-1.5">
-              <label htmlFor="full_name">Full Name</label>
+              <label htmlFor="full_name">{t("InputLabels.fullName")}</label>
               <input
                 type="text"
                 id="full_name"
@@ -215,18 +217,18 @@ export default function ProfileForm() {
                     : "border-[#c1b6ad] dark:border-[#665f55]"
                 } `}
                 {...register("full_name", {
-                  required: "Full Name is required.",
+                  required: `${t("ErrorMessages.fullName.required")}`,
                   minLength: {
                     value: 3,
-                    message: "Full Name must be at least 3 characters.",
+                    message: `${t("ErrorMessages.fullName.minLength")}`,
                   },
                   maxLength: {
                     value: 50,
-                    message: "Full name must be less than 50 characters",
+                    message: `${t("ErrorMessages.fullName.maxLength")}`,
                   },
                   pattern: {
                     value: /^[A-Za-z\s.'-]+$/,
-                    message: "Only English letters are allowed",
+                    message: `${t("ErrorMessages.fullName.pattern")}`,
                   },
                 })}
               />
@@ -247,7 +249,7 @@ export default function ProfileForm() {
           {/* Username */}
           <div className="flex flex-col w-full relative">
             <div className="w-full flex flex-col gap-1.5">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">{t("InputLabels.username")}</label>
               <input
                 type="text"
                 id="username"
@@ -262,14 +264,14 @@ export default function ProfileForm() {
                     : "border-[#c1b6ad] dark:border-[#665f55]"
                 } `}
                 {...register("username", {
-                  required: "Username is required.",
+                  required: `${t("ErrorMessages.username.required")}`,
                   minLength: {
                     value: 3,
-                    message: "Username must be at least 3 characters.",
+                    message: `${t("ErrorMessages.username.minLength")}`,
                   },
                   maxLength: {
                     value: 30,
-                    message: "Username must be less than 30 characters",
+                    message: `${t("ErrorMessages.username.maxLength")}`,
                   },
                 })}
               />
@@ -290,7 +292,7 @@ export default function ProfileForm() {
           {/* Email */}
           <div className="flex flex-col w-full relative">
             <div className="w-full flex flex-col gap-1.5">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t("InputLabels.email")}</label>
               <input
                 disabled
                 type="text"
@@ -304,14 +306,14 @@ export default function ProfileForm() {
                     : "border-[#c1b6ad] dark:border-[#665f55]"
                 } `}
                 {...register("email", {
-                  required: "Email is required.",
+                  required: `${t("ErrorMessages.email.required")}`,
                   minLength: {
                     value: 3,
-                    message: "Email must be at least 3 characters.",
+                    message: `${t("ErrorMessages.email.minLength")}`,
                   },
                   pattern: {
                     value: /^\S+@\S+\.\S+$/,
-                    message: "Please enter a valid email",
+                    message: `${t("ErrorMessages.email.pattern")}`,
                   },
                 })}
               />
@@ -334,7 +336,7 @@ export default function ProfileForm() {
           {/* City */}
           <div className="flex flex-col w-full relative">
             <div className="w-full flex flex-col gap-1.5 relative">
-              <label htmlFor="city">City</label>
+              <label htmlFor="city">{t("InputLabels.city")}</label>
               <Select
                 value={watch("city")}
                 onValueChange={(value) => {
@@ -385,7 +387,7 @@ export default function ProfileForm() {
           {/* Street */}
           <div className="flex flex-col w-full relative">
             <div className="w-full flex flex-col gap-1.5 relative">
-              <label htmlFor="street">Street</label>
+              <label htmlFor="street">{t("InputLabels.street")}</label>
               <Select
                 disabled={!watch("city")}
                 value={watch("street")}
@@ -434,7 +436,9 @@ export default function ProfileForm() {
           {/* House number */}
           <div className="flex flex-col w-full relative ">
             <div className="w-full flex flex-col gap-1.5">
-              <label htmlFor="house_number">House number</label>
+              <label htmlFor="house_number">
+                {t("InputLabels.houseNumber")}
+              </label>
               <input
                 type="number"
                 id="house_number"
@@ -449,14 +453,14 @@ export default function ProfileForm() {
                     : "border-[#c1b6ad] dark:border-[#665f55]"
                 }`}
                 {...register("house_number", {
-                  required: "House number is required.",
+                  required: `${t("ErrorMessages.houseNumber.required")}`,
                   min: {
                     value: 1,
-                    message: "House number must be greater than 0",
+                    message: `${t("ErrorMessages.houseNumber.min")}`,
                   },
                   pattern: {
                     value: /^[1-9]\d*$/,
-                    message: "Please enter a valid house number (e.g., 123)",
+                    message: `${t("ErrorMessages.houseNumber.pattern")}`,
                   },
                 })}
               />
@@ -493,10 +497,10 @@ export default function ProfileForm() {
           {isLoading ? (
             <>
               <Spinner />
-              Updating...
+              {t("Buttons.saveChangesLoading")}...
             </>
           ) : (
-            <>Save changes</>
+            <>{t("Buttons.saveChanges")}</>
           )}
         </button>
 

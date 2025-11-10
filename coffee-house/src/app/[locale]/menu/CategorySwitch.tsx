@@ -1,6 +1,7 @@
 "use client";
 
 import { CATEGORIES } from "@/app/constants/constants";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 interface CategoryProps {
@@ -13,6 +14,7 @@ export default function CategorySwitch({
   category,
 }: CategoryProps) {
   const categories = Object.values(CATEGORIES);
+  const t = useTranslations("MenuPage");
 
   return (
     <div className="flex gap-2 md:gap-4">
@@ -50,7 +52,7 @@ export default function CategorySwitch({
               category === categoryItem ? "text-[#e1d4c9]" : ""
             } font-semibold group-hover:text-[#e1d4c9]`}
           >
-            {categoryItem}
+            {t(`Category.${categoryItem}`)}
           </span>
         </button>
       ))}

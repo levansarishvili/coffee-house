@@ -14,12 +14,14 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Spinner } from "@/components/ui/spinner";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {
   const { signOut, signOutLoading } = useAuth();
   const { refreshCart } = useCart();
   const router = useRouter();
+  const t = useTranslations("ProfilePage");
 
   // Handle logout
   const handleSignOut = async () => {
@@ -39,10 +41,10 @@ export default function LogoutButton() {
           {signOutLoading ? (
             <>
               <Spinner />
-              Logging out...
+              {t("Buttons.signOutLoading")}...
             </>
           ) : (
-            <>Sign out</>
+            <>{t("Buttons.signOut")}</>
           )}
         </button>
       </AlertDialogTrigger>

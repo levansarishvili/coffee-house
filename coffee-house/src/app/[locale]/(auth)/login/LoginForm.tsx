@@ -14,6 +14,7 @@ import { migrateTemporaryCartToUserCart } from "@/utils/cartMigrationClient";
 import { useAuth } from "@/app/context/useAuth";
 import { useCart } from "@/app/context/useCart";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function LoginForm() {
   const {
@@ -24,6 +25,7 @@ export default function LoginForm() {
   } = useForm<LoginFormData>({
     mode: "all",
   });
+  const t = useTranslations("LoginPage");
 
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -62,12 +64,12 @@ export default function LoginForm() {
         {/* Email */}
         <div className="flex flex-col w-full relative ">
           <div className="w-full flex flex-col gap-1.5">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{t("InputLabels.email")}</label>
             <input
               type="text"
               id="email"
-              placeholder="Placeholder"
-              className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+              placeholder={t("InputPlaceholders.email")}
+              className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal placeholder:text-sm ${
                 errors.email
                   ? "border-error focus:outline-error"
                   : touchedFields.email && watch("email") && !errors.email
@@ -75,14 +77,14 @@ export default function LoginForm() {
                   : "border-[#c1b6ad] dark:border-[#665f55]"
               }`}
               {...register("email", {
-                required: "Email is required.",
+                required: `${t("ErrorMessages.email.required")}`,
                 minLength: {
                   value: 3,
-                  message: "Email must be at least 3 characters.",
+                  message: `${t("ErrorMessages.email.minLength")}`,
                 },
                 pattern: {
                   value: /^\S+@\S+\.\S+$/,
-                  message: "Please enter a valid email",
+                  message: `${t("ErrorMessages.email.pattern")}`,
                 },
               })}
             />
@@ -103,12 +105,12 @@ export default function LoginForm() {
         {/* Password */}
         <div className="flex flex-col w-full relative">
           <div className="w-full flex flex-col gap-1.5 relative">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{t("InputLabels.password")}</label>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
-              placeholder="Password"
-              className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal ${
+              placeholder={t("InputPlaceholders.password")}
+              className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal placeholder:text-sm ${
                 errors.password
                   ? "border-error focus:outline-error"
                   : touchedFields.password &&
@@ -118,14 +120,14 @@ export default function LoginForm() {
                   : "border-[#c1b6ad] dark:border-[#665f55]"
               }`}
               {...register("password", {
-                required: "Password is required.",
+                required: `${t("ErrorMessages.password.required")}`,
                 minLength: {
                   value: 6,
-                  message: "Password must be at least 6 characters.",
+                  message: `${t("ErrorMessages.password.minLength")}`,
                 },
                 pattern: {
                   value: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
-                  message: "Must contain at least 1 special character.",
+                  message: `${t("ErrorMessages.password.pattern")}`,
                 },
               })}
             />
@@ -159,21 +161,21 @@ export default function LoginForm() {
           {isLoading ? (
             <>
               <Spinner />
-              Logging in...
+              {t("Buttons.signInLoading")}...
             </>
           ) : (
-            <>Sign in</>
+            <>{t("Buttons.signIn")}</>
           )}
         </button>
       </form>
 
       <p className="opacity-80">
-        Don&apos;t have an account?
+        {t("question")}
         <Link
           className="ml-2 text-accent font-semibold relative group"
           href="/register"
         >
-          Sign up
+          {t("registerLink")}
           <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-accent scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
         </Link>
       </p>

@@ -43,6 +43,7 @@
     "contact": "Contact us",
     "workDays": "Mon-Sat:"
   },
+
   "MenuPage": {
     "headerPart-1": "Behind each of our cups hides an",
     "headerPart-2": " amazing surprise",
@@ -51,5 +52,81 @@
       "tea": "tea",
       "dessert": "dessert"
     }
+  },
+
+  "ProfilePage": {
+    "InputLabels": {
+      "fullName": "Full Name",
+      "username": "Username",
+      "email": "Email",
+      "city": "City",
+      "street": "Street",
+      "houseNumber": "House number"
+    },
+    "ErrorMessages": {
+      "avatar": {
+        "fileType": "Only image files are allowed",
+        "fileSize": "File size must be less than 1MB"
+      },
+      "fullName": {
+        "required": "Full Name is required",
+        "minLength": "Full Name must be at least 3 characters",
+        "maxLength": "Full name must be less than 50 characters",
+        "pattern": "Only English letters are allowed"
+      },
+      "username": {
+        "required": "Username is required",
+        "minLength": "Username must be at least 3 characters",
+        "maxLength": "Username must be less than 30 characters"
+      },
+      "email": {
+        "required": "Email is required",
+        "minLength": "Email must be at least 3 characters",
+        "pattern": "Please enter a valid email"
+      },
+
+      "houseNumber": {
+        "required": "House number is required",
+        "min": "House number must be greater than 0",
+        "pattern": "Please enter a valid house number"
+      }
+    },
+    "Buttons": {
+      "saveChanges": "Save changes",
+      "saveChangesLoading": "Updating",
+      "signOut": "Sign out",
+      "signOutLoading": "Logging out"
+    }
+  },
+  "LoginPage": {
+    "header": "Sign In",
+    "InputLabels": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "InputPlaceholders": {
+      "email": "Enter email",
+      "password": "Enter password"
+    },
+    "ErrorMessages": {
+      "email": {
+        "required": "Email is required",
+        "minLength": "Email must be at least 3 characters",
+        "pattern": "Please enter a valid email"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must be at least 6 characters",
+        "pattern": "Must contain at least 1 special character"
+      }
+    },
+    "Buttons": {
+      "signIn": "Sign in",
+      "signInLoading": "Logging in",
+      "signInWithGithub": "Sign in with Github",
+      "signInWithGoogle": "Sign in with Google"
+    },
+    "question": "Don't have an account?",
+    "registerLink": "Sign up"
   }
 }
