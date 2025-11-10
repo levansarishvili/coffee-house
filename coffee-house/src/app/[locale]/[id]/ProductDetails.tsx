@@ -29,16 +29,18 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
   const t = useTranslations("ProductDetailsPage");
   const { user } = useAuth();
   const { refreshCart } = useCart();
-  const { product, loading, error } = useProductById(id);
+  const { product, loading: productLoading, error } = useProductById(id);
 
   const { reviews, loading: reviewsLoading } = useReviews(product?.id ?? null);
   const [ratings, setRatings] = useState<number[]>([]);
   const [averageRating, setAverageRating] = useState(5);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [selectedSize, setSelectedSize] = useState("s");
   const [selectedAdditives, setSelectedAdditives] = useState<number[]>([]);
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const [discountedPrice, setDiscountedPrice] = useState<number | null>(null);
+
+  const isLoading = productLoading;
 
   // Calculate average rating
   useEffect(() => {
@@ -143,7 +145,7 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
 
       // Add to the supabase temporary_cart table
       try {
-        setIsLoading(true);
+        setIsAddingToCart(true);
         const result = await addToCart(isAuthenticated, cartItemData);
 
         if (result.action === "updated") {
@@ -160,18 +162,18 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
         }
         console.error("Failed to add to cart:", error);
       } finally {
-        setIsLoading(false);
+        setIsAddingToCart(false);
       }
     }
   }
 
   return (
     <section className="flex flex-col gap-[100px] w-full">
-      {(loading || reviewsLoading) && <Loading />}
+      {isLoading && <Loading />}
 
       {error && <ErrorMessaege message={error} />}
 
-      {product && !loading && !reviewsLoading && !error && (
+      {product && !isLoading && !error && (
         <div className="flex flex-col justify-center items-center gap-20">
           <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-12 lg:gap-25">
             <div
@@ -247,9 +249,9 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
                   onClick={handleAddToCart}
                   className="flex gap-4 justify-center items-center border max-w-64 w-full h-11 border-[#665f55] hover:bg-[#665f55] 
               hover:text-[#e1d4c9] transition-all duration-300 rounded-[100px] cursor-pointer font-semibold"
-                  disabled={isLoading ? true : false}
+                  disabled={isAddingToCart ? true : false}
                 >
-                  {isLoading ? (
+                  {isAddingToCart ? (
                     <>
                       <Spinner />
                       {t("addToCartButtonLoading")}...

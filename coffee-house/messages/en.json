@@ -4,7 +4,8 @@
     "about": "About",
     "mobile": "Mobile app",
     "contact": "Contact us",
-    "menu": "Menu"
+    "menu": "Menu",
+    "cart": "Cart"
   },
   "ModeToggle": {
     "light": "Light",
