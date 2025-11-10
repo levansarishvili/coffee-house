@@ -155,14 +155,14 @@ export default function CartContent() {
         <div className="flex justify-center items-center flex-col md:flex-row gap-8 mt-8 w-full">
           <Link
             href="/login"
-            className="flex justify-center items-center border font-semibold cursor-pointer border-[#665f55] w-50 h-11 py-2.5 px-[78px] rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
+            className="flex justify-center items-center border font-semibold cursor-pointer border-[#665f55] w-50 h-11 rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
           >
             {t("Buttons.signIn")}
           </Link>
 
           <Link
             href="/register"
-            className="flex justify-center items-center border font-semibold cursor-pointer border-[#665f55] w-50 h-11 py-2.5 px-[78px] rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
+            className="flex justify-center items-center border font-semibold cursor-pointer border-[#665f55] w-50 h-11 rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
           >
             {t("Buttons.register")}
           </Link>

@@ -11,9 +11,9 @@ export default function Navigation({ isOpen, setIsOpen }: NavigationProps) {
   return (
     <nav
       className={`${
-        isOpen ? "right-0 sm:right-0" : "-right-full"
+        isOpen ? "right-0" : "-right-full"
       } lg:right-0 flex lg:flex gap-10 flex-col justify-start items-center lg:justify-center text-2xl md:text-3xl lg:text-base lg:flex-row 
-  absolute h-screen lg:h-auto top-20 
+  fixed h-screen lg:h-auto top-20 
   lg:top-0 lg:relative z-50 bg-background pt-20 lg:py-0 
   w-full lg:w-auto py-4 font-semibold
   transition-all duration-500 ease-in-out lg:transition-none`}
