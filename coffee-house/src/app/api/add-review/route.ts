@@ -53,7 +53,10 @@ export async function POST(request: NextRequest) {
       console.error("Error checking purchase status:", orderItemsError);
     }
 
-    const purchased_status = !!orderItems;
+    let purchased_status = false;
+    if (orderItems) {
+      purchased_status = orderItems.length > 0;
+    }
 
     // Check if user already added review on this product
     const { data: existingReviews, error: checkError } = await supabase

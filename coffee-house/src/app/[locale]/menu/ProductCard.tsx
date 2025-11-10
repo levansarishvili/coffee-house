@@ -52,7 +52,7 @@ export default function ProductCard({ product }: ProductProps) {
               <StarIcon
                 key={index}
                 className={`w-5 h-5 ${
-                  averageRating > index
+                  Math.round(averageRating) > index
                     ? "opacity-100 text-yellow-600 fill-yellow-600"
                     : "opacity-30 fill-primary"
                 }`}

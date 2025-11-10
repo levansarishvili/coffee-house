@@ -85,21 +85,17 @@ export default function CustomerReviews({
                     ))}
                   </div>
 
-                  <div className="flex justify-between">
+                  <div className="flex justify-between w-full">
                     {/* Comment */}
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {review.comment}
-                    </p>
-                    {review.purchased_status && (
-                      <p
-                        className="flex gap-1 font-medium items-center 
-                      justify-center text-sm text-success"
-                      >
-                        <CheckIcon className="w-4 h-4" />
-                        <span> Verified Purchase</span>
-                      </p>
-                    )}
+                    <p className="text-sm">{review.comment}</p>
                   </div>
+
+                  {review.purchased_status && (
+                    <p className="rounded-xl bg-[#665f55] mt-2 p-1 max-w-36 flex gap-1 font-semibold items-center center text-xs text-[#e1d4c9]">
+                      <CheckIcon className="w-4 h-4 stroke-2" />
+                      <span> Verified Purchase</span>
+                    </p>
+                  )}
                 </div>
               </div>
             ))

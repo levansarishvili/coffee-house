@@ -28,7 +28,7 @@ interface ProductDetailsProps {
 export default function ProductDetails({ id }: ProductDetailsProps) {
   const t = useTranslations("ProductDetailsPage");
   const { user } = useAuth();
-  const { refreshCart } = useCart();
+  const { refreshCart, clearCart } = useCart();
   const { product, loading, error } = useProductById(id);
 
   const { reviews, loading: reviewsLoading } = useReviews(product?.id ?? null);
@@ -153,6 +153,7 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
         }
 
         refreshCart();
+        clearCart();
       } catch (error) {
         if (error instanceof Error) {
           toast.success(error.message);
@@ -196,7 +197,7 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
                   <StarIcon
                     key={index}
                     className={`w-5 h-5 ${
-                      averageRating > index
+                      Math.round(averageRating) > index
                         ? "opacity-100 text-yellow-600 fill-yellow-600"
                         : "opacity-30 fill-primary"
                     }`}
