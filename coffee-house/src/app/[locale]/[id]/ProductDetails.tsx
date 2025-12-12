@@ -31,7 +31,7 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
   const { refreshCart } = useCart();
   const { product, loading: productLoading, error } = useProductById(id);
 
-  const { reviews, loading: reviewsLoading } = useReviews(product?.id ?? null);
+  const { reviews } = useReviews(product?.id ?? null);
   const [ratings, setRatings] = useState<number[]>([]);
   const [averageRating, setAverageRating] = useState(5);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -154,7 +154,6 @@ export default function ProductDetails({ id }: ProductDetailsProps) {
           toast.success("Product added to cart successfully!");
         }
 
-        // clearCart();
         refreshCart();
       } catch (error) {
         if (error instanceof Error) {

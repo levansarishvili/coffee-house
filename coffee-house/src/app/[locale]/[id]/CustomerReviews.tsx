@@ -7,6 +7,7 @@ import { UserIcon } from "@heroicons/react/16/solid";
 import { CheckIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface CustomerReviewsProps {
   product_id: number;
@@ -28,7 +29,12 @@ export default function CustomerReviews({
       {loading ? (
         <Loading />
       ) : (
-        <div className="flex flex-wrap justify-center gap-6 w-full mx-auto">
+        <motion.div
+          variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-wrap justify-center gap-6 w-full mx-auto"
+        >
           {!reviews || reviews.length === 0 ? (
             <p className="flex gap-2 items-center justify-center font-medium text-base md:text-lg">
               <MagnifyingGlassIcon className="w-6 h-6 stroke-2" />
@@ -36,7 +42,13 @@ export default function CustomerReviews({
             </p>
           ) : (
             reviews.map((review) => (
-              <div
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  visible: { opacity: 1, scale: 1 },
+                }}
+                // exit={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring" }}
                 key={review.id}
                 className="max-w-[500px] w-full flex items-start gap-4 p-4 rounded-2xl border 
               border-[#c1b6ad] dark:border-[#665f55]"
@@ -97,10 +109,10 @@ export default function CustomerReviews({
                     </p>
                   )}
                 </div>
-              </div>
+              </motion.div>
             ))
           )}
-        </div>
+        </motion.div>
       )}
     </section>
   );

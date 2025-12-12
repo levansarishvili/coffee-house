@@ -8,6 +8,7 @@ import { CATEGORIES } from "@/app/constants/constants";
 import Loading from "../../../Loading";
 import ErrorMessaege from "@/app/components/ErrorMessaege";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
 export default function MenuContent() {
   const t = useTranslations("MenuPage");
@@ -30,11 +31,16 @@ export default function MenuContent() {
       {error && <ErrorMessaege message={error} />}
 
       {!error && !loading && (
-        <div className="flex gap-10 flex-wrap justify-center">
+        <motion.div
+          variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+          initial="hidden"
+          animate="visible"
+          className="flex gap-10 flex-wrap justify-center"
+        >
           {products?.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}
-        </div>
+        </motion.div>
       )}
     </main>
   );
