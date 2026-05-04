@@ -1,0 +1,263 @@
+{
+  "Navigation": {
+    "favorite": "ყავა",
+    "about": "ჩვენს შესახებ",
+    "mobile": "აპლიკაცია",
+    "contact": "კონტაქტი",
+    "menu": "მენიუ",
+    "cart": "კალათა"
+  },
+  "ModeToggle": {
+    "light": "ღია",
+    "dark": "მუქი",
+    "system": "სისტემა"
+  },
+  "LanguageToggle": {
+    "en": "Eng",
+    "ka": "ქართ"
+  },
+  "Hero": {
+    "enjoy": "ისიამოვნეთ",
+    "header": "უმაღლესი ხარისხის ყავით ჩვენს კაფეში",
+    "desc": "მიმზიდველი ატმოსფეროთი და გემრიელი ყავის არჩევანით, CoffeeHouse Resource პოპულარული ადგილია ყავის მოყვარულთათვის და მათთვის, ვინც ეძებს თბილ და მყუდრო გარემოს საყვარელი სასმელის დასაგემოვნებლად.",
+    "menu": "მენიუ"
+  },
+
+  "Slider": {
+    "headerPart-1": "აირჩიეთ თქვენი",
+    "headerPart-2": "საყვარელი",
+    "headerPart-3": "ყავა"
+  },
+  "About": {
+    "headerPart-1": "Resource",
+    "headerPart-2": "იდეალური და მყუდრო ადგილია,",
+    "headerPart-3": "სადაც შეგიძლიათ დატკბეთ მრავალფეროვანი ცხელი სასმელებით, დაისვენოთ, შეხვდეთ მეგობრებს ან იმუშაოთ."
+  },
+  "MobileApp": {
+    "headerPart-1": "გადმოწერე",
+    "headerPart-2": "ჩვენი აპლიკაცია შეკვეთის დასაწყებად",
+    "desc": "ჩამოტვირთეთ Resource აპლიკაცია დღესვე და შეუკვეთეთ თქვენი საყვარელი ყავა ნებისმიერი ადგილიდან",
+    "available": "ხელმისაწვდომია"
+  },
+  "Footer": {
+    "headerPart-1": "მოსვი, დააგემოვნე, გაიღიმე.",
+    "headerPart-2": "ყავის დროა!",
+    "contact": "კონტაქტი",
+    "workDays": "ორშ-შაბ:"
+  },
+  "MenuPage": {
+    "headerPart-1": "ჩვენი ყოველი ჭიქის უკან იმალება ",
+    "headerPart-2": "საოცარი სიურპრიზი",
+    "Category": {
+      "coffee": "ყავა",
+      "tea": "ჩაი",
+      "dessert": "დესერტი"
+    }
+  },
+
+  "ProfilePage": {
+    "InputLabels": {
+      "fullName": "სრული სახელი",
+      "username": "მომხმარებელი",
+      "email": "ელფოსტა",
+      "city": "ქალაქი",
+      "street": "ქუჩა",
+      "houseNumber": "სახლის ნომერი"
+    },
+    "ErrorMessages": {
+      "avatar": {
+        "fileType": "მხოლოდ სურათის ატვირთვაა შესაძლებელი",
+        "fileSize": "ფაილის ზომა არ უნდა აღემატებოდეს 1MB-ს"
+      },
+      "fullName": {
+        "required": "სრული სახელი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "maxLength": "არ უნდა შეიცავდეს 50 სიმბოლოზე მეტს",
+        "pattern": "მხოლოდ ლათინური ასოებია დაშვებული"
+      },
+      "username": {
+        "required": "მომხმარებლის სახელი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "maxLength": "არ უნდა შეიცავდეს 30 სიმბოლოზე მეტს"
+      },
+      "email": {
+        "required": "ელფოსტა სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "pattern": "შეიყვანეთ ელფოსტა სწორი ფორმატით"
+      },
+
+      "houseNumber": {
+        "required": "სახლის ნომერი სავალდებულოა",
+        "min": "სახლის ნომერი უნდა იყოს 0-ზე მეტი",
+        "pattern": "შეიყვანეთ სახლის ნომერი სწორი ფორმატით"
+      }
+    },
+    "Buttons": {
+      "saveChanges": "შენახვა",
+      "saveChangesLoading": "განახლება",
+      "signOut": "გასვლა",
+      "signOutLoading": "გასვლა"
+    }
+  },
+  "LoginPage": {
+    "header": "ავტორიზაცია",
+    "InputLabels": {
+      "email": "ელფოსტა",
+      "password": "პაროლი"
+    },
+    "InputPlaceholders": {
+      "email": "შეიყვანეთ ელფოსტა",
+      "password": "შეიყვანეთ პაროლი"
+    },
+    "ErrorMessages": {
+      "email": {
+        "required": "ელფოსტა სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "pattern": "შეიყვანეთ ელფოსტა სწორი ფორმატით"
+      },
+      "password": {
+        "required": "პაროლი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს",
+        "pattern": "უნდა შეიცავდეს მინიმუმ 1 სპეციალურ სიმბოლოს"
+      }
+    },
+    "Buttons": {
+      "signIn": "შესვლა",
+      "signInLoading": "შესვლა",
+      "signInWithGithub": "Github-ით შესვლა",
+      "signInWithGoogle": "Google-ით შესვლა"
+    },
+    "question": "ჯერ არ გაქვთ პროფილი?",
+    "registerLink": "რეგისტრაცია"
+  },
+  "RegistrationPage": {
+    "header": "რეგისტრაცია",
+    "InputLabels": {
+      "fullName": "სრული სახელი",
+      "username": "მომხმარებელი",
+      "email": "ელფოსტა",
+      "password": "პაროლი",
+      "confirmPassword": "პაროლის დადასტურება",
+      "city": "ქალაქი",
+      "street": "ქუჩა",
+      "houseNumber": "სახლის ნომერი"
+    },
+    "InputPlaceholders": {
+      "fullName": "შეიყვანეთ სრული სახელი",
+      "username": "შეიყვანეთ მომხმარებლის სახელი",
+      "email": "შეიყვანეთ ელფოსტა",
+      "password": "შეიყვანეთ პაროლი",
+      "confirmPassword": "დაადასტურეთ პაროლი",
+      "city": "აირჩიეთ ქალაქი",
+      "street": "აირჩიეთ ქუჩა",
+      "houseNumber": "შეიყვანეთ სახლის ნომერი"
+    },
+    "avatarButtons": {
+      "uploadNew": "ატვირთე ახალი",
+      "uploadImage": "სურათის ატვირთვა",
+      "removeImage": "სურათის წაშლა"
+    },
+    "ErrorMessages": {
+      "avatar": {
+        "fileType": "მხოლოდ სურათის ატვირთვაა შესაძლებელი",
+        "fileSize": "ფაილის ზომა არ უნდა აღემატებოდეს 1MB-ს"
+      },
+      "fullName": {
+        "required": "სრული სახელი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "maxLength": "არ უნდა შეიცავდეს 50 სიმბოლოზე მეტს",
+        "pattern": "მხოლოდ ლათინური ასოებია დაშვებული"
+      },
+      "username": {
+        "required": "მომხმარებლის სახელი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "maxLength": "არ უნდა შეიცავდეს 30 სიმბოლოზე მეტს"
+      },
+      "email": {
+        "required": "ელფოსტა სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 3 სიმბოლოს",
+        "pattern": "შეიყვანეთ ელფოსტა სწორი ფორმატით"
+      },
+      "password": {
+        "required": "პაროლი სავალდებულოა",
+        "minLength": "უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს",
+        "pattern": "უნდა შეიცავდეს მინიმუმ 1 სპეციალურ სიმბოლოს"
+      },
+      "confirmPassword": {
+        "required": "დაადასტურეთ პაროლი",
+        "compareWithPassword": "პაროლები არ ემთხვევა ერთმანეთს"
+      },
+      "city": {
+        "required": "გთხოვთ აირჩიეთ ქალაქი"
+      },
+      "street": {
+        "required": "გთხოვთ აირჩიეთ ქუჩა"
+      },
+
+      "houseNumber": {
+        "required": "სახლის ნომერი სავალდებულოა",
+        "min": "სახლის ნომერი უნდა იყოს 0-ზე მეტი",
+        "pattern": "შეიყვანეთ სახლის ნომერი სწორი ფორმატით"
+      }
+    },
+    "Buttons": {
+      "register": "რეგისტრაცია",
+      "registerLoading": "რეგისტრაცია"
+    },
+    "question": "უკვე გაქვთ პროფილი?",
+    "signInLink": "ავტორიზაცია"
+  },
+  "CartPage": {
+    "header": "კალათა",
+    "Buttons": {
+      "signIn": "შესვლა",
+      "register": "რეგისტრაცია",
+      "confirm": "შეკვეთა",
+      "confirmLoading": "შეკვეთა"
+    },
+    "total": "სულ",
+    "address": "მისამართი"
+  },
+  "AvatarDropDown": {
+    "header": "ჩემი პროფილი",
+    "profile": "პროფილი",
+    "cart": "კალათა",
+    "orders": "შეკვეთები",
+    "signOut": "გასვლა"
+  },
+  "OrdersPage": {
+    "header": "შეკვეთები",
+    "total": "სულ",
+    "TableHeaders": {
+      "date": "თარიღი",
+      "details": "დეტალები",
+      "amount": "თანხა"
+    },
+    "view": "ნახვა"
+  },
+  "OrderItemsPage": {
+    "header": "შეკვეთის დეტალები"
+  },
+  "ProductDetailsPage": {
+    "headerPart1": "აღმოაჩინე ისტორია ",
+    "headerPart2": "შენს ფინჯანში",
+    "addToCartButton": "კალათაში დამატება",
+    "addToCartButtonLoading": "კალათაში დამატება",
+    "Reviews": {
+      "header": "შეფასებები",
+      "commentLabel": "თქვენი კომენტარი",
+      "ratingLabel": "თქვენი რეიტინგი",
+      "ratingText": "რეიტინგი",
+      "commentPlaceholder": "გაგვიზიარეთ თქვენი გამოცდილება...",
+      "submitButton": "შეფასება",
+      "submitButtonLoading": "შეფასება",
+      "ErrorMessages": {
+        "comment": {
+          "required": "კომენტარის ველი სავალდებულოა",
+          "minLength": "უნდა შეიცავდეს მინიმუმ 10 სიმბოლოს",
+          "maxLength": "არ უნდა შეიცავდეს 500 სიმბოლოზე მეტს"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "Navigation": {
+    "favorite": "Favorite coffee",
+    "about": "About",
+    "mobile": "Mobile app",
+    "contact": "Contact us",
+    "menu": "Menu",
+    "cart": "Cart"
+  },
+  "ModeToggle": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "LanguageToggle": {
+    "en": "Eng",
+    "ka": "ქართ"
+  },
+  "Hero": {
+    "enjoy": "Enjoy",
+    "header": "premium coffee at our charming cafe",
+    "desc": "With its inviting atmosphere and delicious coffee options, the CoffeeHouse Resource is a popular destination for coffee lovers and thoseseeking a warm and inviting space to enjoy their favorite beverage.",
+    "menu": "Menu"
+  },
+  "Slider": {
+    "headerPart-1": "Choose your",
+    "headerPart-2": "favorite",
+    "headerPart-3": "coffee"
+  },
+  "About": {
+    "headerPart-1": "Resource is",
+    "headerPart-2": "the perfect and cozy place",
+    "headerPart-3": "where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done."
+  },
+  "MobileApp": {
+    "headerPart-1": "Download",
+    "headerPart-2": "our apps to start ordering",
+    "desc": "Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are",
+    "available": "Available on the"
+  },
+  "Footer": {
+    "headerPart-1": "Sip, Savor, Smile.",
+    "headerPart-2": "It's coffee time!",
+    "contact": "Contact us",
+    "workDays": "Mon-Sat:"
+  },
+
+  "MenuPage": {
+    "headerPart-1": "Behind each of our cups hides an",
+    "headerPart-2": " amazing surprise",
+    "Category": {
+      "coffee": "coffee",
+      "tea": "tea",
+      "dessert": "dessert"
+    }
+  },
+
+  "ProfilePage": {
+    "InputLabels": {
+      "fullName": "Full Name",
+      "username": "Username",
+      "email": "Email",
+      "city": "City",
+      "street": "Street",
+      "houseNumber": "House number"
+    },
+    "ErrorMessages": {
+      "avatar": {
+        "fileType": "Only image files are allowed",
+        "fileSize": "File size must be less than 1MB"
+      },
+      "fullName": {
+        "required": "Full Name is required",
+        "minLength": "Full Name must be at least 3 characters",
+        "maxLength": "Full name must be less than 50 characters",
+        "pattern": "Only English letters are allowed"
+      },
+      "username": {
+        "required": "Username is required",
+        "minLength": "Username must be at least 3 characters",
+        "maxLength": "Username must be less than 30 characters"
+      },
+      "email": {
+        "required": "Email is required",
+        "minLength": "Email must be at least 3 characters",
+        "pattern": "Please enter a valid email"
+      },
+
+      "houseNumber": {
+        "required": "House number is required",
+        "min": "House number must be greater than 0",
+        "pattern": "Please enter a valid house number"
+      }
+    },
+    "Buttons": {
+      "saveChanges": "Save changes",
+      "saveChangesLoading": "Updating",
+      "signOut": "Sign out",
+      "signOutLoading": "Logging out"
+    }
+  },
+  "LoginPage": {
+    "header": "Sign In",
+    "InputLabels": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "InputPlaceholders": {
+      "email": "Enter email",
+      "password": "Enter password"
+    },
+    "ErrorMessages": {
+      "email": {
+        "required": "Email is required",
+        "minLength": "Email must be at least 3 characters",
+        "pattern": "Please enter a valid email"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must be at least 6 characters",
+        "pattern": "Must contain at least 1 special character"
+      }
+    },
+    "Buttons": {
+      "signIn": "Sign in",
+      "signInLoading": "Logging in",
+      "signInWithGithub": "Sign in with Github",
+      "signInWithGoogle": "Sign in with Google"
+    },
+    "question": "Don't have an account?",
+    "registerLink": "Sign up"
+  },
+  "RegistrationPage": {
+    "header": "Registration",
+    "InputLabels": {
+      "fullName": "Full Name",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "city": "City",
+      "street": "Street",
+      "houseNumber": "House number"
+    },
+    "InputPlaceholders": {
+      "fullName": "Enter full name",
+      "username": "Enter username",
+      "email": "Enter email",
+      "password": "Enter password",
+      "confirmPassword": "Confirm Password",
+      "city": "Select city",
+      "street": "Select street",
+      "houseNumber": "Enter house number"
+    },
+    "avatarButtons": {
+      "uploadNew": "Upload new",
+      "uploadImage": "Upload Image",
+      "removeImage": "Remove image"
+    },
+    "ErrorMessages": {
+      "avatar": {
+        "fileType": "Only image files are allowed",
+        "fileSize": "File size must be less than 1MB"
+      },
+      "fullName": {
+        "required": "Full Name is required",
+        "minLength": "Full Name must be at least 3 characters",
+        "maxLength": "Full name must be less than 50 characters",
+        "pattern": "Only English letters are allowed"
+      },
+      "username": {
+        "required": "Username is required",
+        "minLength": "Username must be at least 3 characters",
+        "maxLength": "Username must be less than 30 characters"
+      },
+      "email": {
+        "required": "Email is required",
+        "minLength": "Email must be at least 3 characters",
+        "pattern": "Please enter a valid email"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must be at least 6 characters",
+        "pattern": "Must contain at least 1 special character"
+      },
+      "confirmPassword": {
+        "required": "Please confirm your password",
+        "compareWithPassword": "Passwords do not match"
+      },
+      "city": {
+        "required": "Please select a city"
+      },
+      "street": {
+        "required": "Please select a street"
+      },
+
+      "houseNumber": {
+        "required": "House number is required",
+        "min": "House number must be greater than 0",
+        "pattern": "Please enter a valid house number"
+      }
+    },
+    "Buttons": {
+      "register": "Registration",
+      "registerLoading": "Registering"
+    },
+    "question": "Have already an account?",
+    "signInLink": "Sign in"
+  },
+  "CartPage": {
+    "header": "Cart",
+    "Buttons": {
+      "signIn": "Sign in",
+      "register": "Register",
+      "confirm": "Confirm Order",
+      "confirmLoading": "Placing Order"
+    },
+    "total": "Total",
+    "address": "Address"
+  },
+  "AvatarDropDown": {
+    "header": "My Account",
+    "profile": "Profile",
+    "cart": "Cart",
+    "orders": "Orders",
+    "signOut": "Sign out"
+  },
+  "OrdersPage": {
+    "header": "Orders",
+    "total": "Total",
+    "TableHeaders": {
+      "date": "Date",
+      "details": "Details",
+      "amount": "Amount"
+    },
+    "view": "View"
+  },
+  "OrderItemsPage": {
+    "header": "Order Details"
+  },
+  "ProductDetailsPage": {
+    "headerPart1": "Discover the Story in ",
+    "headerPart2": "Your Cup",
+    "addToCartButton": "Add to cart",
+    "addToCartButtonLoading": "Adding to cart",
+    "Reviews": {
+      "header": "Reviews",
+      "commentLabel": "Your Comment",
+      "ratingLabel": "Your Rating",
+      "ratingText": "Rating",
+      "commentPlaceholder": "Share your experience with this product...",
+      "submitButton": "Submit Review",
+      "submitButtonLoading": "Submitting",
+      "ErrorMessages": {
+        "comment": {
+          "required": "Please write your comment",
+          "minLength": "Comment must be at least 10 characters",
+          "maxLength": "Comment must be less than 500 characters"
+        }
+      }
+    }
+  }
+}

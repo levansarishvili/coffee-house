@@ -1,0 +1,189 @@
+"use client";
+
+import TogglePasswordVisibility from "@/app/components/TogglePasswordVisibility";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import GitHubSignIn from "./GitHubSignIn";
+import GoogleSignIn from "./GoogleSignIn";
+import { LoginFormData } from "@/app/types/interfaces";
+import { login } from "@/utils/login";
+import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
+import { migrateTemporaryCartToUserCart } from "@/utils/cartMigrationClient";
+import { useAuth } from "@/app/context/useAuth";
+import { useCart } from "@/app/context/useCart";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+
+export default function LoginForm() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isValid, touchedFields },
+  } = useForm<LoginFormData>({
+    mode: "all",
+  });
+  const t = useTranslations("LoginPage");
+
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { refreshUser, refreshUserProfile } = useAuth();
+  const { refreshCart } = useCart();
+
+  // Handle user login
+  const handleLogin = async (formData: LoginFormData) => {
+    try {
+      setIsLoading(true);
+      const { data } = await login(formData);
+
+      // Migrate cart items from temporary_cart to user cart
+      await migrateTemporaryCartToUserCart(data.user.id);
+
+      refreshUser();
+      refreshUserProfile();
+      refreshCart();
+      router.push("/");
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <section className="flex flex-col justify-between items-center gap-5 w-full md:w-auto">
+      <form
+        onSubmit={handleSubmit(handleLogin)}
+        className="flex flex-col items-center justify-center gap-6 w-full"
+      >
+        {/* Email */}
+        <div className="flex flex-col w-full relative ">
+          <div className="w-full flex flex-col gap-1.5">
+            <label htmlFor="email">{t("InputLabels.email")}</label>
+            <input
+              type="text"
+              id="email"
+              placeholder={t("InputPlaceholders.email")}
+              className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal placeholder:text-sm ${
+                errors.email
+                  ? "border-error focus:outline-error"
+                  : touchedFields.email && watch("email") && !errors.email
+                  ? "border-success"
+                  : "border-[#c1b6ad] dark:border-[#665f55]"
+              }`}
+              {...register("email", {
+                required: `${t("ErrorMessages.email.required")}`,
+                minLength: {
+                  value: 3,
+                  message: `${t("ErrorMessages.email.minLength")}`,
+                },
+                pattern: {
+                  value: /^\S+@\S+\.\S+$/,
+                  message: `${t("ErrorMessages.email.pattern")}`,
+                },
+              })}
+            />
+          </div>
+
+          {/* Error message */}
+          {errors.email?.message && (
+            <p
+              className={`${
+                errors.email.message ? "absolute -bottom-4.5" : "hidden"
+              } font-normal text-error text-xs mt-1`}
+            >
+              {errors.email.message.toString()}
+            </p>
+          )}
+        </div>
+
+        {/* Password */}
+        <div className="flex flex-col w-full relative">
+          <div className="w-full flex flex-col gap-1.5 relative">
+            <label htmlFor="password">{t("InputLabels.password")}</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              placeholder={t("InputPlaceholders.password")}
+              className={`w-full h-13 border border-[#c1b6ad] dark:border-[#665f55] px-3 rounded-xl focus:outline-none placeholder:font-normal placeholder:text-sm ${
+                errors.password
+                  ? "border-error focus:outline-error"
+                  : touchedFields.password &&
+                    watch("password") &&
+                    !errors.password
+                  ? "border-success"
+                  : "border-[#c1b6ad] dark:border-[#665f55]"
+              }`}
+              {...register("password", {
+                required: `${t("ErrorMessages.password.required")}`,
+                minLength: {
+                  value: 6,
+                  message: `${t("ErrorMessages.password.minLength")}`,
+                },
+                pattern: {
+                  value: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+                  message: `${t("ErrorMessages.password.pattern")}`,
+                },
+              })}
+            />
+
+            {/* Toggle button */}
+            <span className="absolute right-0 bottom-6">
+              <TogglePasswordVisibility
+                show={showPassword}
+                onToggle={() => setShowPassword((prev) => !prev)}
+              />
+            </span>
+          </div>
+
+          {/* Error message */}
+          {errors.password && (
+            <p
+              className={`${
+                errors.password.message ? "absolute -bottom-4.5" : "hidden"
+              } font-normal text-error text-xs mt-1`}
+            >
+              {errors.password.message?.toString()}
+            </p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="flex gap-4 w-[200px] mt-2 justify-center items-center border font-semibold cursor-pointer border-[#665f55] h-11 rounded-[100px] hover:bg-[#665f55] hover:text-[#e1d4c9] duration-300 transition-all"
+          disabled={isLoading || !isValid ? true : false}
+        >
+          {isLoading ? (
+            <>
+              <Spinner />
+              {t("Buttons.signInLoading")}...
+            </>
+          ) : (
+            <>{t("Buttons.signIn")}</>
+          )}
+        </button>
+      </form>
+
+      <p className="opacity-80">
+        {t("question")}
+        <Link
+          className="ml-2 text-accent font-semibold relative group"
+          href="/register"
+        >
+          {t("registerLink")}
+          <span className="absolute bottom-[-5px] rounded-2xl left-0 w-full h-0.5 bg-accent scale-x-0 transition-all duration-400 group-hover:scale-x-100"></span>
+        </Link>
+      </p>
+
+      <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+        <GitHubSignIn />
+        <GoogleSignIn />
+      </div>
+    </section>
+  );
+}

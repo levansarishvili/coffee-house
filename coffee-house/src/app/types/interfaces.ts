@@ -1,0 +1,165 @@
+// Base Product Interface
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  discount_price: number | null;
+  category: string;
+  image_url: string;
+  rating: number;
+  created_at: string;
+}
+
+// Size Option Interface
+export interface SizeOption {
+  id: number;
+  product_id: number;
+  size_key: string;
+  size_label: string;
+  price: number;
+  discount_price: number | null;
+  created_at: string;
+}
+
+// Additive Interface
+export interface Additive {
+  id: number;
+  name: string;
+  price: number;
+  discount_price?: number;
+}
+
+// Product Sizes Interface
+export interface ProductSizes {
+  s?: SizeOption;
+  m?: SizeOption;
+  l?: SizeOption;
+  xl?: SizeOption;
+  xxl?: SizeOption;
+}
+
+// Extended Product Details Interface
+export interface ProductDetails extends Product {
+  product_sizes: SizeOption[];
+  product_additives: Additive[];
+}
+
+// Login form data
+export interface LoginFormData {
+  email: string;
+  password: string;
+}
+// Register form data
+export interface RegisterFormData {
+  avatar: FileList | null;
+  full_name: string;
+  username: string;
+  email: string;
+  password: string;
+  confirm_password: string;
+  city: string;
+  street: string;
+  house_number: string;
+}
+// Update user profile
+export interface UpdateProfileData {
+  avatar: FileList | null;
+  full_name: string;
+  username: string;
+  email: string;
+  city: string;
+  street: string;
+  house_number: string;
+}
+
+// Cities
+export interface City {
+  city: string;
+  streets: string[];
+}
+
+// User profile type
+export type UserProfile = {
+  user_id: string;
+  created_at: string;
+  full_name: string;
+  username: string;
+  email: string;
+  city?: string;
+  street?: string;
+  house_number?: string;
+  avatar_url?: string;
+} | null;
+
+// Auth user type
+export type AuthUser = {
+  id: string;
+  email?: string;
+  app_metadata?: {
+    provider: string;
+  };
+  user_metadata?: {
+    avatar_url?: string;
+  };
+} | null;
+
+// AuthContextType
+export interface AuthContextType {
+  user: AuthUser;
+  userProfile: UserProfile;
+  loading: boolean;
+  signOutLoading: boolean;
+  error: string | null;
+  refreshUser: () => Promise<void>;
+  refreshUserProfile: () => Promise<void>;
+  signOut: () => Promise<void>;
+}
+// Cart item type
+export interface CartItemType {
+  id?: number;
+  product_id: number;
+  price: number;
+  name: string;
+  discount_price: number;
+  size: string;
+  additives: string[];
+  image_url: string;
+  quantity: number;
+}
+
+// OrderData Type
+export interface OrderDataType {
+  id?: number;
+  user_id: string;
+  total_price: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+// Order Items Data type
+export interface OrderItemsDataType {
+  id?: number;
+  user_id: string;
+  product_id: number;
+  product_name: string;
+  total_price: number;
+  price: number;
+  quantity: number;
+  image_url: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+// Review form data
+export interface ReviewFormDataType {
+  id: number;
+  user_id: string;
+  user_name: string;
+  user_avatar_url?: string;
+  rating: number;
+  comment: string;
+  product_id: number;
+  created_at: string;
+  purchased_status: boolean;
+}

@@ -1,0 +1,15 @@
+name: Keep Supabase Awake
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # every Sunday at 00:00 UTC
+  workflow_dispatch: # allows manual run
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping API
+        run: |
+          curl -X GET https://levansarishvili-coffee-house.vercel.app/health
